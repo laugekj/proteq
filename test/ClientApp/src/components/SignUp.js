@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [firstname, setFirstname] = useState(""); 
+  const [lastname, setLastname] = useState(""); 
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -67,11 +70,14 @@ export default function SignUp() {
                 name="firstName"
                 variant="outlined"
                 required
+                value={firstname}
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
+              {console.log(firstname)}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
