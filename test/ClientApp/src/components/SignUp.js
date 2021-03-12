@@ -26,6 +26,25 @@ function Copyright() {
   );
 }
 
+function CreateUser() {
+  const data = { Id: 2, Phone: 12345687, Name: "burger", Company:"Lauges Burger JOint", Email: "jointBuyrger@mail.dk" };
+
+  fetch('user', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -50,6 +69,7 @@ export default function SignUp() {
   const classes = useStyles();
   const [firstname, setFirstname] = useState(""); 
   const [lastname, setLastname] = useState(""); 
+  const [phone, setPhone] = useState(0);
   
 
   return (
@@ -143,11 +163,12 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
+          //  type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+           // className={classes.submit}
+            onClick={() => CreateUser()}
           >
             Sign Up
           </Button>

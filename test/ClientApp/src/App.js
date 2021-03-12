@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import 'fontsource-roboto';
+import { FetchUsers } from './components/FetchUsers';
 
 
 
@@ -19,7 +20,7 @@ export default class App extends Component {
       <Layout>
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
-            <Route path='/fetch-data' component={FetchData} />
+            <Route path='/fetch-users' component={FetchUsers} />         
             <Route path='/sign-in' component={SignIn} />
             <Route path='/sign-up' component={SignUp} />
       </Layout>
