@@ -11,9 +11,9 @@ namespace test.Controllers
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
-    {
+    { 
 
-            // /User
+        // /User
         [HttpGet]
         public IEnumerable<User> Get()
         {
@@ -30,9 +30,8 @@ namespace test.Controllers
         }
 
         [HttpPost]
-        public ActionResult<User> Create(User user) 
+        public ActionResult<User> Create([FromBody] User user) 
         { 
-            user = new User { Id = 1, Email = "lakj@itu.dk", Name = "Lauge", Phone = "27899661" };
             return user;
         } 
    

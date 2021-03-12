@@ -26,24 +26,7 @@ function Copyright() {
   );
 }
 
-function CreateUser() {
-  const data = { Id: 2, Phone: 12345687, Name: "burger", Company:"Lauges Burger JOint", Email: "jointBuyrger@mail.dk" };
 
-  fetch('user', {
-    method: 'POST', // or 'PUT'
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -69,7 +52,9 @@ export default function SignUp() {
   const classes = useStyles();
   const [firstname, setFirstname] = useState(""); 
   const [lastname, setLastname] = useState(""); 
-  const [phone, setPhone] = useState(0);
+  const [phone, setPhone] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
   
 
   return (
@@ -119,6 +104,8 @@ export default function SignUp() {
                 label="Company"
                 name="company"
                 autoComplete="company"
+                value={company}
+                onChange= {(e) => setCompany(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -126,6 +113,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={phone}
+                onChange= {(e) => setPhone(e.target.value)}
                 id="phone"
                 label="Phone number"
                 name="phone"
@@ -137,6 +126,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={email}
+                onChange= {(e) => setEmail(e.target.value)}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -186,4 +177,24 @@ export default function SignUp() {
       </Box>
     </Container>
   );
+
+  function CreateUser() {
+    const data = { Id:10, Phone: phone, Name: firstname, Company: company, Email: email };
+  
+    fetch('user', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
 }
