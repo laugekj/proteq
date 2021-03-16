@@ -7,18 +7,13 @@ using test.Models;
 
 namespace test.Models
 {
-    public interface IUserContext
+ 
+
+
+
+    public class UserContext : DbContext
     {
-        DbSet<User> Superheroes { get; set; }
-
-        int SaveChanges();
-    }
-
-
-
-    public class UserContext : DbContext, IUserContext
-    {
-        public DbSet<User> Superheroes { get; set; }
+        public DbSet<User> Users { get; set; }
     
      public UserContext(DbContextOptions<UserContext> options)
             : base(options)
@@ -27,14 +22,6 @@ namespace test.Models
 
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder
-                .Entity<User>();
-                
-
-    
-        }
     }
     
     
