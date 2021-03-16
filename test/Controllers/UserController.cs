@@ -13,7 +13,7 @@ namespace test.Controllers
     public class UserController : ControllerBase
     {
 
-            // /User
+    // /User
         [HttpGet]
         public IEnumerable<User> Get()
         {
