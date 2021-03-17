@@ -179,9 +179,9 @@ export default function SignUp() {
   );
 
   function CreateUser() {
-    const data = { Id:10, Phone: phone, Name: firstname, Company: company, Email: email };
+    const data = { Phone: phone, Name: firstname, Company: company, Email: email };
   
-    fetch('user', {
+    fetch('api/user', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
