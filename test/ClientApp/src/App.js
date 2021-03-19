@@ -8,6 +8,8 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import 'fontsource-roboto';
 import { FetchUsers } from './components/FetchUsers';
+import { google } from './components/google';
+import GoogleLogin from 'react-google-login'
 
 
 
@@ -23,6 +25,7 @@ export default class App extends Component {
             <Route path='/fetch-users' component={FetchUsers} />         
             <Route path='/sign-in' component={SignIn} />
             <Route path='/sign-up' component={SignUp} />
+            <Route path='/google' component={google} />
       </Layout>
     );
   }

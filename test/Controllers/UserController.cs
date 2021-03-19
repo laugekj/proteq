@@ -9,7 +9,7 @@ namespace test.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     { 
     private readonly UserContext _context;
@@ -20,43 +20,45 @@ namespace test.Controllers
      
         if (_context.Users.Count() == 0)
         {
-            _context.Users.Add(new User {Id = 421, Name = "Latge", Phone = "2789927492", Email = "sum@emal.com", Company = "sumComp A/S"});
-            _context.Users.Add(new User {Id = 120, Name = "Bejte", Phone = "12345678", Email = "Benjh@emal.com", Company = "Benhege A/S"});
-            _context.SaveChanges();
+            Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            
+    
         }
+    
        
+          
         
     }
 
-        // /User
-        // [HttpGet]
-        // public IEnumerable<User> Get()
-        // {
-        //     var user1 = new User { Id = 1, Email = "Jens@Jensen.dk", Name = "Jens Jensen", Phone = "27420661" };
-        //     var user2 = new User { Id = 2, Email = "Lars@Lars.dk", Name = "Lars Larsen", Phone = "27899660" };
-        //     var user3 = new User { Id = 3, Email = "Ole@Olesen.dk", Name = "Ole Olesen", Phone = "27899662" };
-        //     var user4 = new User { Id = 4, Email = "Jens@Jensen.dk", Name = "Jens Jensen", Phone = "27420661" };
-        //     var user5 = new User { Id = 5, Email = "Lars@Lars.dk", Name = "Lars Larsen", Phone = "27899660" };
-        //     var user6 = new User { Id = 6, Email = "Ole@Olesen.dk", Name = "Ole Olesen", Phone = "27899662" };
-
-        //     var users = new User[] { user1, user2, user3, user4, user5, user6 };
-
-        //     return users;
-        // }
 
         [HttpPost]
-        public ActionResult<User> Create([FromBody] User user) 
+        public ActionResult<User> Create(User user) 
         { 
-            return user;
+            user.Id = _context.Users.Any() ? _context.Users.Max(p => p.Id) + 1 : 1;
+            
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id = user.Id}, user);
         } 
 
+        [HttpDelete("{id}")]
+        public ActionResult<User> Delete(int id)
+        {
+            var user = _context.Users.Where(x => x.Id == id).Single<User>();
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        // /user
         [HttpGet] 
         public ActionResult<List<User>> GetAll() 
         {     
             return _context.Users.ToList(); 
         } 
 
-
+        // /user/id
         [HttpGet("{id}", Name = "GetUser")] 
         public ActionResult<User> GetById(int id) 
         {    

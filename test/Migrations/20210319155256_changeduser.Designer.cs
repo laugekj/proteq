@@ -9,8 +9,8 @@ using test.Models;
 namespace test.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210316200102_initial")]
-    partial class initial
+    [Migration("20210319155256_changeduser")]
+    partial class changeduser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,9 @@ namespace test.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Token")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
