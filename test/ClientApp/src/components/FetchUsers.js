@@ -1,11 +1,16 @@
 import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 function deleteUser(id) {
-       fetch('api/user/' + id, { method: 'DELETE' });
-    }
+        console.log('Deleted succesfully' , 'deleted');
+        fetch('api/user/' + id, { method: 'DELETE' });
+        
+     }
 export class FetchUsers extends Component {
     static displayName = FetchUsers.name;
+
+     
 
     constructor(props) {
         super(props);
