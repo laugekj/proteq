@@ -22,10 +22,12 @@ namespace test.Controllers
         {
             Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
             Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            
     
         }
     
        
+          
         
     }
 
@@ -40,7 +42,7 @@ namespace test.Controllers
             return CreatedAtAction(nameof(GetById), new { id = user.Id}, user);
         } 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
         {
             var user = _context.Users.Where(x => x.Id == id).Single<User>();

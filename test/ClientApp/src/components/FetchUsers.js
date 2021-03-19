@@ -1,6 +1,9 @@
 import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
 
+function deleteUser(id) {
+       fetch('api/user/' + id, { method: 'DELETE' });
+    }
 export class FetchUsers extends Component {
     static displayName = FetchUsers.name;
 
@@ -18,18 +21,8 @@ export class FetchUsers extends Component {
         const data = await response.json();
         this.setState({ users: data, loading: false });
     }
-    static deleteUser(id) {
-       // await fetch('api/user/' + id, { method: 'DELETE' });
 
-
-    fetch('api/user/' + id, {method: 'DELETE'}).then(() => {
-        fetch('api/user')
-            .then(response => response.json())
-            
-    });
-    }
-
-   
+    
 
     static renderUsersTable(users) {
         return (
@@ -54,16 +47,18 @@ export class FetchUsers extends Component {
                             <td>{user.company}</td>
                             <td>{user.email}</td>
                             <td>
-                            <Button onClick={() => FetchUsers.deleteUser(user.id)}>Delete</Button>
+                            <Button onClick={() => deleteUser(user.id)}>Delete</Button>
                         </td>
                         </tr>
                     )}
                 </tbody>
             </table>
         );
+        
     }
 
-
+    
+ 
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
