@@ -1,35 +1,67 @@
 import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+import EditIcon from '@material-ui/icons/Edit';
+import EditPopover from './EditPopover';
 
-function deleteUser(id) {
-        console.log('Deleted succesfully' , 'deleted');
-        fetch('api/user/' + id, { method: 'DELETE' });
-        
-     }
+
 export class FetchUsers extends Component {
     static displayName = FetchUsers.name;
-
-     
 
     constructor(props) {
         super(props);
         this.state = { users: [], loading: true };
+
+        this.populateUserData = this.populateUserData.bind(this);
+        this.forceRefetch = this.forceRefetch.bind(this);
+      
     }
+
 
     componentDidMount() {
-        this.populateUserData();
+        this.populateUserData(false);
     }
 
-    async populateUserData() {
+
+    forceRefetch() {
+        console.log("refetch pls");
+        this.populateUserData(false);
+    }
+
+
+    deleteUser(id) {
+        fetch('api/user/' + id, { method: 'DELETE' }).then(response => {
+            console.log(response);
+            // 200 is "OK" (success)
+            if(response.status == 200) {
+                this.forceRefetch();      
+                console.log('Deleted succesfully' , 'deleted');
+            }
+            else {
+                // Waaah, error handler
+            }
+        });
+     }
+
+     deleteRow(index) {
+         const users = this.state.users;
+         users.splice(index, 1);
+         fetch('api/user/' + index, { method: 'DELETE' });
+         this.setState({users: users, loading: true});
+
+     }
+    async populateUserData(bool) {
         const response = await fetch('api/user');
         const data = await response.json();
-        this.setState({ users: data, loading: false });
+        this.setState({ users: data, loading: bool });
     }
 
     
 
-    static renderUsersTable(users) {
+    renderUsersTable(users) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -39,7 +71,7 @@ export class FetchUsers extends Component {
                         <th>Name</th>
                         <th>Company</th>
                         <th>E-Mail</th>
-                    
+                        <th></th>
                         
                     </tr>
                 </thead>
@@ -52,8 +84,34 @@ export class FetchUsers extends Component {
                             <td>{user.company}</td>
                             <td>{user.email}</td>
                             <td>
-                            <Button onClick={() => deleteUser(user.id)}>Delete</Button>
-                        </td>
+                                <Grid 
+                                container
+                                direction="row"
+                                justify="center"
+                                alignItems="center">
+                                    
+                                   <EditPopover onCloseFunc={this.forceRefetch} user={user}>
+
+                                   </EditPopover>
+                                    <IconButton 
+                                    color="secondary" 
+                                    aria-label="Slet"
+                                    index={user.id}
+                                    onClick={(e) => this.deleteUser(user.id, e)}
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </Grid>
+                                    
+                                   
+                                    
+                                    
+                                    
+                                   
+                           
+                            
+                                       
+                            </td>
                         </tr>
                     )}
                 </tbody>
@@ -67,7 +125,7 @@ export class FetchUsers extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchUsers.renderUsersTable(this.state.users);
+            : this.renderUsersTable(this.state.users);
 
         return (
             <div>
