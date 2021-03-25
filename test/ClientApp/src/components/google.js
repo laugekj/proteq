@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
-import { useGoogleLogin } from 'react-google-login'
+
+
+
+
+
 var counter = 0;
-  function createUser(name, id, email){
-    const data = {  Name: name, id: id ,Email: email };
+
+  function createUser(name, id, email, token){
+    const data = {  Name: name, d: id ,Email: email, Token: token };
     fetch('api/user', {
         method: 'POST', // or 'PUT'
         headers: {
@@ -29,8 +34,10 @@ var counter = 0;
         counter = counter + 1;
         console.log(response);
         console.log(response.profileObj);
+        console.log(response.getAuthResponse().id_token);
         if (counter == 1) {
-            createUser(response.profileObj.name, response.profileObj.googleid, response.profileObj.email);
+            createUser(response.profileObj.name, response.profileObj.googleid, response.profileObj.email, response.getAuthResponse().id_token);
+            alert('Bruger oprettet');
         }
         
       }
@@ -43,7 +50,7 @@ var counter = 0;
 
         <GoogleLogin
           clientId="195846337053-iqu57fc1hg1edggj4hcfeke9cb6oa5j2.apps.googleusercontent.com"
-          buttonText="Login"
+          buttonText="Login med Google"
           onSuccess={this.responseGoogle}
           isSignedIn={true}
           onFailure={this.responseGoogle}
