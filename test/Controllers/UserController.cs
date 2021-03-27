@@ -20,8 +20,8 @@ namespace test.Controllers
      
         if (_context.Users.Count() == 0)
         {
-            Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Firstname = "Latge", Lastname = "Prosen", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Firstname = "Latge", Lastname = "Noobsen", Phone = "12345678", Email = "sumEmail@mail.dk"});
             
     
         }
@@ -50,7 +50,8 @@ namespace test.Controllers
            if (entity == null) {
                return BadRequest("id must match id");
            } else {
-               entity.Name = user.Name;
+               entity.Firstname = user.Firstname;
+               entity.Lastname = user.Lastname;
                entity.Phone = user.Phone;
                entity.Email = user.Email;
                entity.Company = user.Company;
@@ -68,7 +69,7 @@ namespace test.Controllers
             return Ok();
         }
 
-        // /user
+        ///api/user
         [HttpGet] 
         public ActionResult<List<User>> GetAll() 
         {     

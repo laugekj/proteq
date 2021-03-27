@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import EditUser from './EditUser';
-import EditIcon from '@material-ui/icons/Edit';
+import AddUser from './AddUser';
+import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimplePopover({user, onCloseFunc}) {
+export default function SimplePopover({refetch}) {
    // const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -21,11 +21,19 @@ export default function SimplePopover({user, onCloseFunc}) {
   };
 
   const handleClose = () => {
-    onCloseFunc();
     setAnchorEl(null);
   
 
   };
+
+  const forceRefetch = () => {
+     
+      setAnchorEl(null);
+      refetch();
+  }
+
+  
+
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -40,7 +48,7 @@ export default function SimplePopover({user, onCloseFunc}) {
     variant="contained"
     onClick={handleClick}
     >
-        <EditIcon />
+        <AddIcon />
     </IconButton>
       
       
@@ -58,9 +66,7 @@ export default function SimplePopover({user, onCloseFunc}) {
           horizontal: 'right',
         }}
       >
-        <EditUser onSaveClick={handleClose} user={user}>
-            
-        </EditUser>
+       <AddUser handleClose={forceRefetch}></AddUser>
       </Popover>
     </div>
   );

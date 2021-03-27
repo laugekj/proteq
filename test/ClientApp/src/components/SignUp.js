@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -87,10 +87,12 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={lastname}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => setLastname(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -177,7 +179,7 @@ export default function SignUp() {
   );
 
   function CreateUser() {
-    const data = { Phone: phone, Name: firstname, Company: company, Email: email };
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
   
     fetch('api/user', {
       method: 'POST', // or 'PUT'

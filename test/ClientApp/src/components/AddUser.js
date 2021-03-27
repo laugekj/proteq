@@ -46,16 +46,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditUser({user, onSaveClick}) {
-
+export default function SignUp({handleClose}) {
   const classes = useStyles();
-  const [firstname, setFirstname] = useState(user.firstname ?? ""); 
-  const [lastname, setLastname] = useState(user.lastname ?? ""); 
-  const [phone, setPhone] = useState(user.phone ?? "");
-  const [company, setCompany] = useState(user.company ?? "");
-  const [email, setEmail] = useState(user.email ?? "");
- 
- 
+  const [firstname, setFirstname] = useState(""); 
+  const [lastname, setLastname] = useState(""); 
+  const [phone, setPhone] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,7 +63,7 @@ export default function EditUser({user, onSaveClick}) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Rediger
+          Create User
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -83,7 +81,6 @@ export default function EditUser({user, onSaveClick}) {
                 autoFocus
               />
             
-              
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -95,7 +92,7 @@ export default function EditUser({user, onSaveClick}) {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={e => setLastname(e.target.value)}
+                onChange={(e) => setLastname(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -103,11 +100,11 @@ export default function EditUser({user, onSaveClick}) {
                 variant="outlined"
                 required
                 fullWidth
-                value={company}
                 id="company"
                 label="Company"
                 name="company"
                 autoComplete="company"
+                value={company}
                 onChange= {(e) => setCompany(e.target.value)}
               />
             </Grid>
@@ -138,6 +135,18 @@ export default function EditUser({user, onSaveClick}) {
               />
             </Grid>
             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
@@ -145,15 +154,22 @@ export default function EditUser({user, onSaveClick}) {
             </Grid>
           </Grid>
           <Button
-            // type="submit"
+          //  type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-             onClick={() =>EditUserAndDB(user.id)}
+           // className={classes.submit}
+            onClick={() => CreateUser()}
           >
-            Gem ændringer
+            Create User
           </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link href="sign-in" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
       <Box mt={5}>
@@ -162,22 +178,25 @@ export default function EditUser({user, onSaveClick}) {
     </Container>
   );
 
-  function EditUserAndDB(id) {
+  function CreateUser() {
     const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
-    fetch('api/user/' + id, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+  
+    fetch('api/user', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     }).then(response => {
-      console.log(response);
-      // 200 is "OK" (success)
-      if(response.status === 200) {
-        onSaveClick();
-        console.log('Updated succesfully', data);
-      } else {
-        // waaah, error handler
-      }
-    });
+        console.log(response);
+        // 201 is "Created" (success)
+        if(response.status === 201) {
+            handleClose();
+            console.log("Created User", data)
+        } else {
+            // waah, error handler
+        }
+    }); 
   }
 
 }
