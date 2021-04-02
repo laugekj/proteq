@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import 'fontsource-roboto';
 import { FetchUsers } from './components/FetchUsers';
 import { google } from './components/google';
-import GoogleLogin from 'react-google-login'
 
 
 

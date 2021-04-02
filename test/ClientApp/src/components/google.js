@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
-import { useGoogleLogin } from 'react-google-login'
+
 var counter = 0;
   function createUser(name, id, email){
     const data = {  Name: name, id: id ,Email: email };
@@ -29,7 +29,7 @@ var counter = 0;
         counter = counter + 1;
         console.log(response);
         console.log(response.profileObj);
-        if (counter == 1) {
+        if (counter === 1) {
             createUser(response.profileObj.name, response.profileObj.googleid, response.profileObj.email);
         }
         

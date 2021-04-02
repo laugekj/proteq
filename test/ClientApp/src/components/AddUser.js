@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp({handleClose}) {
   const classes = useStyles();
   const [firstname, setFirstname] = useState(""); 
   const [lastname, setLastname] = useState(""); 
@@ -63,7 +63,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Create User
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -80,7 +80,7 @@ export default function SignUp() {
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
-              {console.log(firstname)}
+            
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -161,7 +161,7 @@ export default function SignUp() {
            // className={classes.submit}
             onClick={() => CreateUser()}
           >
-            Sign Up
+            Create User
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
@@ -187,14 +187,16 @@ export default function SignUp() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    }).then(response => {
+        console.log(response);
+        // 201 is "Created" (success)
+        if(response.status === 201) {
+            handleClose();
+            console.log("Created User", data)
+        } else {
+            // waah, error handler
+        }
+    }); 
   }
 
 }
