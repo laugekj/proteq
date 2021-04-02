@@ -20,9 +20,12 @@ namespace test.Controllers
      
         if (_context.Users.Count() == 0)
         {
-            Create(new User {Firstname = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            Create(new User {Firstname = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Firstname = "Latge", Lastname = "Prosen", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Firstname = "Latge", Lastname = "Noobsen", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            
+    
         }
+        
     
     }
 
@@ -37,6 +40,23 @@ namespace test.Controllers
             return CreatedAtAction(nameof(GetById), new { id = user.Id}, user);
         } 
 
+        [HttpPut("{id}")]
+        public ActionResult<User> Put(int id, User user) 
+        {
+           var entity = _context.Users.FirstOrDefault(e => e.Id == id);
+           if (entity == null) {
+               return BadRequest("id must match id");
+           } else {
+               entity.Firstname = user.Firstname;
+               entity.Lastname = user.Lastname;
+               entity.Phone = user.Phone;
+               entity.Email = user.Email;
+               entity.Company = user.Company;
+               _context.SaveChanges();
+               return Ok();
+           }
+        }
+
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
         {
@@ -46,7 +66,7 @@ namespace test.Controllers
             return Ok();
         }
 
-        // /user
+        ///api/user
         [HttpGet] 
         public ActionResult<List<User>> GetAll() 
         {     

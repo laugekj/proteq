@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import  { UserContext } from './UserContext';
 
 function Copyright() {
   return (
@@ -47,17 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp({handleClose}) {
   const classes = useStyles();
   const [firstname, setFirstname] = useState(""); 
   const [lastname, setLastname] = useState(""); 
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
-  const { userEmail, setUserEmail } = useContext(UserContext);
-  const { userName, setUserName } = useContext(UserContext);
-  const { loggedIn, setLoggedin } = useContext(UserContext);
-  const { userCompany, setUserCompany } = useContext(UserContext);
   
 
   return (
@@ -68,7 +63,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Create User
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -85,7 +80,7 @@ export default function SignUp() {
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
-              {console.log(firstname)}
+            
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -166,7 +161,7 @@ export default function SignUp() {
            // className={classes.submit}
             onClick={() => CreateUser()}
           >
-            Sign Up
+            Create User
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
@@ -184,10 +179,7 @@ export default function SignUp() {
   );
 
   function CreateUser() {
-    const data = { Phone: phone, Name: firstname, Company: company, Email: email };
-    setUserEmail(email);
-    setUserName(firstname);
-    setUserCompany(company);
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
   
     fetch('api/user', {
       method: 'POST', // or 'PUT'
@@ -195,14 +187,16 @@ export default function SignUp() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    }).then(response => {
+        console.log(response);
+        // 201 is "Created" (success)
+        if(response.status === 201) {
+            handleClose();
+            console.log("Created User", data)
+        } else {
+            // waah, error handler
+        }
+    }); 
   }
 
 }

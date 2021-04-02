@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import  { UserContext } from './UserContext';
 
 function Copyright() {
   return (
@@ -47,18 +46,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function EditUser({user, onSaveClick}) {
+
   const classes = useStyles();
-  const [firstname, setFirstname] = useState(""); 
-  const [lastname, setLastname] = useState(""); 
-  const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
-  const [email, setEmail] = useState("");
-  const { userEmail, setUserEmail } = useContext(UserContext);
-  const { userName, setUserName } = useContext(UserContext);
-  const { loggedIn, setLoggedin } = useContext(UserContext);
-  const { userCompany, setUserCompany } = useContext(UserContext);
-  
+  const [firstname, setFirstname] = useState(user.firstname ?? ""); 
+  const [lastname, setLastname] = useState(user.lastname ?? ""); 
+  const [phone, setPhone] = useState(user.phone ?? "");
+  const [company, setCompany] = useState(user.company ?? "");
+  const [email, setEmail] = useState(user.email ?? "");
+ 
+ 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -68,7 +65,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Rediger
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -85,7 +82,8 @@ export default function SignUp() {
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
-              {console.log(firstname)}
+            
+              
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -97,7 +95,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={(e) => setLastname(e.target.value)}
+                onChange={e => setLastname(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -105,11 +103,11 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={company}
                 id="company"
                 label="Company"
                 name="company"
                 autoComplete="company"
-                value={company}
                 onChange= {(e) => setCompany(e.target.value)}
               />
             </Grid>
@@ -140,18 +138,6 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
@@ -159,22 +145,15 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-          //  type="submit"
+            // type="submit"
             fullWidth
             variant="contained"
             color="primary"
-           // className={classes.submit}
-            onClick={() => CreateUser()}
+            className={classes.submit}
+             onClick={() =>EditUserAndDB(user.id)}
           >
-            Sign Up
+            Gem ændringer
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="sign-in" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={5}>
@@ -183,25 +162,21 @@ export default function SignUp() {
     </Container>
   );
 
-  function CreateUser() {
-    const data = { Phone: phone, Name: firstname, Company: company, Email: email };
-    setUserEmail(email);
-    setUserName(firstname);
-    setUserCompany(company);
-  
-    fetch('api/user', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
+  function EditUserAndDB(id) {
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
+    fetch('api/user/' + id, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(response => {
+      console.log(response);
+      // 200 is "OK" (success)
+      if(response.status === 200) {
+        onSaveClick();
+        console.log('Updated succesfully', data);
+      } else {
+        // waaah, error handler
+      }
     });
   }
 
