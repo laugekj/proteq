@@ -48,7 +48,7 @@ export class FetchUsers extends Component {
                         <tr key={user.id}>
                             <td>{user.id}</td> 
                             <td>{user.phone}</td>
-                            <td>{user.name}</td>
+                            <td>{user.firstname+" "+user.lastname}</td>
                             <td>{user.company}</td>
                             <td>{user.email}</td>
                             <td>

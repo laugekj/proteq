@@ -20,8 +20,8 @@ namespace test.Controllers
      
         if (_context.Users.Count() == 0)
         {
-            Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            Create(new User {Name = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Firstname = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
+            Create(new User {Firstname = "Latge", Phone = "12345678", Email = "sumEmail@mail.dk"});
         }
     
     }

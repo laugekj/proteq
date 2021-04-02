@@ -1,15 +1,15 @@
-import React from 'react';
-
+import React, { useState, useContext } from 'react';
+import  { UserContext } from './UserContext';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
+import { GoogleLogout } from 'react-google-login';
 
-// refresh token
 //import { refreshTokenSetup } from '../utils/refreshToken';
 
 
 
-function createUser(name, id, email, token){
-    const data = {  Name: name, d: id ,Email: email, Token: token };
+function createUser(Firstname, lastName, id, email, token){
+    const data = {  Firstname: Firstname, lastName: lastName,  d: id ,Email: email, Token: token };
     fetch('api/user', {
         method: 'POST', // or 'PUT'
         headers: {
@@ -26,18 +26,36 @@ function createUser(name, id, email, token){
       });
   }
 
-const clientId =
-  '195846337053-iqu57fc1hg1edggj4hcfeke9cb6oa5j2.apps.googleusercontent.com';
+    const clientId = '195846337053-iqu57fc1hg1edggj4hcfeke9cb6oa5j2.apps.googleusercontent.com';
 
-  function Login() {
-    const history = useHistory();
-    const onSuccess = (res) => {
+    function Login() {
+    const { userEmail, setUserEmail } = useContext(UserContext);
+    const { userName, setUserName } = useContext(UserContext);
+    const { loggedIn, setLoggedin } = useContext(UserContext);
+    const { counter, setCounter } = useContext(UserContext);
+    //const history = useHistory();
+
+
+    const onLoginSuccess = (res) => {  
+    setUserEmail(res.profileObj.email);
+    setUserName(res.profileObj.name);
+    setLoggedin(true);
+    setCounter(counter + 1);
     console.log('Login Success: currentUser:', res.profileObj);
-    createUser(res.profileObj.name, res.profileObj.googleid, res.profileObj.email, res.getAuthResponse().id_token);
+    if (counter == 0) {
+      createUser(res.profileObj.givenName, res.profileObj.familyName ,  res.profileObj.googleid, res.profileObj.email, res.getAuthResponse().id_token);
+      }
     //alert( `Velkommen ${res.profileObj.name}` );
-    history.push("/googleLogout");
-
- //   refreshTokenSetup(res);
+    //history.push("/googleLogout");
+    //refreshTokenSetup(res);
+    };
+  
+  const onLogoutSuccess = () => {
+    console.log('Logout made successfully');
+    alert('Logget ud');
+    setUserEmail(null);
+    setUserName(null);
+    setLoggedin(false);
   };
 
   const onFailure = (res) => {
@@ -49,15 +67,19 @@ const clientId =
 
   return (
     <div>
-      <GoogleLogin
+     {loggedIn ? (<GoogleLogout
+        clientId={clientId}
+        buttonText="Log ud af Google"
+        onLogoutSuccess={onLogoutSuccess}
+      />) : ( <GoogleLogin
         clientId={clientId}
         buttonText="Log ind med Google"
-        onSuccess={onSuccess}
+        onSuccess={onLoginSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
         style={{ marginTop: '100px' }}
-        isSignedIn={true}
-      />
+      />)}
+     
     </div>
   );
 }

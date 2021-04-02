@@ -1,67 +1,27 @@
-import { Button } from '@material-ui/core';
-import React, { Component } from 'react';
-import { render } from 'react-dom';
 
-function FetchUser() {
-    fetch('api/user/1');
-  }
+import React, { useContext } from 'react';
+import  { UserContext } from './UserContext';
 
-export class Profile extends Component {
-    static displayName = Profile.name;
-    constructor(props) {
-        super(props);
-        this.state = { user: [],  loading: true };
-    }
-
-    async populateUserData() {
-        const response = await fetch('api/user/1');
-        const data = await response.json();
-        this.setState({ user: data, loading: false });
-    }
-    
-    static renderUser (user) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Phone</th>
-                        <th>Name</th>
-                        <th>Company</th>
-                        <th>E-Mail</th>
-                    
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        <tr key={user.id}>
-                            <td>{user.id}</td> 
-                            <td>{user.phone}</td>
-                            <td>{user.name}</td>
-                            <td>{user.company}</td>
-                            <td>{user.email}</td>
-                            </tr>
-                    }
-                </tbody>
-            </table>
-        );
-    }
-
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : Profile.renderUser(this.state.user);
-
-        return (
+export function Profile() {
+    const { userEmail, setUserEmail } = useContext(UserContext)
+    const { userName, setUserName } = useContext(UserContext)
+    const { loggedIn, setLoggedin } = useContext(UserContext)
+    const { userCompany, setUserCompany } = useContext(UserContext) 
+     
+    return (
             <div>
-                <h1 id="tabelLabel" >Profil</h1>
-                <p>Brugeroplysninger</p>
-                {contents}
+                <h3>{userName}</h3>
+                <h3>{userEmail}</h3>
+                <h3>{userCompany}</h3>
+                 <h3>{loggedIn}</h3>
             </div>
         );
-
-    }
-
-
 }
+
+
+        
+
+    
+
+
+
