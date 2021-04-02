@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -46,8 +46,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn() { 
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,12 +69,15 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
+            value={email}
+            onChange= {(e) => setEmail(e.target.value)}
             id="email"
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
+           
           />
+          {console.log(email)}
           <TextField
             variant="outlined"
             margin="normal"
@@ -87,11 +94,12 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
-            type="submit"
+           //type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            onClick={() => login()}
+            //className={classes.submit}
           >
             Sign In
           </Button>
@@ -114,4 +122,11 @@ export default function SignIn() {
       </Box>
     </Container>
   );
+
+  function login() {
+    const data = {Email: email };
+    setLoggedIn(true);
+    console.log(data);
+    console.log(loggedIn);
+  }
 }

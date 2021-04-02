@@ -7,9 +7,6 @@ using test.Models;
 
 namespace test.Models
 {
- 
-
-
 
     public class UserContext : DbContext
     {
