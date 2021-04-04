@@ -10,6 +10,8 @@ import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import  { UserContext } from './components/UserContext';
+import  Products  from './components/Stripe/Products';
+import  StripePayment  from './components/Stripe/PaymentForm';
 
 
 export default function App(){
@@ -32,6 +34,8 @@ export default function App(){
             <Route path='/sign-up' component={SignUp} />
             <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
+            <Route path='/products' component={Products} />
+            <Route path='/stripePayment' component={StripePayment} />
       </UserContext.Provider>
       </Layout>
     );
