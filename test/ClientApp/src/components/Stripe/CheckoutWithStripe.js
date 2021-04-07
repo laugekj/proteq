@@ -1,40 +1,20 @@
 import React from 'react';
-import StripeCheckout from 'react-stripe-checkout';
+import ReactDOM from 'react-dom';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
-// sample function defined to compute total quantity of cart
-function computeQuantity(cart) {
-    return cart.reduce((count, itemInCart) => count + itemInCart.quantity, 0);
-}
-// similar functions can be defined to compute total price, email of the user, etc.
+import CheckoutForm from './CheckoutForm';
 
-class CheckoutWithStripe extends React.Component {
-    onToken = (res) => {
-        fetch('api/paymentcontroller/processing', {
-            method: 'POST',
-            body: JSON.stringify(token),
-        }).then(res => {
-            res.json().then(data => {
-                console.log(`Payment token generated, ${data.name}`)
-            })
-        })
-    };
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_51IbPuXH6yYcILY3fiORwNX6W1NCnkrVxRb0In6w9bWSZlCwEPvI97e1rBHyArQoCkBoRxxLMmeSfy2qMR5CXd0WX009ztSxylY');
 
-    
-
-    render() {
-        return (
-            <StripeCheckout
-                amount = '10.00'
-                name="STRIPE_INTEGRATION"
-                // functions defined above can be used to add more information while making the API call.
-                // description={`Order of ${computeQuantity(cart)} items!`}
-                //image='LINKTOIMAGE'
-                stripeKey="pk_test_51IbPuXH6yYcILY3fiORwNX6W1NCnkrVxRb0In6w9bWSZlCwEPvI97e1rBHyArQoCkBoRxxLMmeSfy2qMR5CXd0WX009ztSxylY"
-                currency="DKK"
-                email='TEST@MAIL.DK'
-                token={this.onToken}/>          
-        );
-    }
-}
+function CheckoutWithStripe() {
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
+  );
+};
 
 export default CheckoutWithStripe
