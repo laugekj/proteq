@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using test.Models;
+using Stripe;
 
 namespace test
 {
@@ -69,6 +70,8 @@ namespace test
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            
+    
         }
     }
 }
