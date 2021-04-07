@@ -54,6 +54,7 @@ export default function SignUp() {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { userEmail, setUserEmail } = useContext(UserContext);
   const { userName, setUserName } = useContext(UserContext);
   const { loggedIn, setLoggedin } = useContext(UserContext);
@@ -144,6 +145,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={password}
+                onChange= {(e) => setPassword(e.target.value)}
                 name="password"
                 label="Password"
                 type="password"
@@ -167,6 +170,16 @@ export default function SignUp() {
             onClick={() => CreateUser()}
           >
             Sign Up
+          </Button>
+          <Button
+          //  type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+           // className={classes.submit}
+            onClick={() => CreateUserRegistration()}
+          >
+           test
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
@@ -205,4 +218,23 @@ export default function SignUp() {
     });
   }
 
+  function CreateUserRegistration() {
+    const data = { Mail: email, Password: password };
+    fetch('api/userregistration', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(response => {
+        console.log(response);
+        // 201 is "Created" (success)
+        if(response.status === 201) {
+            console.log("Created User", data)
+        } else {
+            // waah, error handler
+        }
+    });
+  }
 }
+
