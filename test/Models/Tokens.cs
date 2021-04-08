@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace test.Models
 {
-    public class Payment
-    {
-        public string token { get; set; }
-
-        
+    public class Tokens
+    {        
+        public string Id { get; set; }
     }
 }

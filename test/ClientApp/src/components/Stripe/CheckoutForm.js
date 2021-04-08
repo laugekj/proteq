@@ -3,22 +3,24 @@ import {ElementsConsumer, CardElement} from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection';
 
-async function stripeTokenHandler(token) {
-    const paymentData = {token: token.id};
-  
-    // Use fetch to send the token ID and any other payment data to your server.
-    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    const response = await fetch('api/payment' , {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(paymentData),
-    });
-  
-    // Return and display the result of the charge.
-    return response.json();
-  }
+function stripeTokenHandler(token) {
+  const paymentData = {Id: token.id};
+
+  // Use fetch to send the token ID and any other payment data to your server.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+  const response = fetch('api/payment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(paymentData),
+    //body: paymentData,
+    //body: token,
+  });
+
+  // Return and display the result of the charge.
+  //return response.json();
+}
 
 class CheckoutForm extends React.Component {
   handleSubmit = async (event) => {
@@ -43,6 +45,7 @@ class CheckoutForm extends React.Component {
     } else {
       // Send the token to your server.
       // This function does not exist yet; we will define it in the next step.
+      console.log('token: ', result.token);
       stripeTokenHandler(result.token);
     }
   };
