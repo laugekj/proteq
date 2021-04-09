@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import  { UserContext } from './UserContext';
+
 
 function Copyright() {
   return (
@@ -49,8 +51,11 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() { 
   const classes = useStyles();
   const [email, setEmail] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  
+  const [password, setPassword] = useState("");
+
+  const { setUserEmail } = useContext(UserContext);
+  const { setUserName } = useContext(UserContext);
+  const { setLoggedin } = useContext(UserContext);
 
 
   return (
@@ -77,12 +82,14 @@ export default function SignIn() {
             autoComplete="email"
            
           />
-          {console.log(email)}
+
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
+            value={password}
+            onChange= {(e) => setPassword(e.target.value)}
             name="password"
             label="Password"
             type="password"
@@ -103,6 +110,7 @@ export default function SignIn() {
           >
             Sign In
           </Button>
+
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
@@ -124,9 +132,33 @@ export default function SignIn() {
   );
 
   function login() {
-    const data = {Email: email };
-    setLoggedIn(true);
-    console.log(data);
-    console.log(loggedIn);
+    // const data = {Email: email };
+
+    // console.log(data);
+    // console.log(loggedIn);
+
+
+
+    const loginData = { Mail: email, Password: password };
+
+    fetch('api/userlogin', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    }).then(response => {
+        console.log(response);
+        // 201 is "Created" (success)
+        if(response.status === 202) {
+          console.log("the dude logged in");
+          alert("Logged In");
+          setLoggedin(true);
+          setUserEmail(email);
+          setUserName("KObe");
+        } else {
+            alert("Wrong password");
+        }
+    }); 
   }
 }
