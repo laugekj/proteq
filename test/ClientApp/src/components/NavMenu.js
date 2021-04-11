@@ -5,6 +5,7 @@ import './NavMenu.css';
 import './Reset.css';
 import Logo from "./logo-enkel-gdpr.png"
 
+
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 

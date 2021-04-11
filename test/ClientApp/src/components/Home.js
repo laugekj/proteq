@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './Home.css';
+
 
 
 export class Home extends Component {
@@ -6,22 +8,34 @@ export class Home extends Component {
 
   render () {
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
+      <div class="body">
+        <div class="header-img"> </div>
+        <h1>SimpleGDPR Guide </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper feugiat mauris. 
+          Fusce vel leo nec orci lacinia tincidunt. Sed pharetra quam a urna consectetur vestibulum. 
+          Aenean congue nisi in diam interdum mollis. Sed quam magna, ultricies vel elementum vel, consequat et lorem. 
+          Nam mollis mi id erat ultrices ullamcorper. Maecenas nisl justo, pellentesque vitae placerat et, condimentum ac neque. 
+          Nulla pulvinar eleifend mauris, id porta mi maximus ac. Sed convallis id neque quis hendrerit. 
+          Etiam vulputate nulla id dapibus ultricies. Vestibulum bibendum dictum urna, at sodales magna posuere sed. 
+          Nullam vestibulum augue non mattis suscipit. Nunc tincidunt orci eros, ut cursus velit dapibus non. 
+          Nullam blandit ligula ut porta mollis. Curabitur finibus molestie venenatis. Nullam aliquet scelerisque dui, 
+          ac commodo nisi faucibus ut. Proin mattis, metus at pulvinar consectetur, purus mi dapibus felis, 
+          sit amet fringilla mauris libero non nibh. Proin id eros a neque dignissim condimentum quis quis nisl. 
+          Quisque ultrices bibendum lacus, ac imperdiet augue aliquet et. Aenean nec est quis nibh cursus sagittis. 
+          Etiam et sem pulvinar, finibus purus at, feugiat augue. Aliquam venenatis dignissim ultrices. 
+          Duis consectetur pellentesque ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
+          Nam et dolor in elit tincidunt tempor. Pellentesque ac pulvinar justo.</p>
+      
+      <footer class="footer">
+      <div class="grid-container">
+        <div class="grid-item">Kontakt</div>
+        <div class="grid-item">Genveje</div>
+        <div class="grid-item">tredje menu</div>
+        <div class="grid-item">Menu Menu</div>
       </div>
+      </footer>
+      </div>
+
     );
   }
 }
