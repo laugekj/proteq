@@ -4,15 +4,32 @@
   word-break: break-all;
 }
 
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+.navbar-expand-sm {
+  height: 100px;
+  background-color: #073b4c;
+}
+
+.navbar-nav {
+  background-color: #073b4c;
+  float: right;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+  
+
+.nav-text {
+  color: #FEFBEB!important;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+}
+
+
+img {
+ width: 300px;
+}
+
