@@ -3,7 +3,7 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import './Reset.css';
-import Logo from "./logo-enkel-gdpr.png"
+import Logo from "./images/logo-enkel-gdpr.png"
 
 
 export class NavMenu extends Component {
