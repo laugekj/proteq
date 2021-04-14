@@ -10,8 +10,12 @@ import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import  { UserContext } from './components/UserContext';
+import  Products  from './components/Stripe/Products';
+import  StripePayment  from './components/Stripe/PaymentForm';
+import  Payment  from './components/Stripe/Payment';
 import Checkout from './components/Stripe/Checkout';
 import Success from './components/Stripe/Success';
+
 
 export default function App(){
 
