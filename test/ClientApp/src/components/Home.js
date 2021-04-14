@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './Home.css';
 
 
-
 export class Home extends Component {
   static displayName = Home.name;
+
 
   render () {
     return (
@@ -41,14 +41,7 @@ export class Home extends Component {
           Duis consectetur pellentesque ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
           Nam et dolor in elit tincidunt tempor. Pellentesque ac pulvinar justo.</p>
       
-      <footer class="footer">
-      <div class="grid-container">
-        <div class="grid-item">Kontakt</div>
-        <div class="grid-item">Genveje</div>
-        <div class="grid-item">Tredje menu</div>
-        <div class="grid-item">Menu Menu</div>
-      </div>
-      </footer>
+  
       </div>
     );
   }

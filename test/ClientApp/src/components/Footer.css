@@ -1,0 +1,38 @@
+#footerBar{
+    background-color: #073B4C
+}
+
+#buttomFooter {
+    background-color:#3d6f8c ;
+}
+
+
+a {
+    color: #FEFBEB;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+}
+
+
+.list {
+    display: inline;
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 30px;
+    bottom: 0px;
+    max-height: fit-content;
+}
+
+.footerRow{
+    width: 100%;
+}
+.text-md-list{
+    text-align: center; 
+}
+
+ul {
+    width: 100%;
+    height: 50px;
+    bottom: 0px;
+    padding-top: 15px;
+}
