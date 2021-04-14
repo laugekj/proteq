@@ -15,16 +15,16 @@ export class Footer extends Component {
                 <MDBRow id ='footerRow'>
                     <ul>
                       <li className="list">
-                        <a href="#!">Kontakt</a>
+                        <a href="#!">Om os</a>
                       </li>
                       <li className="list">
-                        <a href="#!">FAQ</a>
+                        <a href="#!">Kundeservice</a>
                       </li>
                       <li className="list">
-                        <a href="#!">Om os </a>
+                        <a href="#!">FAQ </a>
                       </li>
                       <li className="list">
-                        <a href="#!">?</a>
+                        <a href="#!">Kontakt os</a>
                       </li>
                     </ul>
                 </MDBRow>

@@ -1,10 +1,12 @@
 #footerBar{
     background-color: #073B4C;
+  
 }
 
 #buttomFooter {
     background-color:#3d6f8c ;
     color:#073B4C;
+  
 }
 
 
@@ -21,8 +23,8 @@ a:hover {
 
 .list {
     display: inline;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 9%;
+    padding-right: 9%;
     width: 30px;
     bottom: 0px;
     max-height: fit-content;
