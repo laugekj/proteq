@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
+import Banner from "./images/banner.jpg"
 
 
 export class Home extends Component {
@@ -9,7 +10,7 @@ export class Home extends Component {
   render () {
     return (
       <div class="body">
-        <div class="header-img"> </div>
+        <img src={Banner} class ='banner' fluid />
         <h1 class="overskrift">SimpleGDPR Guide</h1>
         <p class="main-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper feugiat mauris. 
           Fusce vel leo nec orci lacinia tincidunt. Sed pharetra quam a urna consectetur vestibulum. 
