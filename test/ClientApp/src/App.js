@@ -13,6 +13,8 @@ import  { UserContext } from './components/UserContext';
 import  Products  from './components/Stripe/Products';
 import  StripePayment  from './components/Stripe/PaymentForm';
 import  Payment  from './components/Stripe/Payment';
+import Checkout from './components/Stripe/Checkout';
+import Success from './components/Stripe/Success';
 
 
 export default function App(){
@@ -35,9 +37,9 @@ export default function App(){
             <Route path='/sign-up' component={SignUp} />
             <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
-            <Route path='/products' component={Products} />
-            <Route path='/stripePayment' component={StripePayment} />
-            <Route path='/payment' component={Payment} />
+            <Route path='/checkout' component={Checkout} />
+            <Route path='/success' component={Success} />
+
       </UserContext.Provider>
       </Layout>
     );

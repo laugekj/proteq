@@ -13,8 +13,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13" />
-    <PackageReference Include="Synercoding.FormsAuthentication" Version="2.1.0" />
-   
+    <PackageReference Include="Stripe.net" Version="39.43.0" /> 
   </ItemGroup>
   <ItemGroup>
     <Content Remove="$(SpaRoot)**" />

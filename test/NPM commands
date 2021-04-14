@@ -1,0 +1,20 @@
+NPM hører til Frontend, så der må kun installeres inde i frontend './ClientApp'
+
+1. npm install @material-ui/core
+2. npm install fontsource-roboto
+3. npm install @material-ui/icons
+4. npm install react-google-login
+5. npm install auth0
+
+# Nr. 6 og 7 er ikke frontend, server-side: './Test'
+    6. dotnet add package Stripe.net
+    7. dotnet restore
+
+8. npm install @stripe/stripe-js
+
+
+
+
+LINKS:
+(Material UI) https://material-ui.com/getting-started/installation/?fbclid=IwAR30RUIRdsBSWh_qEWtgn9DZY2ZOdBCYV7URSoQjqjmhDjchbv79_nomi2Q
+(Stripe: Accept a payment) https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements&fbclid=IwAR33RQBuT6VQXslSL7x1ZPYXbzmtt_s1jyvfgF6PCUhBlz1bkZeMAinORNo#web-create-payment-intent
