@@ -20,9 +20,10 @@ export default function App(){
   const [userName, setUserName] = useState (null)
   const [userCompany, setUserCompany] = useState (null)
   const [counter, setCounter] = useState (0)
+  const [ id, setId ] = useState(0)
   const [loggedIn, setLoggedin] = useState (false)
 
-  const user = useMemo (() => ({userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter, userCompany, setUserCompany}), [userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter]);
+  const user = useMemo (() => ({id, setId, userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter, userCompany, setUserCompany}), [id, setId, userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter]);
 
     return (
       <Layout>

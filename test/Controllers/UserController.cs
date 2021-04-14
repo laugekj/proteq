@@ -33,8 +33,12 @@ namespace test.Controllers
         [HttpPost]
         public ActionResult<User> Create(User user) 
         { 
+
+            // if (DoesEmailExists(user.Email))
+            // {
+            //     return BadRequest();
+            // }
             user.Id = _context.Users.Any() ? _context.Users.Max(p => p.Id) + 1 : 1;
-            
             _context.Users.Add(user);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new { id = user.Id}, user);
@@ -55,6 +59,7 @@ namespace test.Controllers
                _context.SaveChanges();
                return Ok();
            }
+           
         }
 
         [HttpDelete("{id}")]
@@ -84,6 +89,19 @@ namespace test.Controllers
                 return NotFound();     
             }     
         return item; 
+        }
+
+        public bool DoesEmailExists(string mail)
+        {
+            var tmp = _context.Users.Where(u => u.Email == mail);
+            Console.WriteLine(tmp);
+            if (tmp != null)
+            {
+                Console.WriteLine("TRUE");
+                return true;
+            }
+            Console.WriteLine("FALSE");
+            return false;
         }
    
     }

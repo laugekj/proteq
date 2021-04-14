@@ -59,6 +59,7 @@ export default function SignUp() {
   const { userName, setUserName } = useContext(UserContext);
   const { loggedIn, setLoggedin } = useContext(UserContext);
   const { userCompany, setUserCompany } = useContext(UserContext);
+  const { id, setId } = useContext(UserContext);
   
 
   return (
@@ -191,12 +192,10 @@ export default function SignUp() {
 
   function CreateUser() {
     
-    // setUserEmail(email);
-    // setUserName(firstname);
-    // setUserCompany(company);
-  
+    // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
+    CreateUserInUserTable();
 
-
+    // creates userRegistration if email doesent exists
     const registrationData = { Mail: email, Password: password };
     fetch('api/userregistration', {
       method: 'POST', // or 'PUT'
@@ -209,10 +208,11 @@ export default function SignUp() {
         // 200 is "ok" (success)
         if(response.status === 200) {
             console.log("Created UserRegistration", registrationData);
-            CreateUserInUserTable();
-
+           
         } else {
-            console.log("Email already exists in userREgistration");
+           // Error handling and
+           // Delete the User from Users Table if the email already existed
+        
         }
     });
 
@@ -228,11 +228,18 @@ export default function SignUp() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', userData);
+      console.log('Success:', data);
+     
     })
     .catch((error) => {
       console.error('Error:', error);
     });
   }
+  function DeleteUserInUserTable(id) {
+    fetch('api/user/' + id, {
+      method: 'DELETE',
+    });
+  }
+
 }
 
