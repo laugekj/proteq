@@ -17,11 +17,3 @@ export function Profile() {
             </div>
         );
 }
-
-
-        
-
-    
-
-
-
