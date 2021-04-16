@@ -104,14 +104,7 @@ export class FetchUsers extends Component {
                                         <DeleteIcon />
                                     </IconButton>
                                 </Grid>
-                                    
-                                   
-                                    
-                                    
-                                    
-                                   
-                           
-                            
+                        
                                        
                             </td>
                         </tr>

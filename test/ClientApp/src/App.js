@@ -14,13 +14,14 @@ import  { UserContext } from './components/UserContext';
 
 export default function App(){
 
+  const [userId, setUserId] = useState (0)
   const [userEmail, setUserEmail] = useState (null)
   const [userName, setUserName] = useState (null)
   const [userCompany, setUserCompany] = useState (null)
   const [counter, setCounter] = useState (0)
   const [loggedIn, setLoggedin] = useState (false)
 
-  const user = useMemo (() => ({userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter, userCompany, setUserCompany}), [userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter]);
+  const user = useMemo (() => ({userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter, userCompany, setUserCompany, userId, setUserId}), [userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter, userId, setUserId]);
 
     return (
       <Layout>

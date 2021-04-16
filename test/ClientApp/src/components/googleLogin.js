@@ -26,28 +26,29 @@ function createUser(Firstname, lastName, id, email, token){
       });
   }
 
+  function getUser(email){
+    fetch('api/user/' + email, { method: 'GET' }).then(response => {
+            console.log(response);})
+          }
+
     const clientId = '195846337053-iqu57fc1hg1edggj4hcfeke9cb6oa5j2.apps.googleusercontent.com';
 
     function Login() {
-    const { userEmail, setUserEmail } = useContext(UserContext);
-    const { userName, setUserName } = useContext(UserContext);
+    const { setUserEmail } = useContext(UserContext);
+    const { setUserName } = useContext(UserContext);
     const { loggedIn, setLoggedin } = useContext(UserContext);
     const { counter, setCounter } = useContext(UserContext);
-    //const history = useHistory();
-
-
     const onLoginSuccess = (res) => {  
     setUserEmail(res.profileObj.email);
     setUserName(res.profileObj.name);
     setLoggedin(true);
     setCounter(counter + 1);
+    getUser(res.profileObj.email);
     console.log('Login Success: currentUser:', res.profileObj);
     if (counter == 0) {
       createUser(res.profileObj.givenName, res.profileObj.familyName ,  res.profileObj.googleid, res.profileObj.email, res.getAuthResponse().id_token);
       }
-    //alert( `Velkommen ${res.profileObj.name}` );
-    //history.push("/googleLogout");
-    //refreshTokenSetup(res);
+      console.log('user created');
     };
   
   const onLogoutSuccess = () => {

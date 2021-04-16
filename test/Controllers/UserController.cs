@@ -22,13 +22,8 @@ namespace test.Controllers
         {
             Create(new User {Firstname = "Latge", Lastname = "Prosen", Phone = "12345678", Email = "sumEmail@mail.dk"});
             Create(new User {Firstname = "Latge", Lastname = "Noobsen", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            
-    
         }
-        
-    
     }
-
 
         [HttpPost]
         public ActionResult<User> Create(User user) 
@@ -84,6 +79,17 @@ namespace test.Controllers
             }     
         return item; 
         }
+
+        // [HttpGet("{email}", Name = "GetUserEmail")] 
+        // public ActionResult<User> GetByEmail(string email) 
+        // {    
+        //     var item = _context.Users.Find(email);     
+        //     if (item == null)    
+        //     {         
+        //         return NotFound();     
+        //     }     
+        // return item; 
+        // }
    
     }
 }
