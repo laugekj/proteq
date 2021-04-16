@@ -10,6 +10,8 @@ import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import  { UserContext } from './components/UserContext';
+import Checkout from './components/Stripe/Checkout';
+import Success from './components/Stripe/Success';
 
 
 export default function App(){
@@ -32,6 +34,9 @@ export default function App(){
             <Route path='/sign-up' component={SignUp} />
             <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
+            <Route path='/checkout' component={Checkout} />
+            <Route path='/success' component={Success} />
+
       </UserContext.Provider>
       </Layout>
     );

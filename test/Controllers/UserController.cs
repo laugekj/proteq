@@ -77,6 +77,7 @@ namespace test.Controllers
         [HttpGet("{id}", Name = "GetUser")] 
         public ActionResult<User> GetById(int id) 
         {    
+
             var item = _context.Users.Find(id);     
             if (item == null)    
             {         

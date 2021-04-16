@@ -54,6 +54,7 @@ export default function SignUp() {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { userEmail, setUserEmail } = useContext(UserContext);
   const { userName, setUserName } = useContext(UserContext);
   const { loggedIn, setLoggedin } = useContext(UserContext);
@@ -144,6 +145,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={password}
+                onChange= {(e) => setPassword(e.target.value)}
                 name="password"
                 label="Password"
                 type="password"
@@ -158,16 +161,19 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <Button
-          //  type="submit"
+
+            <Button
+            //  type="submit"
             fullWidth
             variant="contained"
             color="primary"
-           // className={classes.submit}
+            // className={classes.submit}
             onClick={() => CreateUser()}
-          >
+            >
             Sign Up
-          </Button>
+            </Button>
+
+          
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="sign-in" variant="body2">
@@ -184,25 +190,49 @@ export default function SignUp() {
   );
 
   function CreateUser() {
-    const data = { Phone: phone, Name: firstname, Company: company, Email: email };
-    setUserEmail(email);
-    setUserName(firstname);
-    setUserCompany(company);
+    
+    // setUserEmail(email);
+    // setUserName(firstname);
+    // setUserCompany(company);
   
+
+
+    const registrationData = { Mail: email, Password: password };
+    fetch('api/userregistration', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registrationData),
+    }).then(response => {
+        console.log(response);
+        // 200 is "ok" (success)
+        if(response.status === 200) {
+            console.log("Created UserRegistration", registrationData);
+            CreateUserInUserTable();
+
+        } else {
+            console.log("Email already exists in userREgistration");
+        }
+    });
+
+  }
+  function CreateUserInUserTable() {
+    const userData = { Phone: phone, firstname: firstname, Lastname: lastname, Company: company, Email: email };
     fetch('api/user', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userData),
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
+      console.log('Success:', userData);
     })
     .catch((error) => {
       console.error('Error:', error);
     });
   }
-
 }
+
