@@ -11,7 +11,7 @@ import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import  { UserContext } from './components/UserContext';
 import Checkout from './components/Stripe/Checkout';
-import Success from './components/Stripe/Success';
+import { Success }  from './components/Stripe/Success';
 
 
 export default function App(){
