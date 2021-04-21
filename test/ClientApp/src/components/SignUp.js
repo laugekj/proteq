@@ -171,6 +171,7 @@ export default function SignUp() {
             color="primary"
             // className={classes.submit}
             onClick={() => SaveContext()}
+            onClick={() => SaveContext()} to="/checkout"
             >
             Gå videre til betaling
           </Button>
