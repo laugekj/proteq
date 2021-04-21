@@ -7,6 +7,7 @@ export function Success() {
     const { userName, setUserName } = useContext(UserContext)
     const { loggedIn, setLoggedin } = useContext(UserContext)
     const { userCompany, setUserCompany } = useContext(UserContext) 
+
      
     return (
             <div>
