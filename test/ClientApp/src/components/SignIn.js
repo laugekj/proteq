@@ -16,6 +16,7 @@ import './SignIn.css';
 import './Reset.css';
 import { createMuiTheme } from '@material-ui/core/styles';
 import  { UserContext } from './UserContext';
+import axios from "axios";
 
 
 function Copyright() {
@@ -68,15 +69,13 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() { 
   const classes = useStyles();
   const [email, setEmail] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState()
   
 
-  const [password, setPassword] = useState("");
-
-  const { setUserEmail } = useContext(UserContext);
+  /*const { setUserEmail } = useContext(UserContext);
   const { setUserName } = useContext(UserContext);
-  const { setLoggedin } = useContext(UserContext);
+  const { dsetLoggedin } = useContext(UserContext);*/
 
 
   return (
@@ -153,12 +152,9 @@ export default function SignIn() {
   );
 
   function login() {
-    // const data = {Email: email };
-
-    // console.log(data);
-    // console.log(loggedIn);
-
-
+    // [DEVELOPER MODE]: Check if user setting are stored.
+    console.log("[DEVELOPER MODE] : Typed email: " + email);
+    console.log("[DEVELOPER MODE] : Typed password: " + password);
 
     const loginData = { Mail: email, Password: password };
 
@@ -170,15 +166,15 @@ export default function SignIn() {
       body: JSON.stringify(loginData),
     }).then(response => {
         console.log(response);
-        // 201 is "Created" (success)
-        if(response.status === 202) {
-          console.log("the dude logged in");
-          alert("Logged In");
-          setLoggedin(true);
-          setUserEmail(email);
-          setUserName("KObe");
+        // 200 is OK!
+        if(response.status === 200) {
+          alert("Logged ind!");
+          
+          console.log(response)
+          // [NOTE]: Sets user if login is correct - used for keeping user logged in.
+          setUser(response)
         } else {
-            alert("Wrong password");
+          alert("Forkert brugeroplysninger!");
         }
     }); 
   }

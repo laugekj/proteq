@@ -11,10 +11,11 @@ NPM hører til Frontend, så der må kun installeres inde i frontend './ClientAp
     7. dotnet restore
 
 8. npm install @stripe/stripe-js
-
+9. npm install axios
 
 
 
 LINKS:
 (Material UI) https://material-ui.com/getting-started/installation/?fbclid=IwAR30RUIRdsBSWh_qEWtgn9DZY2ZOdBCYV7URSoQjqjmhDjchbv79_nomi2Q
 (Stripe: Accept a payment) https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements&fbclid=IwAR33RQBuT6VQXslSL7x1ZPYXbzmtt_s1jyvfgF6PCUhBlz1bkZeMAinORNo#web-create-payment-intent
+(Keep user logged in) https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/ 
