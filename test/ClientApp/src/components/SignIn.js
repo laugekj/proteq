@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import './SignIn.css';
+import './Reset.css';
+import { createMuiTheme } from '@material-ui/core/styles';
 import  { UserContext } from './UserContext';
 
 
@@ -28,6 +31,7 @@ function Copyright() {
   );
 }
 
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -35,6 +39,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+ 
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#B63E48',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+  },
+
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -48,9 +64,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function SignIn() { 
   const classes = useStyles();
   const [email, setEmail] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  
+
   const [password, setPassword] = useState("");
 
   const { setUserEmail } = useContext(UserContext);
@@ -100,11 +121,11 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
+          <Button 
            //type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color= "secondary"
             onClick={() => login()}
             //className={classes.submit}
           >
@@ -161,4 +182,6 @@ export default function SignIn() {
         }
     }); 
   }
+
+  
 }

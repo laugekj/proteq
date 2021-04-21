@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import './Reset.css';
+import Logo from "./images/logo-enkel-gdpr.png"
+
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -25,34 +28,37 @@ export class NavMenu extends Component {
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">ProteQ</NavbarBrand>
+          <Container className="nav-container">
+          <img src={Logo} alt="website logo"/>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/counter">Counter</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-users">AdminCrud</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/fetch-users">AdminCrud</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/sign-in">Sign In</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/sign-in">Sign In</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/sign-up">Sign Up</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/sign-up">Sign Up</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/googleLogin">Google</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/googleLogin">Google</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/Profile">Profil</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/Profile">Profil</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/checkout">Betal</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/success">success testing</NavLink>
                 </NavItem>
               </ul>
             </Collapse>

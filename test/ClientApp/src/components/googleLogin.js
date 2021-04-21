@@ -3,6 +3,7 @@ import  { UserContext } from './UserContext';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogout } from 'react-google-login';
+import './Reset.css';
 
 //import { refreshTokenSetup } from '../utils/refreshToken';
 
@@ -68,6 +69,7 @@ function createUser(Firstname, lastName, id, email, token){
   return (
     <div>
      {loggedIn ? (<GoogleLogout
+        classname ="googleLogIn"
         clientId={clientId}
         buttonText="Log ud af Google"
         onLogoutSuccess={onLogoutSuccess}
