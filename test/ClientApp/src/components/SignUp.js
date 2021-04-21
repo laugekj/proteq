@@ -170,7 +170,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             // className={classes.submit}
-            onClick={() => SaveContext()}
+            onClick={() => CreateUser()}
             >
             Gå videre til betaling
           </Button>
