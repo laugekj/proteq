@@ -8,6 +8,8 @@ using test.Models;
 using System.Net;
 using System.Web;
 using System.Net.Mail;
+using Microsoft.AspNetCore.Http;
+using System.Net.Mime;
 
 namespace test.Controllers
 {
@@ -27,7 +29,9 @@ namespace test.Controllers
 
 
 
-        [HttpPost]    
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public ActionResult<User> Login(UserLogin typedUser)    
         {    
             var _passWord = encryptPassword.textToEncrypt(typedUser.Password);    
@@ -63,7 +67,7 @@ namespace test.Controllers
                 Console.WriteLine("[DEVELOPER MODE] :   .company " + _company);
                 Console.WriteLine("[DEVELOPER MODE] :   .token " + _token);
                 Console.WriteLine("[DEVELOPER MODE] :   .hasPaid " + _hasPaid);
-                return new User() { 
+                /*return new User() { 
                     Id = _userId,
                     Firstname = _firstname,
                     Lastname = _lastname,
@@ -72,7 +76,9 @@ namespace test.Controllers
                     Company = _company,
                     Token = _token,
                     HasPaid = _hasPaid
-                    }; 
+                    }; */
+
+                    return _user;
             } 
             return Unauthorized();      
         } 
