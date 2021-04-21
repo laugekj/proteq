@@ -70,6 +70,7 @@ export class FetchUsers extends Component {
                         <th>Name</th>
                         <th>Company</th>
                         <th>E-Mail</th>
+                        <th>hasPaid</th>
                         <th>
                             <AddPopover refetch={this.forceRefetch}>
 
@@ -85,6 +86,7 @@ export class FetchUsers extends Component {
                             <td>{user.firstname + " " + user.lastname}</td>
                             <td>{user.company}</td>
                             <td>{user.email}</td>
+                            <td>{user.hasPaid}</td>
                             <td>
                                 <Grid 
                                 container
