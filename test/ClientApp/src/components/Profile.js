@@ -85,11 +85,3 @@ export function Profile() {
             </div>
         );
 }
-
-
-        
-
-    
-
-
-

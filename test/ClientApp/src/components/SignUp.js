@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import  { UserContext } from './UserContext';
+import Checkout from './Stripe/Checkout'; 
+
 
 function Copyright() {
   return (
@@ -59,8 +62,8 @@ export default function SignUp() {
   const { setUserName } = useContext(UserContext);
   const { loggedIn, setLoggedin } = useContext(UserContext);
   const { userCompany, setUserCompany } = useContext(UserContext);
-  const { setId } = useContext(UserContext);
-  
+  const { id, setId } = useContext(UserContext);
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -162,18 +165,16 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-
-            <Button
-            //  type="submit"
+          
+          <Button
             fullWidth
             variant="contained"
             color="primary"
             // className={classes.submit}
             onClick={() => CreateUser()}
             >
-            Sign Up
-            </Button>
-
+            Gå videre til betaling
+          </Button>
           
           <Grid container justify="flex-end">
             <Grid item>
@@ -184,16 +185,25 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
+      
       <Box mt={5}>
         <Copyright />
       </Box>
     </Container>
   );
 
+    function SaveContext() {
+      setUserEmail(email);
+      setUserName(firstname);
+      setUserCompany(company);
+    }
+
+
   function CreateUser() {
-    
+
     // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
     CreateUserInUserTable();
+
 
     // creates userRegistration if email doesent exists
     const registrationData = { Mail: email, Password: password };

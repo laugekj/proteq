@@ -1,0 +1,56 @@
+.body{
+    margin: 0;
+    width: 100%;
+}
+
+.banner{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    
+  }
+
+.footer{
+    background-color: #073B4C;
+    height: 100px;
+    width: 100% !important;
+    left: 0;
+    position: sticky; 
+    bottom: 0; 
+    color: #FEFBEB!important;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+}
+
+.grid-container{
+    display: grid;
+    align-items: center;
+    grid-gap: 50px;
+    text-align: center;
+}
+
+.grid-item{
+    grid-row-start: 1;
+    grid-row-end: 4;
+    
+}
+
+.container{
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.overskrift{
+    font-size: larger;
+    margin-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.main-text{
+    margin: 15px;
+    
+    
+}
