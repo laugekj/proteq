@@ -55,11 +55,11 @@ export default function SignUp() {
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { userEmail, setUserEmail } = useContext(UserContext);
-  const { userName, setUserName } = useContext(UserContext);
+  const { setUserEmail } = useContext(UserContext);
+  const { setUserName } = useContext(UserContext);
   const { loggedIn, setLoggedin } = useContext(UserContext);
   const { userCompany, setUserCompany } = useContext(UserContext);
-  const { id, setId } = useContext(UserContext);
+  const { setId } = useContext(UserContext);
   
 
   return (
@@ -218,7 +218,7 @@ export default function SignUp() {
 
   }
   function CreateUserInUserTable() {
-    const userData = { Phone: phone, firstname: firstname, Lastname: lastname, Company: company, Email: email };
+    const userData = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
     fetch('api/user', {
       method: 'POST', // or 'PUT'
       headers: {
@@ -229,6 +229,10 @@ export default function SignUp() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
+      setId(data.id);
+      setUserEmail(userData.Email);
+      setUserName(userData.Firstname + " " + userData.Lastname);
+      setUserCompany()
      
     })
     .catch((error) => {

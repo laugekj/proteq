@@ -8,31 +8,14 @@ import { GoogleLogout } from 'react-google-login';
 
 
 
-function createUser(Firstname, lastName, id, email, token){
-    const data = {  Firstname: Firstname, lastName: lastName,  d: id ,Email: email, Token: token };
-    fetch('api/user', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
-
     const clientId = '195846337053-iqu57fc1hg1edggj4hcfeke9cb6oa5j2.apps.googleusercontent.com';
 
     function Login() {
-    const { userEmail, setUserEmail } = useContext(UserContext);
-    const { userName, setUserName } = useContext(UserContext);
+    const { setUserEmail } = useContext(UserContext);
+    const { setUserName } = useContext(UserContext);
     const { loggedIn, setLoggedin } = useContext(UserContext);
     const { counter, setCounter } = useContext(UserContext);
+    const { setId } = useContext(UserContext);
     //const history = useHistory();
 
 
@@ -64,6 +47,25 @@ function createUser(Firstname, lastName, id, email, token){
       `Ikke logget ind`
     );
   };
+
+  function createUser(Firstname, lastName, id, email, token){
+    const data = {  Firstname: Firstname, lastName: lastName,  d: id ,Email: email, Token: token };
+    fetch('api/user', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        setId(data.id);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
 
   return (
     <div>

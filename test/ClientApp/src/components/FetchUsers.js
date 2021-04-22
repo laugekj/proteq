@@ -52,6 +52,7 @@ export class FetchUsers extends Component {
          this.setState({users: users, loading: true});
 
      }
+     
     async populateUserData(bool) {
         const response = await fetch('api/user');
         const data = await response.json();
@@ -105,14 +106,6 @@ export class FetchUsers extends Component {
                                     </IconButton>
                                 </Grid>
                                     
-                                   
-                                    
-                                    
-                                    
-                                   
-                           
-                            
-                                       
                             </td>
                         </tr>
                     )}

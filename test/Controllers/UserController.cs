@@ -22,8 +22,7 @@ namespace test.Controllers
         {
             Create(new User {Firstname = "Latge", Lastname = "Prosen", Phone = "12345678", Email = "sumEmail@mail.dk"});
             Create(new User {Firstname = "Latge", Lastname = "Noobsen", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            
-    
+        
         }
         
     
