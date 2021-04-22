@@ -47,39 +47,11 @@ namespace test.Controllers
 
                 // Catch all user information from table : 'Users'
                 User _user = _context.Users.FirstOrDefault(x => x.Id == _userId);
-
-                // Catch all relevant user data
-                var _firstname = _user.Firstname;
-                var _lastname = _user.Lastname;
-                var _email = _user.Email;
-                var _phone = _user.Phone;
-                var _company = _user.Company;
-                var _token = _user.Token;
-                var _hasPaid = _user.HasPaid;
-                
-                // Print out all user data
-                Console.WriteLine("[DEVELOPER MODE] : User " + _user);
-                Console.WriteLine("[DEVELOPER MODE] :   .userId " + _userId);
-                Console.WriteLine("[DEVELOPER MODE] :   .firstName " + _firstname);
-                Console.WriteLine("[DEVELOPER MODE] :   .lastname " + _lastname);
-                Console.WriteLine("[DEVELOPER MODE] :   .email " + _email);
-                Console.WriteLine("[DEVELOPER MODE] :   .phone " + _phone);
-                Console.WriteLine("[DEVELOPER MODE] :   .company " + _company);
-                Console.WriteLine("[DEVELOPER MODE] :   .token " + _token);
-                Console.WriteLine("[DEVELOPER MODE] :   .hasPaid " + _hasPaid);
-                /*return new User() { 
-                    Id = _userId,
-                    Firstname = _firstname,
-                    Lastname = _lastname,
-                    Email = _email,
-                    Phone = _phone,
-                    Company = _company,
-                    Token = _token,
-                    HasPaid = _hasPaid
-                    }; */
-
-                    return _user;
+                Console.WriteLine("userRegr table: " + _userId);
+                Console.WriteLine("user table: " + _user.Id);
+                return _user;
             } 
+            //return null;
             return Unauthorized();      
         } 
 

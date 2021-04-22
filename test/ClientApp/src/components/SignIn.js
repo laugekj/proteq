@@ -165,19 +165,23 @@ export default function SignIn() {
       },
       body: JSON.stringify(loginData),
     }).then(response => {
-        console.log(response);
-        // 200 is OK!
-        if(response.status === 200) {
-          alert("Logged ind!");
-          
-          console.log(response)
-          // [NOTE]: Sets user if login is correct - used for keeping user logged in.
-          setUser(response)
-        } else {
-          alert("Forkert brugeroplysninger!");
+        return response.json();        
+      })
+      .then((responseJson) => {
+        console.log("response status: " + responseJson.status);
+        if (responseJson.status === 201) {
+        console.log("logged ind!")
+        console.log(responseJson);
+        console.log(responseJson.firstname);
+        console.log(responseJson.lastname);
+        console.log(user);
+        }else if (responseJson.status === 401) {
+          alert('Forkert brugeroplysninger!')
         }
-    }); 
-  }
+
+        
+      }); 
+      }
 
   
 }
