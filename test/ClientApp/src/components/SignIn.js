@@ -67,9 +67,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignIn() { 
-  const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const classes = useStyles()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [user, setUser] = useState()
   
 
@@ -165,23 +165,18 @@ export default function SignIn() {
       },
       body: JSON.stringify(loginData),
     }).then(response => {
-        return response.json();        
+        return response.json()       
       })
       .then((responseJson) => {
-        console.log("response status: " + responseJson.status);
-        if (responseJson.status === 201) {
-        console.log("logged ind!")
-        console.log(responseJson);
-        console.log(responseJson.firstname);
-        console.log(responseJson.lastname);
-        console.log(user);
-        }else if (responseJson.status === 401) {
+        // Er ikke fan af, at den bruger "else" til at logge ind... tag i fællesskab
+        // den kan ikke lide responseJson.status === 200, fordi vi returner user.
+         if (responseJson.status === 401) {
           alert('Forkert brugeroplysninger!')
+        } else {
+          console.log("logged ind!")
+          setUser(responseJson)
+          console.log(user)
         }
-
-        
-      }); 
-      }
-
-  
+      })
+    }
 }
