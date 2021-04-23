@@ -16,7 +16,6 @@ import './SignIn.css';
 import './Reset.css';
 import { createMuiTheme } from '@material-ui/core/styles';
 import  { UserContext } from './UserContext';
-import axios from "axios";
 
 
 function Copyright() {
@@ -65,18 +64,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function SignIn() { 
   const classes = useStyles()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [user, setUser] = useState()
   
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log("const loggedInUser:")
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+  
+  // logout the user
+  const handleLogout = () => {
+    setUser({});
+    setEmail("");
+    setPassword("");
+    localStorage.clear();
+    window.location.reload();
+  };
 
-  /*const { setUserEmail } = useContext(UserContext);
-  const { setUserName } = useContext(UserContext);
-  const { dsetLoggedin } = useContext(UserContext);*/
-
+  // if there's a user show the message below
+  if (user) {
+    console.log("DU ER LOGGET IND!!!")
+    return (
+      <div>
+        {user.firstname} is loggged in
+        <button onClick={handleLogout}>logout</button>
+      </div>
+    );
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -151,11 +173,11 @@ export default function SignIn() {
     </Container>
   );
 
+  
   function login() {
     // [DEVELOPER MODE]: Check if user setting are stored.
     console.log("[DEVELOPER MODE] : Typed email: " + email);
     console.log("[DEVELOPER MODE] : Typed password: " + password);
-
     const loginData = { Mail: email, Password: password };
 
     fetch('api/userlogin', {
@@ -173,10 +195,17 @@ export default function SignIn() {
          if (responseJson.status === 401) {
           alert('Forkert brugeroplysninger!')
         } else {
-          console.log("logged ind!")
-          setUser(responseJson)
-          console.log(user)
-        }
+          //setCount = setCount + 1;
+          //console.log("count is now: " + count)
+          //if (count == 2) {
+            console.log("logged ind!")
+            // set the state of the user
+            setUser(responseJson)
+            // store the user in localStorage
+            localStorage.setItem('user', JSON.stringify(responseJson))
+            console.log(responseJson)
+          }
+        //}
       })
     }
 }

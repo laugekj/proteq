@@ -36,7 +36,7 @@ namespace test.Controllers
         {    
             var _passWord = encryptPassword.textToEncrypt(typedUser.Password);    
             bool Isvalid = _context.UserRegistrations.Any(x => x.Mail == typedUser.Mail && x.Password == _passWord);
-                
+        
             if (Isvalid)    
             {    
                 //User user = new User();
@@ -51,9 +51,9 @@ namespace test.Controllers
                 Console.WriteLine("user table: " + _user.Id);
                 return _user;
             } 
-            //return null;
             return Unauthorized();      
         } 
+
 
 
 

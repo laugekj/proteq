@@ -1,19 +1,33 @@
 
-import React, { useContext } from 'react';
-import  { UserContext } from './UserContext';
+import React, { useContext, useEffect, useState } from 'react';
 
 export function Profile() {
-    const { userEmail, setUserEmail } = useContext(UserContext)
-    const { userName, setUserName } = useContext(UserContext)
-    const { loggedIn, setLoggedin } = useContext(UserContext)
-    const { userCompany, setUserCompany } = useContext(UserContext) 
-     
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("user");
+        console.log("const loggedInUser:")
+        if (loggedInUser) {
+          const foundUser = JSON.parse(loggedInUser);
+          setUser(foundUser);
+        }
+      }, []);
+
+      if (user) {
+        return (
+            <div>
+                <h3>{user.firstname}</h3>
+                <h3>{user.email}</h3>
+                <h3>{user.company}</h3>
+                 <h3>{user.id}</h3>
+            </div>
+        
+        );
+      }
+
     return (
             <div>
-                <h3>{userName}</h3>
-                <h3>{userEmail}</h3>
-                <h3>{userCompany}</h3>
-                 <h3>{loggedIn}</h3>
+                <h2>Du er ikke logget ind.</h2>
             </div>
         );
 }
