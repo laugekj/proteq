@@ -49,7 +49,7 @@ namespace test.Controllers
             _context.UserRegistrations.Add(user);
             _context.SaveChanges();
 
-           //SendEmailToUser(user.Mail);
+            SendEmailToUser(user.Mail);
             return Ok();
             
         } 

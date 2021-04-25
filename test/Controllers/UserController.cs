@@ -22,7 +22,8 @@ namespace test.Controllers
         {
             Create(new User {Firstname = "Latge", Lastname = "Prosen", Phone = "12345678", Email = "sumEmail@mail.dk"});
             Create(new User {Firstname = "Latge", Lastname = "Noobsen", Phone = "12345678", Email = "sumEmail@mail.dk"});
-        
+            
+    
         }
         
     
@@ -89,6 +90,20 @@ namespace test.Controllers
             }     
         return item; 
         }
+
+        // [HttpPut("{id}")]
+        // [Route("[action]")]
+        // public ActionResult<User> setHasPaid(int id, bool hasPaid) 
+        // {
+        //    var entity = _context.Users.FirstOrDefault(e => e.Id == id);
+        //    if (entity == null) {
+        //        return BadRequest("id must match id");
+        //    } else {
+        //        entity.HasPaid = hasPaid;
+        //        _context.SaveChanges();
+        //        return Ok();
+        //    }
+        // }
 
         public bool DoesEmailExists(string mail)
         {

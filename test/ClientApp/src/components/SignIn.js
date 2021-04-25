@@ -64,20 +64,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function SignIn() { 
-  const classes = useStyles();
-  const [email, setEmail] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const classes = useStyles()
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [user, setUser] = useState()
   
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log("const loggedInUser:")
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+  
+  // logout the user
+  const handleLogout = () => {
+    setUser({});
+    setEmail("");
+    setPassword("");
+    localStorage.clear();
+    window.location.reload();
+  };
 
-  const [password, setPassword] = useState("");
-
-  const { setUserEmail } = useContext(UserContext);
-  const { setUserName } = useContext(UserContext);
-  const { setLoggedin } = useContext(UserContext);
-
+  // if there's a user show the message below
+  if (user) {
+    console.log("DU ER LOGGET IND!!!")
+    return (
+      <div>
+        {user.firstname} is loggged in
+        <button onClick={handleLogout}>logout</button>
+      </div>
+    );
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -152,14 +173,11 @@ export default function SignIn() {
     </Container>
   );
 
+  
   function login() {
-    // const data = {Email: email };
-
-    // console.log(data);
-    // console.log(loggedIn);
-
-
-
+    // [DEVELOPER MODE]: Check if user setting are stored.
+    console.log("[DEVELOPER MODE] : Typed email: " + email);
+    console.log("[DEVELOPER MODE] : Typed password: " + password);
     const loginData = { Mail: email, Password: password };
 
     fetch('api/userlogin', {
@@ -169,19 +187,25 @@ export default function SignIn() {
       },
       body: JSON.stringify(loginData),
     }).then(response => {
-        console.log(response);
-        // 201 is "Created" (success)
-        if(response.status === 202) {
-          console.log("the dude logged in");
-          alert("Logged In");
-          setLoggedin(true);
-          setUserEmail(email);
-          setUserName("KObe");
+        return response.json()       
+      })
+      .then((responseJson) => {
+        // Er ikke fan af, at den bruger "else" til at logge ind... tag i fællesskab
+        // den kan ikke lide responseJson.status === 200, fordi vi returner user.
+         if (responseJson.status === 401) {
+          alert('Forkert brugeroplysninger!')
         } else {
-            alert("Wrong password");
-        }
-    }); 
-  }
-
-  
+          //setCount = setCount + 1;
+          //console.log("count is now: " + count)
+          //if (count == 2) {
+            console.log("logged ind!")
+            // set the state of the user
+            setUser(responseJson)
+            // store the user in localStorage
+            localStorage.setItem('user', JSON.stringify(responseJson))
+            console.log(responseJson)
+          }
+        //}
+      })
+    }
 }
