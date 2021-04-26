@@ -1,0 +1,26 @@
+.text-center {
+    
+    text-align: left !important;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input {
+    background-color: #073b4c !important;
+    color: #FEFBEB !important;
+}
+
+textarea {
+    background-color: #073b4c !important;
+    color: #FEFBEB !important;
+}
+
+.mt-4 {
+    margin-top: 15px !important;
+}
+
+.btn-secondary {
+    background-color: #3d6f8c !important;
+}

@@ -29,8 +29,8 @@
 
 .dineoplysninger {
     margin: 30px;
-    margin-bottom: 60
-    px;
+    margin-bottom: 60px;
+    height: 540px;
 }
 
 .profilredigering {
@@ -56,14 +56,16 @@ display: block;
 }
 
 .body {
-    background-color: #FEFBEB;
+    background-color: #CBBFBB;
     margin: 0px;
     padding: 0px;
+   
 }
 
 .MuiButton-root {
-margin-top: 20px !important;
-background-color: #073b4c !important;
+margin-top: 25px !important;
+margin-left: 27% !important;
+background-color: #DB5461 !important;
 color: #FEFBEB !important;
-width: auto;
+
 }

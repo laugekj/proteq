@@ -1,5 +1,6 @@
 import React, { Component, UserContext } from 'react';
 import Button from '@material-ui/core/Button';
+import { InputForm } from "./InputForm.js";
 import EdiText from 'react-editext'
 import './Profile.css';
 
@@ -48,11 +49,13 @@ import './Profile.css';
              </div>
              <div class="dineoplysninger">
              <h3 class="oplysninger"> Administrer din konto</h3>    
-             <Button variant="primary" classname="knap">Slet min konto</Button>{' '}
-             <Button variant="primary" classname="knap">Ændre mine betalingsoplysninger</Button>{' '}
              <div class="kontaktos">
-                 
-             </div>
+                     
+              <div className="container">
+                <InputForm />
+              </div>
+              </div>
+              <Button variant="primary" classname="knap">Slet min konto</Button>{' '}
              </div>
           </div>
         </div>
