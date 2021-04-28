@@ -47,8 +47,6 @@ namespace test.Controllers
 
                 // Catch all user information from table : 'Users'
                 User _user = _context.Users.FirstOrDefault(x => x.Id == _userId);
-                Console.WriteLine("userRegr table: " + _userId);
-                Console.WriteLine("user table: " + _user.Id);
                 return _user;
             } 
             return Unauthorized();      

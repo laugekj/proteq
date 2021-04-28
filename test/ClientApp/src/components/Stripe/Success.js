@@ -1,20 +1,39 @@
 
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import  { UserContext } from '.././UserContext';
 
 export function Success() {
-    const { userEmail, setUserEmail } = useContext(UserContext)
-    const { userName, setUserName } = useContext(UserContext)
-    const { loggedIn, setLoggedin } = useContext(UserContext)
-    const { userCompany, setUserCompany } = useContext(UserContext) 
+    const [ user, setUser] = useState()
+    useEffect(()=>{
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+          const foundUser = JSON.parse(loggedInUser);
+          setUser(foundUser);
+        }
+      }, []);
 
      
+    
+     function deletePaymentTokenIfExists() 
+     {
+        const URLtoString = window.location.href 
+        const data = {URLtoString, URLtoString}
+        fetch('api/payments', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+          if (response.status == 200) {
+            handleClick();
+          }
+      });
+     }
+
     return (
             <div>
-                <h3>{userName}</h3>
-                <h3>{userEmail}</h3>
-                <h3>{userCompany}</h3>
-                 <h3>{loggedIn}</h3>
+                <h1>Din betaling er gået igennem!</h1>
             </div>
         );
 }
