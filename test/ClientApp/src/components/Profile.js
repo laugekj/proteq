@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-import EdiText from 'react-editext'
+import Textfield from '@material-ui/core/Textfield';
 import EditPopover from './EditPopover';
 import './Profile.css';
 
@@ -49,29 +49,26 @@ export function Profile() {
                         <h3 className="oplysninger"> Dine oplysninger</h3>
                         <h4 className="rubrik"> Navn</h4>
             
-            <EdiText
-                className="profilredigering"
-                value={user.firstname + " " + user.lastname}
-                />
+                <div className="profilredigering">
+                <Textfield value={user.firstname + " " + user.lastname} />
+                </div>
              
             <h4 className="rubrik"> Virksomhed</h4>
-            <EdiText
-                className="profilredigering"
-                value={user.company}
-                />
+
+            <div className="profilredigering">
+                  <Textfield value={user.company}/>
+                </div>
                 
             <h4 className="rubrik"> E-mail</h4>
-            <EdiText
-                className="profilredigering"
-                value={user.email}
-                
-                />
+
+            <div className="profilredigering">
+            <Textfield  value={user.email}/>
+             </div>
+
              <h4 className="rubrik"> Mobil nr.</h4>
-             <EdiText
-                className="profilredigering"
-                value={user.phone}
-                
-                />
+             <div className="profilredigering">
+                <Textfield value={user.phone}/>
+                </div>
              </div>
              <div className="dineoplysninger">
              <h3 className="oplysninger"> Administrer din konto</h3>    
