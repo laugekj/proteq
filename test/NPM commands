@@ -11,10 +11,16 @@ NPM hører til Frontend, så der må kun installeres inde i frontend './ClientAp
     7. dotnet restore
 
 8. npm install @stripe/stripe-js
-
+9. npm install axios
 
 
 
 LINKS:
 (Material UI) https://material-ui.com/getting-started/installation/?fbclid=IwAR30RUIRdsBSWh_qEWtgn9DZY2ZOdBCYV7URSoQjqjmhDjchbv79_nomi2Q
 (Stripe: Accept a payment) https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements&fbclid=IwAR33RQBuT6VQXslSL7x1ZPYXbzmtt_s1jyvfgF6PCUhBlz1bkZeMAinORNo#web-create-payment-intent
+(Keep user logged in) https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/ 
+(JsonException: A possible object cycle was detected which is not supported): https://www.thecodebuzz.com/jsonexception-possible-object-cycle-detected-object-depth/
+    -- Startup.cs has been modified to support API "return object"
+        -- see example from UserLoginController - returns _user without problems. Ask Harry for more information.
+        -- used Nuget package: Microsoft.AspNetCore.Mvc.NewtonsoftJson -Version 3.1.2
+(Synchronous action): https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-5.0#synchronous-action-1
