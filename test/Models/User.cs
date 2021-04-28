@@ -16,6 +16,8 @@ namespace test.Models
         public string Token { get; set; }
         
         public bool HasPaid { get; set; }
+
+        public string PaymentToken { get; set; }
         public UserRegistration UserReg { get; set; }
     }
 }
