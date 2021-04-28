@@ -15,6 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import  { UserContext } from './UserContext';
 import Checkout from './Stripe/Checkout'; 
+import './SignUp.css';
+import './Reset.css';
 
 
 function Copyright() {

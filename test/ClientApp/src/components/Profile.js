@@ -1,4 +1,3 @@
-
 // import React, { useContext, useEffect, useState } from 'react';
 
 // export function Profile() {
@@ -35,7 +34,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import  { UserContext } from './UserContext';
 import Button from '@material-ui/core/Button';
-import EdiText from 'react-editext'
+import Textfield from '@material-ui/core/Textfield';
 import EditPopover from './EditPopover';
 import './Profile.css';
 
@@ -109,44 +108,35 @@ export function Profile() {
                         <div class="body">
                         <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
                         <h2 class="underoverskrift">Her kan du administrere dine oplysninger og din konto </h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 20 }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)" }}>
                         <div class="dineoplysninger"> 
                         <h3 class="oplysninger"> Dine oplysninger</h3>
                         <h4 class="rubrik"> Navn</h4>
             
-            <EdiText
-                class="profilredigering"
-                value={user.firstname + " " + user.lastname}
-                />
+            <div class="profilredigering">
+                <Textfield value={user.firstname + " " + user.lastname} />
+                </div>
              
             <h4 class="rubrik"> Virksomhed</h4>
-            <EdiText
-                class="profilredigering"
-                value={user.company}
-                />
+            <div class="profilredigering">
+                  <Textfield value={user.company}/>
+                </div>
                 
             <h4 class="rubrik"> E-mail</h4>
-            <EdiText
-                class="profilredigering"
-                value={user.email}
-                
-                />
-             <h4 class="rubrik"> Mobil nr.</h4>
-             <EdiText
-                class="profilredigering"
-                value={user.phone}
-                
-                />
+            <div class="profilredigering">
+            <Textfield  value={user.email}/>
              </div>
-             <div class="dineoplysninger">
-             <h3 class="oplysninger"> Administrer din konto</h3>    
+
+             <h4 class="rubrik"> Mobil nr.</h4>
+             <div class="profilredigering">
+                <Textfield value={user.phone}/>
+                </div>
+             
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
              <Button variant="primary" classname="knap" onClick={deleteUser}>Slet min konto</Button>{' '}
-             <Button variant="primary" classname="knap">Ændre mine betalingsoplysninger</Button>{' '}
              <EditPopover 
-                        onCloseFunc={getUser} user={user}>
+                        class="edituser" onCloseFunc={getUser} user={user}>
              </EditPopover>
-             <div class="kontaktos">
-                 
              </div>
              </div>
           </div>
