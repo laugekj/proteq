@@ -4,9 +4,11 @@ import { Typography, Container, Button } from '@material-ui/core';
 
 export default function RequestResetPassword() {
     const [mail, setMail] = useState("")
+    const [sentMail, setSentMail] = useState(false);
 
-
-    return (
+    if (!sentMail) {
+      return (
+      
         <Container>
             <Typography>Reset Password</Typography>
             <TextField
@@ -20,7 +22,7 @@ export default function RequestResetPassword() {
             ></TextField>
           
           <Button
-          onClick={() => resetPassword()}
+          onClick={() => requestResetPassword()}
           size="small"
           variant="outlined"
           >Reset Password</Button>
@@ -28,12 +30,20 @@ export default function RequestResetPassword() {
 
 
     );
+    } else {
+      return (
+        <Container>
+          <Typography>
+            Mail med vejledning til at ændre sit kodeord sendy til: {mail}.
+          </Typography>
+        </Container>
+      );
+    }
+    
 
-    function resetPassword() {
+    function requestResetPassword() {
         const URLtoString = window.location.href
         const data = { Mail: mail, Url: URLtoString };
-        console.log(mail);
-        console.log(data.Mail);
         fetch('api/userlogin/createresetmodel', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -42,7 +52,7 @@ export default function RequestResetPassword() {
           console.log(response);
           // 200 is "OK" (success)
           if(response.status === 200) {
-          
+            setSentMail(true);
           //  console.log('Updated password', data);
           } else {
                 // waaah, error handler

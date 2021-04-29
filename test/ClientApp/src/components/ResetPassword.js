@@ -35,7 +35,8 @@ export default function ResetPassword() {
     );
 
     function resetPassword() {
-        const data = { Mail: "lauge21kj@gmail.com", Password: password };
+        const URLtoString = window.location.href
+        const data = { Url: URLtoString, Password: password };
         fetch('api/userregistration', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -44,8 +45,8 @@ export default function ResetPassword() {
           console.log(response);
           // 200 is "OK" (success)
           if(response.status === 200) {
-          
             console.log('Updated password', data);
+            window.location.href = '/sign-in';
           } else {
             // waaah, error handler
           }

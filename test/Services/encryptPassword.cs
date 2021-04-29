@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Security.Cryptography;
-namespace test.Models
+namespace test.Services
 {
     public class encryptPassword
     {
