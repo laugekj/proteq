@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
@@ -11,7 +11,9 @@ export class NavMenu extends Component {
 
   constructor (props) {
     super(props);
-
+    this.state = {
+      user: localStorage.getItem("user")
+    };
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
       collapsed: true
@@ -22,6 +24,11 @@ export class NavMenu extends Component {
     this.setState({
       collapsed: !this.state.collapsed
     });
+  }
+
+    handleLogout () {
+    this.setState({});
+    localStorage.clear();
   }
 
   render () {
