@@ -29,19 +29,23 @@
 
 .dineoplysninger {
     margin: 30px;
-    margin-bottom: 60
-    px;
+    float: center;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
 .profilredigering {
     padding: 10px;
+    margin-bottom: 40px;
+    caret-color: transparent;
+    width: 200px;
+    margin-right: 10px;
+    text-align: center;
 }
 
-.styles_Editext__buttons_container__1kphL {
- float: right !important;
- 
 
-}
+
 .styles_Editext__view_container__2l2kB {
 background-color: #073b4c;
 color: #FEFBEB!important;
@@ -56,14 +60,50 @@ display: block;
 }
 
 .body {
-    background-color: #FEFBEB;
+    background-color: #CBBFBB !important;
     margin: 0px;
     padding: 0px;
+    position:fixed;
+    top: 100px;
+    bottom:0;
+    left:0;
+    right:0;
 }
 
 .MuiButton-root {
 margin-top: 20px !important;
 background-color: #073b4c !important;
 color: #FEFBEB !important;
-width: auto;
+width: 200px !important;
+height: 50px;
+margin-left: 30px !important;
+}
+
+.MuiInput-underline:after{
+    border-bottom: 2px solid #000000 !important;
+    transform: none !important;
+    width: 400px !important;
+}
+
+.MuiInputBase-input {
+    width: 300px !important;
+}
+
+.MuiPopover-root {
+    backdrop-filter: blur(3px);
+}
+
+.MuiPopover-paper{
+    background-color: #FEFBEB !important;
+    color: #073b4c !important;
+    
+}
+
+.MuiIconButton-colorSecondary {
+    margin: 20px !important;
+    color: #FEFBEB !important;
+    background-color: #073b4c !important;
+    height: 50px !important;
+    margin-left: 100px !important;
+    
 }

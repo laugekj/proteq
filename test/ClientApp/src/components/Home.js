@@ -9,10 +9,10 @@ export class Home extends Component {
 
   render () {
     return (
-      <div class="body">
-        <img src={Banner} class ='banner' fluid />
-        <h1 class="overskrift">SimpleGDPR Guide</h1>
-        <p class="main-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper feugiat mauris. 
+      <div className="body">
+        <img src={Banner} alt="" fluid="true" className ='banner' />
+        <h1 className="overskrift">SimpleGDPR Guide</h1>
+        <p className="main-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper feugiat mauris. 
           Fusce vel leo nec orci lacinia tincidunt. Sed pharetra quam a urna consectetur vestibulum. 
           Aenean congue nisi in diam interdum mollis. Sed quam magna, ultricies vel elementum vel, consequat et lorem. 
           Nam mollis mi id erat ultrices ullamcorper. Maecenas nisl justo, pellentesque vitae placerat et, condimentum ac neque. 

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,8 +13,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import  { UserContext } from './UserContext';
-import Checkout from './Stripe/Checkout'; 
 
 
 function Copyright() {
@@ -58,11 +56,6 @@ export default function SignUp() {
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { userEmail, setUserEmail } = useContext(UserContext);
-  const { userName, setUserName } = useContext(UserContext);
-  const { loggedIn, setLoggedin } = useContext(UserContext);
-  const { userCompany, setUserCompany } = useContext(UserContext);
-  const { id, setId } = useContext(UserContext);
 
 
   return (
@@ -192,18 +185,11 @@ export default function SignUp() {
     </Container>
   );
 
-    function SaveContext() {
-      setUserEmail(email);
-      setUserName(firstname);
-      setUserCompany(company);
-    }
-
 
   function CreateUser() {
 
     // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
     CreateUserInUserTable();
-
 
     // creates userRegistration if email doesent exists
     const registrationData = { Mail: email, Password: password };
@@ -244,11 +230,7 @@ export default function SignUp() {
     .catch((error) => {
       console.error('Error:', error);
     });
-  }
-  function DeleteUserInUserTable(id) {
-    fetch('api/user/' + id, {
-      method: 'DELETE',
-    });
+  
   }
 
 }

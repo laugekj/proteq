@@ -1,8 +1,28 @@
 
-.Mui-avatar {
-    color: #B63E48!important;
+.makeStyles-avatar-3 {
+    background-color: #073b4c !important;
 }
 
 .h1 {
     font-family: 'Playfair Display', serif;
+}
+
+body {
+    background-color: #CBBFBB !important;
+}
+
+
+.MuiOutlinedInput-input:-webkit-autofill {
+    width: 390px !important;
+    background-color: #CBBFBB !important;
+    color: #CBBFBB  !important;
+    box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+   
+
+}
+
+
+.PrivateNotchedOutline-legendNotched-9 {
+    max-width: 0px !important;
+    
 }

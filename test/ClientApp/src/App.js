@@ -1,4 +1,4 @@
-import React, { Component , useState, useMemo} from 'react';
+import React from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
@@ -9,27 +9,15 @@ import 'fontsource-roboto';
 import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
-import  { UserContext } from './components/UserContext';
 import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
 
 
 export default function App(){
 
- const [userEmail, setUserEmail] = useState (null)
-  const [userName, setUserName] = useState (null)
-  const [userCompany, setUserCompany] = useState (null)
-  const [counter, setCounter] = useState (0)
-  const [ id, setId ] = useState(0)
-  const [loggedIn, setLoggedin] = useState (false)
-
-  const user = useMemo (() => ({id, setId, userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter, userCompany, setUserCompany}), [id, setId, userEmail, setUserEmail, userName, setUserName, loggedIn, setLoggedin, counter, setCounter]);
-  
-
-
     return (
       <Layout>
-      <UserContext.Provider value={user}>
+      
         <Route exact path='/' component={Home} />
             <Route path='/counter' component={Counter} />
             <Route path='/fetch-users' component={FetchUsers} />         
@@ -40,7 +28,7 @@ export default function App(){
             <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
 
-      </UserContext.Provider>
+     
       </Layout>
     );
   
