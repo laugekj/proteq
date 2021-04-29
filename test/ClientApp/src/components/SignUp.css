@@ -5,3 +5,7 @@
 .MuiAvatar-colorDefault {
     background-color: #073b4c !important;
 }
+
+.classes-paper{
+    border-bottom: 100px;
+}

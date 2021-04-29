@@ -44,8 +44,6 @@
     text-align: center;
 }
 
-
-
 .styles_Editext__view_container__2l2kB {
 background-color: #073b4c;
 color: #FEFBEB!important;
@@ -55,8 +53,6 @@ padding: 5px;
 width: auto;
 float: right;
 display: block;
-
-
 }
 
 .body {
@@ -104,6 +100,5 @@ margin-left: 30px !important;
     color: #FEFBEB !important;
     background-color: #073b4c !important;
     height: 50px !important;
-    margin-left: 100px !important;
-    
+    margin-left: 100px !important;  
 }

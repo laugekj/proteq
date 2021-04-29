@@ -19,8 +19,6 @@ position: absolute;
 right: 10px;
 }
 
-
-
 .navbar-collapse {
 background-color: #073b4c;
 }
@@ -43,9 +41,7 @@ background-color: #073b4c;
   color: #FEFBEB!important;
   font-family: 'Playfair Display', serif;
   font-weight: bold;
-  
 }
-
 
 img {
  width: 300px;
