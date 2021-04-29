@@ -72,7 +72,7 @@ namespace test.Controllers
             ResetPassword model = new ResetPassword();
             model.Id = _context.ResetPasswords.Any() ? _context.ResetPasswords.Max(p => p.Id) + 1 : 1;
             model.Email = mailUrlModel.Mail;
-            model.Token = TokenAndUrlService.generateToken(model.Id);
+            model.Token = TokenAndUrlService.generateToken(model.Id, "rp");
             
             // Add the ResetPasswordRequest to the ResetPasswords table
             _context.ResetPasswords.Add(model);
@@ -84,45 +84,6 @@ namespace test.Controllers
 
             return Ok();
         }
-
-        // private string generatePasswordResetToken(int userId) 
-        // {   
-        //     // example of ??? token generated date 28 / 04 / 2021 with userId 19
-        //     // pt_28042021_uid_19_XXXXXX__64_Characters_Long__XXXXXX
-        //     string resetToken = "pt_" + DateTime.Now.ToString("ddMMyyyy") + "_";
-        //     resetToken += "uid_" + userId + "_";
-        //     resetToken += RandomString(64);
-
-
-        //     return resetToken;
-        // }
-
-        // private string getResetPasswordURL(string URL) 
-        // {
-        
-        //     return URL.Replace("request", "");
-        // }
-        // private static Random random = new Random();
-        // public static string RandomString(int length)
-        // {
-        //     // Created with help from: https://stackoverflow.com/a/1344242
-        //     const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        //     return new string(Enumerable.Repeat(chars, length)
-        //     .Select(s => s[random.Next(s.Length)]).ToArray());
-        // }
-
-        // public void SendPasswordResetLink(string mail, string url, string token)
-        // {
-        //     var smtpClient = new SmtpClient("smtp.gmail.com")
-        //     {
-        //         Port = 587,
-        //         Credentials = new NetworkCredential("testmig002@gmail.com", "Password1324#"),
-        //         EnableSsl = true,
-        //     };
-        //     smtpClient.Send("testmig002@gmail.com", mail, "Glemt Kodeord", "Tryk på dette link for at nulstille dit kodeord: \r\n" + getResetPasswordURL(url) + "?" + token);
-        // }
-
-
     }
 }
 

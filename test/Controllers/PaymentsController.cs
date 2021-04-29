@@ -8,6 +8,7 @@ using Stripe;
 using Stripe.Checkout;
 using test.Models;
 using System.Linq;
+using test.Services;
 
 namespace test.Controllers
 {
@@ -84,7 +85,7 @@ namespace test.Controllers
           return BadRequest("id must match id");
       } else {
       // generate payment token
-      this.paymentToken = generatePaymentToken(user.Id);
+      this.paymentToken = TokenAndUrlService.generateToken(user.Id, "p");
 
       // update database PaymentToken
       entity.PaymentToken = this.paymentToken;
@@ -93,28 +94,6 @@ namespace test.Controllers
       _context.SaveChanges();
       return Ok();
       }
-    }
-
-
-    private string generatePaymentToken(int userId) 
-    {   
-      // example of payment token generated date 28 / 04 / 2021 with userId 19
-      // pt_28042021_uid_19_XXXXXX__64_Characters_Long__XXXXXX
-      string paymentToken = "pt_" + DateTime.Now.ToString("ddMMyyyy") + "_";
-      paymentToken += "uid_" + userId + "_";
-      paymentToken += RandomString(64);
-
-
-      return paymentToken;
-    }
-
-    private static Random random = new Random();
-    public static string RandomString(int length)
-    {
-        // Created with help from: https://stackoverflow.com/a/1344242
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        return new string(Enumerable.Repeat(chars, length)
-          .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
   }
