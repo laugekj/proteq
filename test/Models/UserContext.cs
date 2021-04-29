@@ -32,10 +32,7 @@ namespace test.Models
 
         public DbSet<UserRegistration> UserRegistrations { get; set; }
 
-
-    
-    
-
+        public DbSet<ResetPassword> ResetPasswords { get; set; }
 
     }
     
