@@ -34,6 +34,11 @@ export function Profile() {
        localStorage.setItem('user', JSON.stringify(responseJson));
     });
  }
+ const handleLogout = () => {
+    setUser({});
+    localStorage.clear();
+    window.location.reload();
+  };
 
     if (user) {
   
@@ -70,16 +75,14 @@ export function Profile() {
              
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
              <Button variant="primary" classname="knap" onClick={deleteUser}>Slet min konto</Button>{' '}
+             <Button variant="primary" classname="knap" onClick={handleLogout}>Log Ud</Button>{' '}
              <EditPopover 
                         class="edituser" onCloseFunc={getUser} user={user}>
              </EditPopover>
              </div>
              </div>
           </div>
-        </div>
-                    
-                      
-                      
+        </div>                
                     </React.Fragment>
                 
                 }
