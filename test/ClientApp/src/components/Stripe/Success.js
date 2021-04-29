@@ -12,8 +12,16 @@ export function Success() {
         }
       }, []);
 
-     
-      checkPaymentToken() 
+      if (user) {
+        var hasPaid = JSON.parse(user.hasPaid)
+        if (hasPaid) {
+        // redirect user to dashboard
+        window.location.href = '/dashboard'
+        }
+        else {
+        
+        
+    checkPaymentToken() 
 
      function checkPaymentToken() 
      {
@@ -27,14 +35,21 @@ export function Success() {
             body: JSON.stringify(data)
         }).then(response => {
           if (response.status == 200) {
-            console.log("OK!!!")
-          }
+            // set the state of the user
+            return response.json();
+          } 
+      }).then(responseJson => {
+            setUser(responseJson)
+            // overwrite the new user information (hasPaid) in localStorage
+            localStorage.setItem('user', JSON.stringify(responseJson))
       });
      }
-
+    }
+}
     return (
             <div>
                 <h1>Din betaling er gået igennem!</h1>
             </div>
         );
+  
 }

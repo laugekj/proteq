@@ -40,7 +40,12 @@ export function Profile() {
     localStorage.clear();
   };
 
-    if (user) {
+  if (user) {
+    var hasPaid = JSON.parse(user.hasPaid)
+    if (hasPaid == false) {
+    // redirect user to checkoutRedirect
+    window.location.href = '/CheckoutRedirect'
+    } else {
   
         return (
             <div>
@@ -88,7 +93,8 @@ export function Profile() {
                 }
             </div>
         );
-}
+    }
+  }
 return (
                 <div>
                     <h2>Du er ikke logget ind.</h2>

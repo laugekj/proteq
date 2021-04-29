@@ -74,7 +74,7 @@ namespace test.Controllers
 
       [HttpPut("{id}")]
       [Route("[action]")]
-      public ActionResult VerifyPaymentToken(PaymentToken pt)
+      public ActionResult<User> VerifyPaymentToken(PaymentToken pt)
       {
           // Retrieve the paymentToken from the URL and save it
           pt.paymentToken = retrievePaymentTokenFromURL(pt.url);
@@ -87,19 +87,18 @@ namespace test.Controllers
           {
             return BadRequest("PaymentToken doesn't exists in the Database");
           } 
-          else 
-          {
-            // Confirmation (hasPaid=true)
-            entity.HasPaid = true;
-
-            // Delete the paymentToken
-            entity.PaymentToken = null;
-
-            // Save the changes
-            _context.SaveChanges();
-          }
           
-          return Accepted();
+          // Confirmation (hasPaid=true)
+          entity.HasPaid = true;
+
+          // Delete the paymentToken
+          entity.PaymentToken = null;
+
+          // Save the changes
+          _context.SaveChanges();
+          
+          
+          return entity;
       }
 
 
