@@ -11,6 +11,9 @@ import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
+import RequestResetPassword from './components/RequestResetPassword';
+import ResetPassword from './components/ResetPassword';
+
 
 
 export default function App(){
@@ -27,7 +30,8 @@ export default function App(){
             <Route path='/profile' component={Profile} />
             <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
-
+            <Route path='/requestresetpassword' component={RequestResetPassword} />
+            <Route path='/resetpassword' component={ResetPassword} />
      
       </Layout>
     );

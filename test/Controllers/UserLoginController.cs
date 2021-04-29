@@ -52,10 +52,22 @@ namespace test.Controllers
                 return _user;
             } 
             return Unauthorized();      
-        } 
+        }
 
 
 
+        public void SendEmailToUser(string mail)
+        {
+    
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("testmig002@gmail.com", "Password1324#"),
+                EnableSsl = true,
+            };
+            smtpClient.Send("testmig002@gmail.com", mail, "Glemt Kodeord", "Link til at reset kodeord: " + "\r\n localhost:5000 ");
+        }
 
 
     }

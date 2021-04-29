@@ -33,6 +33,25 @@ namespace test.Controllers
 
 
 
+        [HttpPut]
+         public ActionResult ChangePassword(UserRegistration user)
+         {
+            var entity = _context.UserRegistrations.Where(x => x.Mail == user.Mail).SingleOrDefault<UserRegistration>();
+            Console.WriteLine("hejsa");
+             if (entity == null)
+             {
+                 return BadRequest();
+            
+             } else {
+               entity.Password = encryptPassword.textToEncrypt(user.Password);
+               _context.SaveChanges();
+               return Ok();
+           }
+         }
+
+
+
+
         // /api/UserRegistration...
         [HttpPost]
         public ActionResult<UserRegistration> Create(UserRegistration user) 
@@ -93,5 +112,6 @@ namespace test.Controllers
             smtpClient.Send("testmig002@gmail.com", mail, "Registration COmplete", "Velkommen Til Simple GPDR");
         }
 
+       
     }
 }
