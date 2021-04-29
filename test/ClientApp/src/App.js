@@ -9,7 +9,7 @@ import 'fontsource-roboto';
 import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
-import  DashBoard  from './components/DashBoard';
+import { DashBoard } from './components/DashBoard';
 import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
 
