@@ -9,6 +9,7 @@ import 'fontsource-roboto';
 import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
+import  DashBoard  from './components/DashBoard';
 import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
 
@@ -25,6 +26,7 @@ export default function App(){
             <Route path='/sign-up' component={SignUp} />
             <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
+            <Route path='/dashboard' component={DashBoard} />
             <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
 
