@@ -37,11 +37,11 @@ namespace test.Controllers
         [HttpPost]
         public ActionResult<UserRegistration> Create(UserRegistration user) 
         { 
-            // var isExists = DoesEmailExists(user.Mail);
-            // if (isExists)
-            // {
-            //      return BadRequest();
-            // } 
+             var isExists = DoesEmailExists(user.Mail);
+             if (isExists)
+             {
+                  return BadRequest();
+             } 
           
             user.RegrId = _context.UserRegistrations.Any() ? _context.UserRegistrations.Max(p => p.RegrId) + 1 : 1;
             user.UserId =  _context.Users.Where(u => u.Email == user.Mail).First().Id;
@@ -55,7 +55,7 @@ namespace test.Controllers
         } 
         public bool DoesEmailExists(string mail)
         {
-            var tmp = _context.UserRegistrations.Where(u => u.Mail == mail);
+            var tmp = _context.UserRegistrations.Where(u => u.Mail == mail).SingleOrDefault<UserRegistration>();
             if (tmp != null)
             {
                 return true;

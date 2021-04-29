@@ -17,15 +17,7 @@ namespace test.Controllers
     public UserController(UserContext context)
     {
         _context = context;
-     
-        if (_context.Users.Count() == 0)
-        {
-            Create(new User {Firstname = "Latge", Lastname = "Prosen", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            Create(new User {Firstname = "Latge", Lastname = "Noobsen", Phone = "12345678", Email = "sumEmail@mail.dk"});
-            
-    
-        }
-        
+           
     
     }
 
@@ -34,10 +26,10 @@ namespace test.Controllers
         public ActionResult<User> Create(User user) 
         { 
 
-            // if (DoesEmailExists(user.Email))
-            // {
-            //     return BadRequest();
-            // }
+            if (DoesEmailExists(user.Email))
+            {
+                return BadRequest();
+            }
             user.Id = _context.Users.Any() ? _context.Users.Max(p => p.Id) + 1 : 1;
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -107,8 +99,7 @@ namespace test.Controllers
 
         public bool DoesEmailExists(string mail)
         {
-            var tmp = _context.Users.Where(u => u.Email == mail);
-            Console.WriteLine(tmp);
+            var tmp = _context.Users.Where(u => u.Email == mail).SingleOrDefault<User>();
             if (tmp != null)
             {
                 Console.WriteLine("TRUE");

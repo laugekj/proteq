@@ -83,7 +83,6 @@ export default function SignUp() {
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
-              {console.log(firstname)}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -216,7 +215,7 @@ export default function SignUp() {
   function CreateUserInUserTable() {
     const userData = { Phone: phone, firstname: firstname, Lastname: lastname, Company: company, Email: email };
     fetch('api/user', {
-      method: 'POST', // or 'PUT'
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
