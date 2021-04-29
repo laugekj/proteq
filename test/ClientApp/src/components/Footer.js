@@ -1,4 +1,3 @@
-
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import React, { Component } from 'react';
 import './Reset.css';
@@ -38,4 +37,3 @@ export class Footer extends Component {
           );
         }
     }
-    

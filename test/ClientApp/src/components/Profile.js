@@ -37,53 +37,50 @@ export function Profile() {
 
     if (user) {
   
-    return (
+        return (
             <div>
                 {
-                   
-                        <div className="body">
-                        <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
-                        <h2 className="underoverskrift">Her kan du administrere dine oplysninger og din konto </h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 20 }}>
-                        <div className="dineoplysninger"> 
-                        <h3 className="oplysninger"> Dine oplysninger</h3>
-                        <h4 className="rubrik"> Navn</h4>
+                    <React.Fragment>
+                        <div class="body">
+                        <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+                        <h2 class="underoverskrift">Her kan du administrere dine oplysninger og din konto </h2>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)" }}>
+                        <div class="dineoplysninger"> 
+                        <h3 class="oplysninger"> Dine oplysninger</h3>
+                        <h4 class="rubrik"> Navn</h4>
             
-                <div className="profilredigering">
+            <div class="profilredigering">
                 <Textfield value={user.firstname + " " + user.lastname} />
                 </div>
              
-            <h4 className="rubrik"> Virksomhed</h4>
-
-            <div className="profilredigering">
+            <h4 class="rubrik"> Virksomhed</h4>
+            <div class="profilredigering">
                   <Textfield value={user.company}/>
                 </div>
                 
-            <h4 className="rubrik"> E-mail</h4>
-
-            <div className="profilredigering">
+            <h4 class="rubrik"> E-mail</h4>
+            <div class="profilredigering">
             <Textfield  value={user.email}/>
              </div>
 
-             <h4 className="rubrik"> Mobil nr.</h4>
-             <div className="profilredigering">
+             <h4 class="rubrik"> Mobil nr.</h4>
+             <div class="profilredigering">
                 <Textfield value={user.phone}/>
                 </div>
-             </div>
-             <div className="dineoplysninger">
-             <h3 className="oplysninger"> Administrer din konto</h3>    
-             <Button variant="primary" className="knap" onClick={deleteUser}>Slet min konto</Button>{' '}
-             <Button variant="primary" className="knap">Ændre mine betalingsoplysninger</Button>{' '}
+             
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
+             <Button variant="primary" classname="knap" onClick={deleteUser}>Slet min konto</Button>{' '}
              <EditPopover 
-                        onCloseFunc={getUser} user={user}>
+                        class="edituser" onCloseFunc={getUser} user={user}>
              </EditPopover>
-             <div className="kontaktos">
-                 
              </div>
              </div>
           </div>
-        </div>                    
+        </div>
                     
+                      
+                      
+                    </React.Fragment>
                 
                 }
             </div>

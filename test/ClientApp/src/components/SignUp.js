@@ -165,13 +165,13 @@ export default function SignUp() {
             // className={classes.submit}
             onClick={() => CreateUser()}
             >
-            Gå videre til betaling
+            Opret bruger
           </Button>
           
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="sign-in" variant="body2">
-                Already have an account? Sign in
+                Har du allerede en bruger? Log ind
               </Link>
             </Grid>
           </Grid>

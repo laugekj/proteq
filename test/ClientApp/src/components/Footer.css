@@ -5,6 +5,8 @@
 #buttomFooter {
     background-color:#3d6f8c ;
     color:#073B4C;
+    text-align: center !important;
+
   
 }
 
@@ -41,4 +43,13 @@ ul {
     height: 50px;
     bottom: 0px;
     padding-top: 15px;
+}
+
+.pt-4 {
+    margin: 0px !important;
+    padding: 0px !important;
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
 }
