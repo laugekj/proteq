@@ -11,7 +11,7 @@ import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
-
+import  { Dashboard } from './components/Dashboard/Dashboard';
 
 export default function App(){
 
@@ -27,6 +27,7 @@ export default function App(){
             <Route path='/profile' component={Profile} />
             <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
+            <Route path='/dashboard' component={Dashboard} />
 
      
       </Layout>

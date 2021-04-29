@@ -72,6 +72,37 @@ namespace test.Controllers
    }
 
 
+      [HttpPut("{id}")]
+      [Route("[action]")]
+      public ActionResult VerifyPaymentToken(PaymentToken pt)
+      {
+          // Retrieve the paymentToken from the URL and save it
+          pt.paymentToken = retrievePaymentTokenFromURL(pt.url);
+
+          // Check if a user (entity) exists witht he given paymentToken:
+          var entity = _context.Users.FirstOrDefault(e => e.PaymentToken == pt.paymentToken);
+          
+          // check if user is found
+          if (entity == null) 
+          {
+            return BadRequest("PaymentToken doesn't exists in the Database");
+          } 
+          else 
+          {
+            // Confirmation (hasPaid=true)
+            entity.HasPaid = true;
+
+            // Delete the paymentToken
+            entity.PaymentToken = null;
+
+            // Save the changes
+            _context.SaveChanges();
+          }
+          
+          return Accepted();
+      }
+
+
     [HttpPut("{id}")]
     [Route("[action]")]
     public ActionResult createPaymentToken(User user) 
@@ -95,6 +126,15 @@ namespace test.Controllers
       }
     }
 
+
+    private string retrievePaymentTokenFromURL(string URL) 
+    {
+      // http://your-website.com/success?XXXXX-paymentToken-XXXXX
+      // return everything after first occurrence of ' ? '
+      int startIndex = URL.IndexOf('?') + 1;
+      int endIndex = URL.Length - startIndex;
+      return URL.Substring(startIndex, endIndex);;
+    }
 
     private string generatePaymentToken(int userId) 
     {   
