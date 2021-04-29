@@ -56,15 +56,22 @@ namespace test.Controllers
         }
 
 
-
+        // /api/userlogin/createresetmodel
         [HttpPost]
         [Route("[action]")]
-        public ActionResult CreateResetModel(ResetPassword model) {
-            model.Id = _context.ResetPasswords.Any() ? _context.Users.Max(p => p.Id) + 1 : 1;
+        public ActionResult CreateResetModel(MailUrlModel mailUrlModel) {
+            ResetPassword model = new ResetPassword();
+            model.Id = _context.ResetPasswords.Any() ? _context.ResetPasswords.Max(p => p.Id) + 1 : 1;
+            Console.WriteLine("print lige min mail G");
+            Console.WriteLine(mailUrlModel.Mail);
+            model.Email = mailUrlModel.Mail;
             model.Token = generatePasswordResetToken(model.Id);
+
             _context.ResetPasswords.Add(model);
+
             _context.SaveChanges();
           
+           SendPasswordResetLink(mailUrlModel.Mail, mailUrlModel.Url, model.Token);
 
 
             return Ok();
@@ -81,6 +88,12 @@ namespace test.Controllers
 
          return resetToken;
         }
+
+        private string retrieveDomainNameFromURL(string URL) 
+        {
+        
+            return URL.Replace("request", "");
+        }
         private static Random random = new Random();
         public static string RandomString(int length)
         {
@@ -90,7 +103,7 @@ namespace test.Controllers
             .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public void SendPasswordResetLink(string mail)
+        public void SendPasswordResetLink(string mail, string url, string token)
         {
         
 
@@ -101,7 +114,7 @@ namespace test.Controllers
                 Credentials = new NetworkCredential("testmig002@gmail.com", "Password1324#"),
                 EnableSsl = true,
             };
-            smtpClient.Send("testmig002@gmail.com", mail, "Glemt Kodeord", "Tryk på dette link for at nulstille dit kodeord: \r\n http://localhost:5000");
+            smtpClient.Send("testmig002@gmail.com", mail, "Glemt Kodeord", "Tryk på dette link for at nulstille dit kodeord: \r\n" + retrieveDomainNameFromURL(url) + "?" + token);
         }
 
 
