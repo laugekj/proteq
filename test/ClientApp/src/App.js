@@ -14,6 +14,10 @@ import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
 import  { Dashboard } from './components/Dashboard/Dashboard';
 import CheckoutRedirect from './components/Stripe/CheckoutRedirect';
+import RequestResetPassword from './components/RequestResetPassword';
+import ResetPassword from './components/ResetPassword';
+
+
 export default function App(){
 
     return (
@@ -31,7 +35,8 @@ export default function App(){
             <Route path='/success' component={Success} />
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/checkoutredirect' component={CheckoutRedirect} />
-     
+            <Route path='/requestresetpassword' component={RequestResetPassword} />
+            <Route path='/resetpassword' component={ResetPassword} />
       </Layout>
     );
   
