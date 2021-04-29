@@ -135,7 +135,14 @@ namespace test.Controllers
       int endIndex = URL.Length - startIndex;
       return URL.Substring(startIndex, endIndex);;
     }
-
+    private string retrieveDomainNameFromURL(string URL) 
+    {
+      // http://your-website.com/success?XXXXX-paymentToken-XXXXX
+      // return everything after first occurrence of ' ? '
+      int startIndex = 0;
+      int endIndex = URL.IndexOf('/');
+      return URL.Substring(startIndex, endIndex);;
+    }
     private string generatePaymentToken(int userId) 
     {   
       // example of payment token generated date 28 / 04 / 2021 with userId 19
