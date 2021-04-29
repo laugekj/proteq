@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
+import './RequestResetPassword.css';
+import './Reset.css';
 
 export default function RequestResetPassword() {
     const [mail, setMail] = useState("")
@@ -10,7 +12,8 @@ export default function RequestResetPassword() {
       return (
       
         <Container>
-            <Typography>Reset Password</Typography>
+            <h1>Nulstilling af kodeord</h1>
+            
             <TextField
             margin="normal"
             id="mail"
@@ -20,12 +23,13 @@ export default function RequestResetPassword() {
             onChange= {(e) => setMail(e.target.value)}
             autoComplete="email"
             ></TextField>
+            
           
           <Button
           onClick={() => requestResetPassword()}
           size="small"
           variant="outlined"
-          >Reset Password</Button>
+          >Nulstil kodeord</Button>
         </Container>
 
 

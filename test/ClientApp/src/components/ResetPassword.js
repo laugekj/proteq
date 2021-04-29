@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
+import './ResetPassword.css';
+import './Reset.css';
 
 export default function ResetPassword() {
     const [password, setPassword] = useState("")
@@ -8,7 +10,7 @@ export default function ResetPassword() {
 
     return (
         <Container>
-            <Typography>Reset Password</Typography>
+            <Typography>Nulstilling af kodeord</Typography>
             <TextField
             margin="normal"
             id="password"
@@ -28,7 +30,7 @@ export default function ResetPassword() {
           size="small"
           variant="outlined"
           onClick={() => resetPassword()}
-          >Reset Password</Button>
+          >Nulstilling af kodeord</Button>
         </Container>
 
 
@@ -53,3 +55,5 @@ export default function ResetPassword() {
         });
       }
 }
+
+//Link til cool gif-ide https://javascript.plainenglish.io/how-to-add-password-reset-functionality-to-your-app-5d1a18bc9dd8 
