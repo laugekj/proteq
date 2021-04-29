@@ -26,7 +26,7 @@ export function Success() {
             body: JSON.stringify(data)
         }).then(response => {
           if (response.status == 200) {
-            handleClick();
+            //handleClick();
           }
       });
      }
