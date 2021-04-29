@@ -163,7 +163,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             // className={classes.submit}
-            onClick={() => CreateUser()}
+            onClick={() => CreateUserInUserTable()}
             >
             Opret bruger
           </Button>
@@ -188,7 +188,7 @@ export default function SignUp() {
   function CreateUser() {
 
     // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
-    CreateUserInUserTable();
+    //CreateUserInUserTable();
 
     // creates userRegistration if email doesent exists
     const registrationData = { Mail: email, Password: password };
@@ -210,8 +210,9 @@ export default function SignUp() {
         
         }
     });
-
   }
+
+
   function CreateUserInUserTable() {
     const userData = { Phone: phone, firstname: firstname, Lastname: lastname, Company: company, Email: email };
     fetch('api/user', {
@@ -224,7 +225,7 @@ export default function SignUp() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-     
+      CreateUser();
     })
     .catch((error) => {
       console.error('Error:', error);
