@@ -90,13 +90,8 @@ export default function SignIn() {
 
   // if there's a user show the message below
   if (user) {
-    console.log("DU ER LOGGET IND!!!")
-    return (
-      <div>
-        {user.firstname} is loggged in
-        <button onClick={handleLogout}>logout</button>
-      </div>
-    );
+    // redirect user to dashboard
+    window.location.href = '/dashboard'
   }
 
   return (
@@ -147,7 +142,6 @@ export default function SignIn() {
             variant="contained"
             color= "secondary"
             onClick={() => login()}
-            //className={classes.submit}
           >
             Sign In
           </Button>
@@ -180,7 +174,7 @@ export default function SignIn() {
     const loginData = { Mail: email, Password: password };
 
     fetch('api/userlogin', {
-      method: 'POST', // or 'PUT'
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -194,15 +188,10 @@ export default function SignIn() {
          if (responseJson.status === 401) {
           alert('Forkert brugeroplysninger!')
         } else {
-          //setCount = setCount + 1;
-          //console.log("count is now: " + count)
-          //if (count == 2) {
-            console.log("logged ind!")
             // set the state of the user
             setUser(responseJson)
             // store the user in localStorage
             localStorage.setItem('user', JSON.stringify(responseJson))
-            console.log(responseJson)
           }
         //}
       })

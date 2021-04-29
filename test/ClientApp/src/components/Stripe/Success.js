@@ -13,20 +13,21 @@ export function Success() {
       }, []);
 
      
-    
-     function deletePaymentTokenIfExists() 
+      checkPaymentToken() 
+
+     function checkPaymentToken() 
      {
-        const URLtoString = window.location.href 
-        const data = {URLtoString, URLtoString}
-        fetch('api/payments', {
-            method: 'DELETE',
+      const URLtoString = window.location.href 
+      const data = {url: URLtoString}
+        fetch('api/payments/VerifyPaymentToken', {
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
         }).then(response => {
           if (response.status == 200) {
-            //handleClick();
+            console.log("OK!!!")
           }
       });
      }
