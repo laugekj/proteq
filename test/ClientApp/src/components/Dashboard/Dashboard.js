@@ -19,7 +19,11 @@ export function Dashboard() {
   
 
     if (user) {
-        
+        var hasPaid = JSON.parse(user.hasPaid)
+        if (hasPaid == false) {
+        // redirect user to checkoutRedirect
+        window.location.href = '/CheckoutRedirect'
+        } else {
         return (
             
         <div>
@@ -34,7 +38,8 @@ export function Dashboard() {
                 }
             </div>
         );
-}
+        }
+    }
 return (
                 <div>
                     <h2>Du er ikke logget ind.</h2>

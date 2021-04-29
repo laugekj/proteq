@@ -13,7 +13,7 @@ import { DashBoard } from './components/DashBoard';
 import Checkout from './components/Stripe/Checkout';
 import { Success }  from './components/Stripe/Success';
 import  { Dashboard } from './components/Dashboard/Dashboard';
-
+import CheckoutRedirect from './components/Stripe/CheckoutRedirect';
 export default function App(){
 
     return (
@@ -30,7 +30,7 @@ export default function App(){
             <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
             <Route path='/dashboard' component={Dashboard} />
-
+            <Route path='/checkoutredirect' component={CheckoutRedirect} />
      
       </Layout>
     );

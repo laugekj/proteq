@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -57,7 +57,29 @@ export default function SignUp() {
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState()
+  
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log("const loggedInUser:")
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
 
+  // if there's a user show the message below
+  if (user) {
+    var hasPaid = JSON.parse(user.hasPaid)
+    if (hasPaid) {
+    // redirect user to dashboard
+    window.location.href = '/dashboard'
+    }
+    else {
+    // redirect user to checkoutRedirect
+    window.location.href = '/CheckoutRedirect'
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -164,7 +186,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             // className={classes.submit}
-            onClick={() => CreateUser()}
+            onClick={() => CreateUserInUserTable()}
             >
             Opret bruger
           </Button>
@@ -185,11 +207,17 @@ export default function SignUp() {
     </Container>
   );
 
+  function autoLogin(userFromDB) {
+      // set the state of the user
+      setUser(userFromDB)
+      // store the user in localStorage
+      localStorage.setItem('user', JSON.stringify(userFromDB))
+  }
 
-  function CreateUser() {
+  function CreateUser(userFromDB) {
 
     // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
-    CreateUserInUserTable();
+    //CreateUserInUserTable();
 
     // creates userRegistration if email doesent exists
     const registrationData = { Mail: email, Password: password };
@@ -204,15 +232,16 @@ export default function SignUp() {
         // 200 is "ok" (success)
         if(response.status === 200) {
             console.log("Created UserRegistration", registrationData);
-           
+            autoLogin(userFromDB);
         } else {
            // Error handling and
            // Delete the User from Users Table if the email already existed
         
         }
     });
-
   }
+
+
   function CreateUserInUserTable() {
     const userData = { Phone: phone, firstname: firstname, Lastname: lastname, Company: company, Email: email };
     fetch('api/user', {
@@ -225,7 +254,7 @@ export default function SignUp() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-     
+      CreateUser(data);
     })
     .catch((error) => {
       console.error('Error:', error);

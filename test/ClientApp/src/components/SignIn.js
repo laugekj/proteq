@@ -90,8 +90,15 @@ export default function SignIn() {
 
   // if there's a user show the message below
   if (user) {
+    var hasPaid = JSON.parse(user.hasPaid)
+  if (hasPaid) {
     // redirect user to dashboard
     window.location.href = '/dashboard'
+    }
+    else {
+    // redirect user to checkoutRedirect
+    window.location.href = '/CheckoutRedirect'
+    }
   }
 
   return (
@@ -190,6 +197,7 @@ export default function SignIn() {
         } else {
             // set the state of the user
             setUser(responseJson)
+            console.log(responseJson)
             // store the user in localStorage
             localStorage.setItem('user', JSON.stringify(responseJson))
           }
