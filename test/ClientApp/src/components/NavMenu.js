@@ -62,16 +62,10 @@ export class NavMenu extends Component {
                   <NavLink tag={Link} className="nav-text" to="/Profile">Profil</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/Dashboard">DashBoard</NavLink>
-                </NavItem>
-                <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/checkout">Betal</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/success">success testing</NavLink>
-                </NavItem>
-                <NavItem>
-                  <button onClick = {() => this.handleLogout}>Log Ud</button>
                 </NavItem>
               </ul>
             </Collapse>
