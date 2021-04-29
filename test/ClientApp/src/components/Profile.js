@@ -35,9 +35,9 @@ export function Profile() {
     });
  }
  const handleLogout = () => {
+    window.location.href = '/sign-in'
     setUser({});
     localStorage.clear();
-    window.location.reload();
   };
 
     if (user) {
