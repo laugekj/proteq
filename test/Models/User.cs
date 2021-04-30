@@ -17,7 +17,10 @@ namespace test.Models
         
         public bool HasPaid { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         public string PaymentToken { get; set; }
+
         public UserRegistration UserReg { get; set; }
     }
 }

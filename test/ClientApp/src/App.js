@@ -2,7 +2,6 @@ import React from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { Counter } from './components/Counter';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import 'fontsource-roboto';
@@ -23,7 +22,6 @@ export default function App(){
       <Layout>
       
         <Route exact path='/' component={Home} />
-            <Route path='/counter' component={Counter} />
             <Route path='/fetch-users' component={FetchUsers} />         
             <Route path='/sign-in' component={SignIn} />
             <Route path='/sign-up' component={SignUp} />
