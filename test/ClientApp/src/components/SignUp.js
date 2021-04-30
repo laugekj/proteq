@@ -31,7 +31,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(15),
+    //marginBottom: theme.spacing(15),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -182,6 +182,7 @@ export default function SignUp() {
           </Grid>
           
           <Button
+            id="OpretBruger"
             fullWidth
             variant="contained"
             color="primary"

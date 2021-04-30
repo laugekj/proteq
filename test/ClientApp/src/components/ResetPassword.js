@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import './ResetPassword.css';
 import './Reset.css';
 
@@ -10,31 +11,44 @@ export default function ResetPassword() {
 
     return (
         <Container>
-            <Typography>Nulstilling af kodeord</Typography>
+           <Grid container direction="column" justify="center" alignItems="center">
+           <div class="resetpass"> 
+            <h1 id='overskrift'>Opret nyt kodeord</h1>
             <TextField
             margin="normal"
             id="password"
-            label="password"
+            label="Nyt kodeord"
+            type="password"
             name="password"
             value={password}
             onChange= {(e) => setPassword(e.target.value)}
             ></TextField>
+            </div>
+            <div class="resetpass"> 
             <TextField
+            onclick="myFunction()"
             margin="normal"
             id="confirm password"
-            label="confirm password"
+            label="Bekræft dit nye kodeord"
+            type="password"
             name="confirm password"
         
             ></TextField>
+            </div>
+            <div class="resetpass"> 
           <Button
+          id='NulstilKode'
           size="small"
           variant="outlined"
           onClick={() => resetPassword()}
-          >Nulstilling af kodeord</Button>
+          >Skift mit kodeord</Button>
+          </div>
+          </Grid>
         </Container>
 
 
     );
+   
 
     function resetPassword() {
         const URLtoString = window.location.href
@@ -55,5 +69,3 @@ export default function ResetPassword() {
         });
       }
 }
-
-//Link til cool gif-ide https://javascript.plainenglish.io/how-to-add-password-reset-functionality-to-your-app-5d1a18bc9dd8 
