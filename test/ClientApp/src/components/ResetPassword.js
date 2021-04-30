@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
+import ReactPasswordStrength from 'react-password-strength';
+import Grid from '@material-ui/core/Grid';
 import './ResetPassword.css';
 import './Reset.css';
 
@@ -10,31 +12,55 @@ export default function ResetPassword() {
 
     return (
         <Container>
-            <Typography>Nulstilling af kodeord</Typography>
+           <Grid container direction="column" justify="center" alignItems="center">
+           <div class="resetpass"> 
+            <h1 id='overskrift'>Opret nyt kodeord</h1>
             <TextField
             margin="normal"
             id="password"
-            label="password"
+            label="Nyt kodeord"
+            type="password"
             name="password"
             value={password}
             onChange= {(e) => setPassword(e.target.value)}
             ></TextField>
+            </div>
+            <div class="resetpass"> 
             <TextField
+            onclick="myFunction()"
             margin="normal"
             id="confirm password"
-            label="confirm password"
+            label="Bekræft dit nye kodeord"
+            type="password"
             name="confirm password"
         
             ></TextField>
+            </div>
+            <div class="resetpass"> 
+            <ReactPasswordStrength
+              className="customClass"
+              style={{ display: 'none' }}
+              minLength={5}
+              minScore={2}
+              scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+              changeCallback={foo}
+              inputProps={{ name: "password_input", autoComplete: "off", className: "form-control" }}
+            /> 
+            </div>
+            <div class="resetpass"> 
           <Button
+          id='NulstilKode'
           size="small"
           variant="outlined"
           onClick={() => resetPassword()}
-          >Nulstilling af kodeord</Button>
+          >Skift mit kodeord</Button>
+          </div>
+          </Grid>
         </Container>
 
 
     );
+   
 
     function resetPassword() {
         const URLtoString = window.location.href

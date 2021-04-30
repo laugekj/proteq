@@ -23,3 +23,7 @@ body {
     max-width: 0px !important;
     
 }
+
+.MuiAvatar-colorDefault {
+    background-color: #073b4c !important;
+}

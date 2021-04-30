@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import './RequestResetPassword.css';
 import './Reset.css';
 
@@ -10,10 +11,11 @@ export default function RequestResetPassword() {
 
     if (!sentMail) {
       return (
-      
+        
         <Container>
-            <h1>Nulstilling af kodeord</h1>
-            
+        <Grid container direction="column" justify="center" alignItems="center">
+        <div class="resetpass"> 
+            <h1 id='overskrift'>Nulstilling af kodeord</h1>
             <TextField
             margin="normal"
             id="mail"
@@ -23,15 +25,18 @@ export default function RequestResetPassword() {
             onChange= {(e) => setMail(e.target.value)}
             autoComplete="email"
             ></TextField>
-            
-          
+            </div>
+          <div class="resetpass"> 
           <Button
+          id="NulstilKode"
           onClick={() => requestResetPassword()}
           size="small"
           variant="outlined"
           >Nulstil kodeord</Button>
+          </div>
+          </Grid>
         </Container>
-
+      
 
     );
     } else {

@@ -5,22 +5,11 @@
 
 .banner{
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: 0px;
-    
   }
 
-.footer{
-    background-color: #073B4C;
-    height: 100px;
-    width: 100% !important;
-    left: 0;
-    position: sticky; 
-    bottom: 0; 
-    color: #FEFBEB!important;
-    font-family: 'Playfair Display', serif;
-    font-weight: bold;
-}
+
 
 .grid-container{
     display: grid;
