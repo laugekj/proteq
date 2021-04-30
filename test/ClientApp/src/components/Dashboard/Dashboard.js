@@ -31,7 +31,6 @@ export function Dashboard() {
                     <React.Fragment>
                         <div class="body">
                         <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
-                    <Checkout />
         </div>    
                     </React.Fragment>
                 

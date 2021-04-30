@@ -31,7 +31,6 @@ export default function App(){
             <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
             <Route path='/dashboard' component={DashBoard} />
-            <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/checkoutredirect' component={CheckoutRedirect} />
