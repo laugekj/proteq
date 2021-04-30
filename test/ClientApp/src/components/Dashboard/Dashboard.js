@@ -1,8 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import Textfield from '@material-ui/core/Textfield';
-import Checkout from '../Stripe/Checkout'; 
 
 export function Dashboard() {
     const [ user, setUser] = useState()

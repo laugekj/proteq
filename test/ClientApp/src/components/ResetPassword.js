@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
-import ReactPasswordStrength from 'react-password-strength';
 import Grid from '@material-ui/core/Grid';
 import './ResetPassword.css';
 import './Reset.css';
@@ -37,17 +36,6 @@ export default function ResetPassword() {
             ></TextField>
             </div>
             <div class="resetpass"> 
-            <ReactPasswordStrength
-              className="customClass"
-              style={{ display: 'none' }}
-              minLength={5}
-              minScore={2}
-              scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
-              changeCallback={foo}
-              inputProps={{ name: "password_input", autoComplete: "off", className: "form-control" }}
-            /> 
-            </div>
-            <div class="resetpass"> 
           <Button
           id='NulstilKode'
           size="small"
@@ -81,5 +69,3 @@ export default function ResetPassword() {
         });
       }
 }
-
-//Link til cool gif-ide https://javascript.plainenglish.io/how-to-add-password-reset-functionality-to-your-app-5d1a18bc9dd8 
