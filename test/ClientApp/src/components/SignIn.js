@@ -90,13 +90,8 @@ export default function SignIn() {
 
   // if there's a user show the message below
   if (user) {
-    console.log("DU ER LOGGET IND!!!")
-    return (
-      <div>
-        {user.firstname} is loggged in
-        <button onClick={handleLogout}>logout</button>
-      </div>
-    );
+    // redirect user to dashboard
+    window.location.href = '/dashboard'
   }
 
   return (

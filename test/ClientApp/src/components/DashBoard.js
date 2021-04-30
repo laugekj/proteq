@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import Checkout from './Stripe/Checkout';
 
 export function DashBoard() {
     const [ user, setUser] = useState()
@@ -16,6 +17,7 @@ export function DashBoard() {
      return(
          <div>
              <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+             <Checkout></Checkout>
          </div>
      )
      }
