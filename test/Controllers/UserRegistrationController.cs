@@ -7,6 +7,8 @@ using test.Models;
 using System.Net;
 using System.Web;
 using System.Net.Mail;
+using test.Services;
+using System.Text.RegularExpressions;
 
 namespace test.Controllers
 {
@@ -33,6 +35,41 @@ namespace test.Controllers
 
 
 
+        [HttpPut]
+        public ActionResult ChangePassword(MailUrl model)
+        {
+            
+            var token = model.Url.Substring(model.Url.IndexOf('?') + 1);
+            var resetPasswordEntity = _context.ResetPasswords.Where(x => x.Token == token).SingleOrDefault<ResetPassword>();
+            // check to see if it is in the table -> token valid
+            if (resetPasswordEntity == null)
+            {
+                return BadRequest();
+            }
+            var userRegEntity = _context.UserRegistrations.Where(x => x.Mail == resetPasswordEntity.Email).SingleOrDefault<UserRegistration>();
+            // check to see if it is in the other table
+            if (userRegEntity == null)
+            {
+                Console.WriteLine("entity does not exists in userRegistration table");
+                return BadRequest();
+            
+            } else {
+            // When everything is good -> Update password
+               userRegEntity.Password = encryptPassword.textToEncrypt(model.Password);
+               Console.WriteLine("Changes password");
+
+            // Remove the token from the ResetPassword Table
+                _context.ResetPasswords.Remove(resetPasswordEntity);
+
+            // Save the changes
+               _context.SaveChanges();
+               return Ok();
+           }
+        } 
+
+
+
+
         // /api/UserRegistration...
         [HttpPost]
         public ActionResult<UserRegistration> Create(UserRegistration user) 
@@ -49,7 +86,8 @@ namespace test.Controllers
             _context.UserRegistrations.Add(user);
             _context.SaveChanges();
 
-            SendEmailToUser(user.Mail);
+//            SendEmailToUser(user.Mail);
+            MailMessenger.SendWelcomeEmailToUser(user.Mail);
             return Ok();
             
         } 
@@ -64,26 +102,6 @@ namespace test.Controllers
         }
         public void SendEmailToUser(string mail)
         {
-            // var fromMail = new MailAddress("testmig002@gmail.com", "Test Mig");
-            // var fromMailPassword = "Password1324#";
-            // var toMail = new MailAddress(mail);
-           
-
-            // var smtp = new SmtpClient();
-            // smtp.Host = "smpt.gmail.com";
-            // smtp.Port = 587;    
-            // smtp.EnableSsl = true;    
-            // smtp.DeliveryMethod = SmtpDeliveryMethod.Network;    
-            // smtp.UseDefaultCredentials = false;    
-            // smtp.Credentials = new NetworkCredential(fromMail.Address, fromMailPassword);
-
-            // var Message = new MailMessage(fromMail, toMail);
-            // Message.Subject = "Registration Completed Motherfucker";
-            // Message.Body = "<br/> Your Registration completed fren!." +
-            // "<br/> enjoy live fren!";
-            // Message.IsBodyHtml = true;
-            // smtp.Send(Message);
-
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
@@ -93,5 +111,6 @@ namespace test.Controllers
             smtpClient.Send("testmig002@gmail.com", mail, "Registration COmplete", "Velkommen Til Simple GPDR");
         }
 
+       
     }
 }
