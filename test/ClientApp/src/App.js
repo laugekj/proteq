@@ -18,8 +18,7 @@ import {Logout} from './components/Logout/Logout';
 export default function App(){
 
     return (
-      <Layout>
-      
+      <Layout>    
         <Route exact path='/' component={Home} />
             <Route path='/fetch-users' component={FetchUsers} />         
             <Route path='/sign-in' component={SignIn} />
