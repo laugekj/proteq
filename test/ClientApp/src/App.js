@@ -16,7 +16,7 @@ import  { Dashboard } from './components/Dashboard/Dashboard';
 import CheckoutRedirect from './components/Stripe/CheckoutRedirect';
 import RequestResetPassword from './components/RequestResetPassword';
 import ResetPassword from './components/ResetPassword';
-
+import {Logout} from './components/Logout/Logout';
 
 export default function App(){
 
@@ -31,12 +31,12 @@ export default function App(){
             <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
             <Route path='/dashboard' component={DashBoard} />
-            <Route path='/checkout' component={Checkout} />
             <Route path='/success' component={Success} />
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/checkoutredirect' component={CheckoutRedirect} />
             <Route path='/requestresetpassword' component={RequestResetPassword} />
             <Route path='/resetpassword' component={ResetPassword} />
+            <Route path='/logout' component={Logout} />
       </Layout>
     );
   
