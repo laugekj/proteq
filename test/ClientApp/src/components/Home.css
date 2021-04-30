@@ -1,6 +1,7 @@
 .body{
     margin: 0;
-    width: 100%;
+   
+    
 }
 
 .banner{
@@ -16,6 +17,7 @@
     align-items: center;
     grid-gap: 50px;
     text-align: center;
+
 }
 
 .grid-item{
@@ -40,6 +42,6 @@
 
 .main-text{
     margin: 15px;
-    
-    
+    margin-bottom: 150px !important;
+ 
 }

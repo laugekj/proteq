@@ -59,11 +59,11 @@ display: block;
     background-color: #CBBFBB !important;
     margin: 0px;
     padding: 0px;
-    position:fixed;
     top: 100px;
     bottom:0;
     left:0;
     right:0;
+    margin-bottom: 100px !important;
 }
 
 .MuiButton-root {
