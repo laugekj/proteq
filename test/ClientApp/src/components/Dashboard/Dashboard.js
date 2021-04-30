@@ -30,8 +30,11 @@ export function Dashboard() {
                     <React.Fragment>
                         <div class="body">
                         <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
-                        <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
-                        <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
+                        <center>
+                            <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
+                            <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
+                        </center>
+                        
         </div>    
                     </React.Fragment>
                 
