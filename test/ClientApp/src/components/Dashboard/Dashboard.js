@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import './Dashboard.css';
+import Button from '@material-ui/core/Button';
 
 export function Dashboard() {
     const [ user, setUser] = useState()
@@ -28,6 +30,8 @@ export function Dashboard() {
                     <React.Fragment>
                         <div class="body">
                         <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+                        <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
+                        <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
         </div>    
                     </React.Fragment>
                 

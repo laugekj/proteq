@@ -15,7 +15,9 @@ export function DashBoard() {
     if (user) {
      return(
          <div>
-             <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+             <h1 class="overskrift">Velkomasdasdmen test, {user.firstname + " " + user.lastname}!</h1>
+             <button onClick = {() => window.location.href = '/' }>Hjem</button>
+             <button onClick = {() => window.location.href = '/Profile' }>Profilside</button>
          </div>
      )
      }
