@@ -15,8 +15,6 @@ export function Dashboard() {
         }
     }, []);
      
-  
-
     if (user) {
         var hasPaid = JSON.parse(user.hasPaid)
         if (hasPaid == false) {

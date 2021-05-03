@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function SignIn() { 
   const classes = useStyles()
 
@@ -88,6 +89,7 @@ export default function SignIn() {
     window.location.reload();
   };
 
+
   // if there's a user show the message below
   if (user) {
     var hasPaid = JSON.parse(user.hasPaid)
@@ -100,7 +102,8 @@ export default function SignIn() {
     window.location.href = '/CheckoutRedirect'
     }
   }
-
+  
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

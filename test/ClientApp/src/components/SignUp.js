@@ -68,6 +68,8 @@ export default function SignUp() {
     }
   }, []);
 
+
+
   // if there's a user show the message below
   if (user) {
     var hasPaid = JSON.parse(user.hasPaid)

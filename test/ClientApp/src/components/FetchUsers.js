@@ -4,8 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import AddPopover from './AddPopover';
 import EditPopover from './EditPopover';
-import Button from '@material-ui/core/Button';
-
 
 export class FetchUsers extends Component {
     static displayName = FetchUsers.name;
