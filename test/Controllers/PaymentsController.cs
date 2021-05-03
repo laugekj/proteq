@@ -62,13 +62,35 @@ namespace test.Controllers
           },
         },
         Mode = "payment",
-        SuccessUrl = "http://localhost:5000/success?" + entity.PaymentToken,
+        SuccessUrl = "http://localhost:5000/success?" + update(user.Id),
         CancelUrl = "http://localhost:5000/checkout",
       };
+      
       var service = new SessionService();
       Session session = service.Create(options);
+      
       return Json(new { id = session.Id });
     }
+   }
+
+   String update(int userId) {
+     var entity = _context.Users.FirstOrDefault(e => e.Id == userId);
+
+      // check if user is found
+      if (entity != null)
+      {
+          // Confirmation (hasPaid=true)
+          entity.HasPaid = true;
+
+          // Delete the paymentToken
+          entity.PaymentToken = null;
+
+          // Save the changes
+          _context.SaveChanges();
+      }
+
+      return "OK";
+
    }
 
 
