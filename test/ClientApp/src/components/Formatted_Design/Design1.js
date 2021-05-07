@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 export default function Design1() {
     const [title, setTitle] = useState("Hvad er persondata egentlig?") 
-    const [body, setBody] = useState("Inden du går i gang, så snup en kop kaffe og et stykke chokolade til læsningen... hvis du ikke allerede har gjort det. Der er to typer af persondata. Almindelig persondata og følsom persondata. Og så er der CPR-nr. og strafbare forhold - de er i hver deres særlige kategori. Det vender vi tilbage til i step 3.")
+    const [body, setBody] = useState("Inden du gï¿½r i gang, sï¿½ snup en kop kaffe og et stykke chokolade til lï¿½sningen... hvis du ikke allerede har gjort det. Der er to typer af persondata. Almindelig persondata og fï¿½lsom persondata. Og sï¿½ er der CPR-nr. og strafbare forhold - de er i hver deres sï¿½rlige kategori. Det vender vi tilbage til i step 3.")
     const [bulletList, setBulletList] = useState(["bulletpoint 1","bulletpoint 2"])
 
     return (
