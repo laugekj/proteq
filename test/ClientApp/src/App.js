@@ -14,7 +14,11 @@ import CheckoutRedirect from './components/Stripe/CheckoutRedirect';
 import RequestResetPassword from './components/RequestResetPassword';
 import ResetPassword from './components/ResetPassword';
 import {Logout} from './components/Logout/Logout';
+<<<<<<< HEAD
 import AttachDocument from './components/AttachDocument';
+=======
+import Design1 from './components/Formatted_Design/Design1';
+>>>>>>> 1f5049a795de70fb84e559687eed1bd02fae9bcd
 
 export default function App(){
 
@@ -32,7 +36,11 @@ export default function App(){
             <Route path='/requestresetpassword' component={RequestResetPassword} />
             <Route path='/resetpassword' component={ResetPassword} />
             <Route path='/logout' component={Logout} />
+<<<<<<< HEAD
             <Route path='/attachdocument' component={AttachDocument} />
+=======
+            <Route path='/guide' component={Design1} />
+>>>>>>> 1f5049a795de70fb84e559687eed1bd02fae9bcd
       </Layout>
     );
   
