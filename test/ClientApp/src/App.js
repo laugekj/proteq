@@ -15,6 +15,7 @@ import RequestResetPassword from './components/RequestResetPassword';
 import ResetPassword from './components/ResetPassword';
 import {Logout} from './components/Logout/Logout';
 import Design1 from './components/Formatted_Design/Design1';
+import AdminInput from './components/Formatted_Design/AdminInput';
 
 export default function App(){
 
@@ -33,6 +34,7 @@ export default function App(){
             <Route path='/resetpassword' component={ResetPassword} />
             <Route path='/logout' component={Logout} />
             <Route path='/guide' component={Design1} />
+            <Route path='/admininput' component={AdminInput} />
       </Layout>
     );
   

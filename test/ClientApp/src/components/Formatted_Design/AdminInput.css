@@ -1,0 +1,10 @@
+#bodyText {
+    max-height: max-content;
+    min-height: 250px;
+    resize: none;
+    
+}
+
+#invisLabel {
+    visibility: hidden;
+}
