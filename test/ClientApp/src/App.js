@@ -16,6 +16,7 @@ import ResetPassword from './components/ResetPassword';
 import {Logout} from './components/Logout/Logout';
 import AttachDocument from './components/AttachDocument';
 import Design1 from './components/Formatted_Design/Design1';
+import Design2 from './components/Formatted_Design/Design2';
 
 export default function App(){
 
@@ -35,6 +36,7 @@ export default function App(){
             <Route path='/logout' component={Logout} />
             <Route path='/attachdocument' component={AttachDocument} />
             <Route path='/guide' component={Design1} />
+            <Route path='/design2' component={Design2} />
       </Layout>
     );
   
