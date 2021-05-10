@@ -1,6 +1,8 @@
 import { Typography, Container, Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import React, { useState } from 'react';
+import parse from "html-react-parser";
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
+import HtmlRender from './Htmlrender';
 import './AdminInput.css';
 
 export default function AdminInput() {
@@ -23,7 +25,9 @@ export default function AdminInput() {
       };
 
     return (
+        
         <Container>
+              <HtmlRender htmlString={body}></HtmlRender>
             <Grid
             direction="column"
             justify="flex-start"
