@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import parse from "html-react-parser";
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import HtmlRender from './Htmlrender';
+import AttachDocument from './AttachDocument';
 import './AdminInput.css';
 
 export default function AdminInput() {
@@ -82,8 +83,7 @@ export default function AdminInput() {
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
-                        This is some placeholder block-level help text for the above input.
-                        It's a bit lighter and easily wraps to a new line.
+                        <AttachDocument></AttachDocument>
                         </FormText>
                     </FormGroup>
                     <Button>Submit</Button>
