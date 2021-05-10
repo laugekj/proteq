@@ -10,6 +10,7 @@ export default function AdminInput() {
     const [header, setHeader] = useState("")
     const [body, setBody] = useState("")
     const [point, setPoint] = useState("")
+    const [video, setVideo] = useState("")
     const [bulletPoints, setBulletPoints] = useState([])
 
     const addItem = event => {
@@ -28,6 +29,7 @@ export default function AdminInput() {
     return (
         
         <Container>
+            
               <HtmlRender htmlString={body}></HtmlRender>
             <Grid
             direction="column"
@@ -62,6 +64,14 @@ export default function AdminInput() {
                                 value={point}
                                 onChange={e => setPoint(e.target.value)} />
                             </FormGroup>
+                            <FormGroup>
+                                <Label for="videoLink">Videolink</Label>
+                                <Input 
+                                id="videoLink" 
+                                placeholder="Indsæt videolink"
+                                value={video}
+                                onChange={e => setVideo(e.target.value)} />
+                            </FormGroup>
                         </Col>
                         <Col md={1}>
                             <Label id= "invisLabel" for="positionOfButton">Knap</Label>
@@ -91,6 +101,7 @@ export default function AdminInput() {
             
 
             </Grid>
+            <iframe class="video" width="600" height="350" src={video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </Container>   
         
     );
