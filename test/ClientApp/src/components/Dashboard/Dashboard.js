@@ -2,24 +2,39 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import Button from '@material-ui/core/Button';
-import StepStep from '../StepStep';
+import StepStep from '../Steps/StepStep';
 
-export function Dashboard() {
+
+
+export default function Dashboard() {
    // HARDCODED SERVERSTEPS
    const initialSteps = [
     { id: 1, designId: 1, completed: false },
     { id: 2, designId: 2, completed: false },
     { id: 3, designId: 1, completed: false },
   ];
-
+  
+ 
     const [ user, setUser] = useState()
     const [steps, setSteps] = useState(initialSteps)
 
- 
-
+  
     //TODO: GET STEPS FROM SERVER
     function getSteps() {
-        //TODO: fetch from backend
+        fetch('api/steps')
+            .then(response => response.json())
+            .then(data => setSteps(data));
+            console.log("tried to fetch");
+        }
+
+
+   function getUser() {
+        fetch('api/steps/').then(response => {
+            return response.json();
+        })
+        .then((responseJson) => {
+             setSteps(responseJson);
+        });
     }
 
     useEffect(()=>{
@@ -28,6 +43,7 @@ export function Dashboard() {
         if (loggedInUser) {
           const foundUser = JSON.parse(loggedInUser);
           setUser(foundUser);
+          getSteps()
         }
     }, []);
      
@@ -38,6 +54,7 @@ export function Dashboard() {
         window.location.href = '/CheckoutRedirect'
         } else {
         return (
+           
             
         <div>
             <div class="body">
@@ -46,7 +63,10 @@ export function Dashboard() {
                     <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
                 </center>
-                <div className="stepsContainer">
+            
+                <h2 className="stepsInfo">Du er nået x langt med dine steps</h2>
+            
+                <div className="stepsContainer"> 
                     <StepStep serversteps={steps}></StepStep>    
                 </div>            
             </div>
