@@ -6,32 +6,55 @@ import HtmlRender from './Htmlrender';
 import AttachDocument from './AttachDocument';
 import './AdminInput.css';
 
-export default function AdminInput() {
-    const [header, setHeader] = useState("")
-    const [body, setBody] = useState("")
-    const [point, setPoint] = useState("")
-    const [video, setVideo] = useState("")
-    const [bulletPoints, setBulletPoints] = useState([])
-
-    const addItem = event => {
-        event.preventDefault();
-        setBulletPoints([
-          ...bulletPoints,
-          {
-            id: bulletPoints.length,
-            name: point
-          }
-        ]);
-        setPoint("");
+export class AdminInput extends React.Component {
+    constructor() {
+        super();
         
-      };
+        this.state = {
+            designId: 0,
+          };
+        this.state = {
+            header: "",
+        };
+        this.state = {
+            body: "",
+        };
+        this.state = {
+            video: "",
+        };
+        this.state = {
+          files: [],
+        };
 
+        this.uploadToServer = this.uploadToServer.bind(this);
+        this.handler = this.handler.bind(this)
+      }
+  
+      handler(filesArr) {
+        this.setState({
+          files: [...this.state.files, ...filesArr]
+        })
+      }
+
+      uploadToServer = () => {
+            console.log("adminInput: ", this.state.files)
+          const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video}
+          console.log('[DEVELOPER MODE] UPLOAD TO SERVER FUNCTION CALLED!')
+          fetch('api/fileupload', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data)
+          }).then(response => {
+              console.log('SERVER RESPONSE: ', response)
+          });
+      }
+
+      render() {
     return (
-        
         <Container>
-            
-              <HtmlRender htmlString={body}></HtmlRender>
-            <Grid
+        <Grid
             direction="column"
             justify="flex-start"
             alignItems="flex-start">
@@ -39,8 +62,8 @@ export default function AdminInput() {
                     <FormGroup>
                         <Label for="exampleHeader">Header</Label>
                         <Input 
-                        value={header} 
-                        onChange={e => setHeader(e.target.value)} 
+                        value={this.state.header} 
+                        onChange={e =>  this.setState({ header: e.target.value})} 
                         name="header" 
                         id="exampleHeader" 
                         placeholder="Sæt din header" />
@@ -51,8 +74,8 @@ export default function AdminInput() {
                         type="textarea" 
                         name="text" 
                         id="bodyText"
-                        value={body} 
-                        onChange={e => setBody(e.target.value)}  />
+                        value={this.state.body} 
+                        onChange={e => this.setState({ body: e.target.value})}  />
                     </FormGroup>
                     <Row form>
                         <Col md={6}>
@@ -61,29 +84,26 @@ export default function AdminInput() {
                                 <Input 
                                 id="bulletPoint" 
                                 placeholder="Input one bulletpoint at a time"
-                                value={point}
-                                onChange={e => setPoint(e.target.value)} />
+                                value={this.state.point}
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="videoLink">Videolink</Label>
                                 <Input 
                                 id="videoLink" 
                                 placeholder="Indsæt videolink"
-                                value={video}
-                                onChange={e => setVideo(e.target.value)} />
+                                value={this.state.video}
+                                onChange={e => this.setState({ video: e.target.value})} />
                             </FormGroup>
                         </Col>
                         <Col md={1}>
                             <Label id= "invisLabel" for="positionOfButton">Knap</Label>
-                            <Button id="addBulletPoint" onClick={addItem}>Add</Button>
+                            <Button id="addBulletPoint">Add</Button>
                         </Col>
                     </Row>
-                    <List>
-                        {generate(bulletPoints)}
-                    </List>
                     <FormGroup>
                         <Label for="designSelect">Select Design</Label>
-                        <Input type="select" name="select" id="designSelect">
+                        <Input type="select" name="select" id="designSelect" onChange={e => this.setState({ designId: e.target.selectedIndex})}>
                         <option>Design 1</option>
                         <option>Design 2</option>
                         <option>Design 3</option>
@@ -93,19 +113,21 @@ export default function AdminInput() {
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
-                        <AttachDocument></AttachDocument>
+                        <AttachDocument handler = {this.handler}></AttachDocument>
                         </FormText>
                     </FormGroup>
-                    <Button>Submit</Button>
+                    <Button onClick={this.uploadToServer}>Submit</Button>
                     </Form>
             
 
             </Grid>
-            <iframe class="video" width="600" height="350" src={video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </Container>   
-        
+            <iframe class="video" width="600" height="350" src={this.state.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </Container>          
     );
 }
+}
+
+
 function generate(list) {
     return (
         <Container>
