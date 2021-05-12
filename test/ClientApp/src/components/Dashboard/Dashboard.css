@@ -13,5 +13,10 @@ body {
     margin-bottom: 50px;
 }
 
+.stepsContainer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
 
 

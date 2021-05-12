@@ -1,0 +1,8 @@
+.stepper {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .stepper > .step {
+    margin: 0 8px;
+  }
