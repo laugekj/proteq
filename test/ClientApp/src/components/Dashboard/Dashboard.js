@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import Button from '@material-ui/core/Button';
-import StepStep from '../StepStep';
+import StepStep from '../Steps/StepStep';
 
-export function Dashboard() {
+
+
+export default function Dashboard() {
    // HARDCODED SERVERSTEPS
    const initialSteps = [
     { id: 1, designId: 1, completed: false },
@@ -15,11 +17,12 @@ export function Dashboard() {
     const [ user, setUser] = useState()
     const [steps, setSteps] = useState(initialSteps)
 
- 
-
+  
     //TODO: GET STEPS FROM SERVER
     function getSteps() {
-        //TODO: fetch from backend
+        const response = fetch('api/user');
+        const data = response.json();
+        setSteps(data)
     }
 
     useEffect(()=>{
