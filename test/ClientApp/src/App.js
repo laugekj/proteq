@@ -15,9 +15,8 @@ import RequestResetPassword from './components/RequestResetPassword';
 import ResetPassword from './components/ResetPassword';
 import {Logout} from './components/Logout/Logout';
 import Design1 from './components/Formatted_Design/Design1';
-import AdminInput from './components/Formatted_Design/AdminInput';
+import {AdminInput} from './components/Formatted_Design/AdminInput';
 import Design2 from './components/Formatted_Design/Design2';
-
 
 export default function App(){
 
@@ -39,7 +38,6 @@ export default function App(){
             <Route path='/guide' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
             <Route path='/design2' component={Design2} />
-
       </Layout>
     );
   

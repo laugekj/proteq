@@ -34,6 +34,8 @@ namespace test.Models
 
         public DbSet<ResetPassword> ResetPasswords { get; set; }
 
+        public DbSet<Step> Steps { get; set; }
+
     }
     
     

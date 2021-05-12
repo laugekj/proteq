@@ -9,6 +9,7 @@ const AttachDocumentStyle = {
   display: 'flex',
 };
 
+
 export class AttachDocument extends React.Component {
   constructor() {
     super();
@@ -24,6 +25,7 @@ export class AttachDocument extends React.Component {
     var filesArr = Array.prototype.slice.call(files);
     console.log(filesArr);
     this.setState({ files: [...this.state.files, ...filesArr] });
+    this.props.setFile({ files: [...this.state.files, ...filesArr] });
   }
   
   removeFile(f) {
