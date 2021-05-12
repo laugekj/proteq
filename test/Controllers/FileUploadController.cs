@@ -42,5 +42,11 @@ namespace test.Controllers
             return Accepted();
         }
 
+        [HttpGet] 
+        public ActionResult<List<Step>> GetAll() 
+        {     
+            return _context.Steps.ToList(); 
+        } 
+
     }
 }

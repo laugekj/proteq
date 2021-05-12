@@ -27,10 +27,17 @@ export class AdminInput extends React.Component {
         };
 
         this.uploadToServer = this.uploadToServer.bind(this);
+        this.handler = this.handler.bind(this)
       }
   
+      handler(filesArr) {
+        this.setState({
+          files: [...this.state.files, ...filesArr]
+        })
+      }
+
       uploadToServer = () => {
-      
+            console.log("adminInput: ", this.state.files)
           const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video}
           console.log('[DEVELOPER MODE] UPLOAD TO SERVER FUNCTION CALLED!')
           fetch('api/fileupload', {
@@ -106,7 +113,7 @@ export class AdminInput extends React.Component {
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
-                        <AttachDocument></AttachDocument>
+                        <AttachDocument handler = {this.handler}></AttachDocument>
                         </FormText>
                     </FormGroup>
                     <Button onClick={this.uploadToServer}>Submit</Button>
