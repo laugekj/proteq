@@ -19,6 +19,7 @@ import Design2 from './components/Formatted_Design/Design2';
 import Dashboard from './components/Dashboard/Dashboard';
 
 
+
 export default function App(){
 
     return (
@@ -38,7 +39,7 @@ export default function App(){
             <Route path='/guide' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
             <Route path='/design2' component={Design2} />
-            <Route path='/stepper' component={StepStep} />
+          
 
       </Layout>
     );

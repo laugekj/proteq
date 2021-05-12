@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import './Dashboard.css';
 import Button from '@material-ui/core/Button';
 import StepStep from '../Steps/StepStep';
@@ -16,14 +16,17 @@ export default function Dashboard() {
   
  
     const [ user, setUser] = useState()
-    const [steps, setSteps] = useState(initialSteps)
+    const [steps, setSteps] = useState(null)
+
+
 
   
     //TODO: GET STEPS FROM SERVER
     function getSteps() {
-        fetch('api/steps')
-            .then(response => response.json())
-            .then(data => setSteps(data));
+        fetch('api/fileupload')
+            .then(response => console.log("response" + response.json()))
+            .then(data => setSteps(data))
+            .then(data => console.log("data: " + data));
             console.log("tried to fetch");
         }
 
@@ -38,12 +41,17 @@ export default function Dashboard() {
     }
 
     useEffect(()=>{
+        // Get list of steps
+        fetch('api/fileupload')
+            .then(response => response.json())
+            .then(data => setSteps(data))
+
         const loggedInUser = localStorage.getItem("user");
         console.log("const loggedInUser:")
         if (loggedInUser) {
           const foundUser = JSON.parse(loggedInUser);
           setUser(foundUser);
-          getSteps()
+
         }
     }, []);
      
@@ -52,10 +60,13 @@ export default function Dashboard() {
         if (hasPaid == false) {
         // redirect user to checkoutRedirect
         window.location.href = '/CheckoutRedirect'
+        }
+        if (!steps) {
+            return <div> loading </div>
         } else {
         return (
            
-            
+           
         <div>
             <div class="body">
                 <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
@@ -65,9 +76,10 @@ export default function Dashboard() {
                 </center>
             
                 <h2 className="stepsInfo">Du er nået x langt med dine steps</h2>
+                {console.log(steps)}
             
                 <div className="stepsContainer"> 
-                    <StepStep serversteps={steps}></StepStep>    
+                   <StepStep serversteps={steps} /> 
                 </div>            
             </div>
         </div>
@@ -82,3 +94,4 @@ return (
                 </div>
             );
 }
+
