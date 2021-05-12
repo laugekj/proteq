@@ -19,4 +19,10 @@ body {
     justify-content: center;
 }
 
+.stepsInfo {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+}
 
