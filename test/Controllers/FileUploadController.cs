@@ -42,6 +42,7 @@ namespace test.Controllers
             return Accepted();
         }
 
+        //api/fileopload
         [HttpGet] 
         public ActionResult<List<Step>> GetAll() 
         {     
