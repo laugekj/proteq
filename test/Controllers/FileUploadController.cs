@@ -30,14 +30,24 @@ namespace test.Controllers
     }
     
         [HttpPost]
-        public ActionResult uploadFile(Step data) 
-        {
+        public ActionResult uploadFile(StepModel data) 
+        { 
             Console.WriteLine("[DEVELOPER MODE] Backend uploadFile() called");
             Console.WriteLine("[# DesignId] " + data.DesignId);
             Console.WriteLine("[# Title] " + data.Title);
             Console.WriteLine("[# Body] " + data.Body);
             Console.WriteLine("[# Video] " + data.Video);
-            Console.WriteLine("[# File] NONE");
+            //Console.WriteLine("[# File] " + data.file);
+
+            _context.Steps.Add(new Step() {
+                DesignId = data.DesignId,
+                Title = data.Title,
+                Body = data.Body,
+                Video = data.Video
+                
+            });
+
+            _context.SaveChanges();
 
             return Accepted();
         }

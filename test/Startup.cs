@@ -36,7 +36,14 @@ namespace test
             {
                 configuration.RootPath = "ClientApp/build";
             });       
-            var connectionString = @"Server=ec2-34-240-75-196.eu-west-1.compute.amazonaws.com;Port=5432;User Id=ongggporwmcbyy;Password=8ce076823bd198d23b9cea1cee785dedfdf384ff0aa0630e93ad6feac2e2fefe;Database=dchglbie3su9s0;sslmode=Require;Trust Server Certificate=true;";
+            string host = "Server=" + "ec2-54-74-60-70.eu-west-1.compute.amazonaws.com" + ";";
+            string port = "Port=" + "5432" + ";";
+            string userId = "User Id=" + "ehhpdgiueuvyss" + ";";
+            string password = "Password=" + "c7680442125c139b0f6ee1893b1523ddc57868124c265978876e525440016f63" + ";";
+            string database = "Database=" + "d635bhlt52j1bk" + ";";
+            string sslmode = "sslmode=Require" + ";";
+            string trustServer = "Trust Server Certificate=true" + ";";
+            var connectionString = @"" + host + port + userId + password + database + sslmode + trustServer;
             services.AddDbContext<UserContext>(options =>
             options.UseNpgsql(connectionString));
         }

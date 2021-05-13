@@ -1,6 +1,9 @@
+using System.IO;
+
+
 namespace test.Models
 {
-    public class Step
+    public class StepModel
     {
         public int Id { get; set; }
         public int DesignId { get; set; }
@@ -9,7 +12,6 @@ namespace test.Models
 
         public string Video { get; set; }
 
-        public byte[] Image { get; set; } // TODO: rename
-
+        public string file { get; set; } 
     }
 }

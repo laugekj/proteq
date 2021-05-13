@@ -38,7 +38,7 @@ export class AdminInput extends React.Component {
 
       uploadToServer = () => {
             console.log("adminInput: ", this.state.files)
-          const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video}
+          const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video, Files: this.state.files}
           console.log('[DEVELOPER MODE] UPLOAD TO SERVER FUNCTION CALLED!')
           fetch('api/fileupload', {
               method: 'POST',
@@ -127,15 +127,3 @@ export class AdminInput extends React.Component {
 }
 }
 
-
-function generate(list) {
-    return (
-        <Container>
-            {list.map(element => {
-                return (
-                    <ListItemText primary={"- " + element.name} />
-                )
-            })}
-        </Container>
-    );
-}
