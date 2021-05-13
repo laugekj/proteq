@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace test.Migrations
 {
-    public partial class Steps : Migration
+    public partial class steps : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,7 +21,8 @@ namespace test.Migrations
                     Title = table.Column<string>(nullable: true),
                     Body = table.Column<string>(nullable: true),
                     Video = table.Column<string>(nullable: true),
-                    Image = table.Column<byte[]>(nullable: true)
+                    FilePath = table.Column<string>(nullable: true),
+                    File = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
