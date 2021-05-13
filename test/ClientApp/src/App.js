@@ -18,7 +18,7 @@ import Design1 from './components/Formatted_Design/Design1';
 import {AdminInput} from './components/Formatted_Design/AdminInput';
 import Design2 from './components/Formatted_Design/Design2';
 import StepStep from './components/StepStep';
-
+import { UploadForm } from './components/Formatted_Design/UploadForm';
 export default function App(){
 
     return (
@@ -40,6 +40,9 @@ export default function App(){
             <Route path='/admininput' component={AdminInput} />
             <Route path='/design2' component={Design2} />
             <Route path='/stepper' component={StepStep} />
+
+
+            <Route path='/test' component={UploadForm} />
       </Layout>
     );
   
