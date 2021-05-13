@@ -11,25 +11,40 @@ namespace test.Controllers
     public class FileController : ControllerBase
     {
 
-        [HttpPost]
-        public ActionResult Post([FromForm] FileModel file)
+
+    private readonly UserContext _context;
+
+    public FileController(UserContext context)
+    {
+        _context = context;    
+    }
+
+
+    [HttpPost]
+    public ActionResult Post([FromForm] FileModel file)
+    {
+        try
         {
-            try
-            {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
 
-                using (Stream stream = new FileStream(path, FileMode.Create))
-                {
-                    file.FormFile.CopyTo(stream);
-                }
-
-                return StatusCode(StatusCodes.Status201Created);
-            }
-            catch (Exception)
+            using (Stream stream = new FileStream(path, FileMode.Create))
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                file.FormFile.CopyTo(stream);
+
             }
+                // save online 
+                Step step = new Step();
+                byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
+                step.Image = fileToBytes;
+                _context.Steps.Add(step);
+                _context.SaveChanges();
+            return StatusCode(StatusCodes.Status201Created);
         }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
 
     }
 }
