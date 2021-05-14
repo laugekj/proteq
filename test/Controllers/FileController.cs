@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.IO;
 using test.Models;
+using System.IO;
 
 namespace test.Controllers
 {
@@ -19,21 +19,25 @@ namespace test.Controllers
         _context = context;    
     }
 
-    // /file/id
-    /*[HttpGet("{id}", Name = "GetUser")] 
-    public ActionResult<step> GetById(int id) 
+    // /api/file/id
+    [HttpGet("{id}", Name = "GetStep")] 
+    public IActionResult GetById(int id) 
     {    
         // returns file
         var step = _context.Steps.Find(id);     
         if (step == null)    
         {         
             return NotFound();     
-        }  
-        return step;
-     //   File file = new File();
-//https://docs.microsoft.com/en-us/dotnet/api/system.io.file.writeallbytes?view=net-5.0
-    //return step; 
-    }*/
+        }
+
+        
+        // save locally (not relevant)
+        //System.IO.File.WriteAllBytes(step.FilePath, step.File);
+
+        return File(step.File, step.FileType);  
+    }
+
+
 
     [HttpPost]
     public ActionResult Post([FromForm] FileModel file)
@@ -42,16 +46,19 @@ namespace test.Controllers
         {
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
 
-            using (Stream stream = new FileStream(path, FileMode.Create))
+             using (Stream stream = new FileStream(path, FileMode.Create))
             {
                 file.FormFile.CopyTo(stream);
 
             }
                 // save online 
+
+
                 Step step = new Step();
                 byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
                 step.File = fileToBytes;
-                step.FilePath = path;
+
+                step.FileType = file.type;
                 _context.Steps.Add(step);
                 _context.SaveChanges();
             return StatusCode(StatusCodes.Status201Created);
@@ -86,6 +93,16 @@ namespace test.Controllers
         return Accepted();
     }
 
+
+    
+
+
+    private string getFileType(string fileName) {
+        string fileType = fileName; // XXXX.jpg
+        fileType = fileType.Substring(fileName.IndexOf('.')+1); // jpg
+
+        return fileType;
+    }
 
     }
 }

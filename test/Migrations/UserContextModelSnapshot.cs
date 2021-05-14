@@ -53,7 +53,7 @@ namespace test.Migrations
                     b.Property<byte[]>("File")
                         .HasColumnType("bytea");
 
-                    b.Property<string>("FilePath")
+                    b.Property<string>("FileType")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
