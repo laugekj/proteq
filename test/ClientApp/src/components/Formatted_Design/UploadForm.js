@@ -33,19 +33,19 @@ export const UploadForm = () => {
   const getImage = async (e) => {
     e.preventDefault();
     //const data = {Id: 2}
-    fetch('api/file/2', {
+    fetch('api/file/15', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         }//,
         //body: JSON.stringify(data)
     }).then(response => {
-        console.log('SERVER RESPONSE: ', response.json)
+        console.log('SERVER RESPONSE: ', response)
     });
   };
 
   return (
-    <form onSubmit={uploadFile}>
+    <form onSubmit={getImage}>
     <label>
       Upload file:
       <input type="file" onChange={saveFile} />

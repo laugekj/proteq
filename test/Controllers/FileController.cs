@@ -40,15 +40,23 @@ namespace test.Controllers
 
 
     [HttpPost]
-    public ActionResult Post([FromForm] FileModel file)
+    public ActionResult Post([FromForm] StepModel data)
     {
+        Console.WriteLine("--- Data --- ");
+        Console.WriteLine("DesignId: " + data.DesignId);
+        Console.WriteLine("Title: " + data.Title);
+        Console.WriteLine("Body: " + data.Body);
+        Console.WriteLine("Video: " + data.Video);
+        Console.WriteLine("FileName: " + data.FileName);
+        Console.WriteLine("FileType: " + data.type);
+
         try
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", data.FileName);
 
              using (Stream stream = new FileStream(path, FileMode.Create))
             {
-                file.FormFile.CopyTo(stream);
+                data.FormFile.CopyTo(stream);
 
             }
                 // save online 
@@ -57,8 +65,13 @@ namespace test.Controllers
                 Step step = new Step();
                 byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
                 step.File = fileToBytes;
+                step.FileType = data.type;
 
-                step.FileType = file.type;
+                step.DesignId = data.DesignId;
+                step.Title = data.Title;
+                step.Body = data.Body;
+                step.Video = data.Video;
+
                 _context.Steps.Add(step);
                 _context.SaveChanges();
             return StatusCode(StatusCodes.Status201Created);
@@ -69,7 +82,7 @@ namespace test.Controllers
         }
     }
 
-    [HttpPost]
+    /*[HttpPost]
     [Route("[action]")]
     public ActionResult uploadFile(StepModel data) 
     { 
@@ -91,7 +104,7 @@ namespace test.Controllers
         _context.SaveChanges();
 
         return Accepted();
-    }
+    }*/
 
 
     

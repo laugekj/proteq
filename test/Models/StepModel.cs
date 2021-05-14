@@ -1,4 +1,4 @@
-using System.IO;
+using Microsoft.AspNetCore.Http;
 
 
 namespace test.Models
@@ -12,6 +12,9 @@ namespace test.Models
 
         public string Video { get; set; }
 
-        public string file { get; set; } 
+        public string FileName { get; set; }
+        public string type { get; set; }
+
+        public IFormFile FormFile { get; set; }
     }
 }
