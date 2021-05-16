@@ -4,6 +4,8 @@ import parse from "html-react-parser";
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import HtmlRender from './Htmlrender';
 import AttachDocument from './AttachDocument';
+import axios from "axios";
+
 import './AdminInput.css';
 
 export class AdminInput extends React.Component {
@@ -23,24 +25,46 @@ export class AdminInput extends React.Component {
             video: "",
         };
         this.state = {
-          files: [],
+          file: [],
+        };
+        this.state = {
+          fileName: "",
+        };
+        this.state = {
+            fileType: "",
         };
 
         this.uploadToServer = this.uploadToServer.bind(this);
         this.handler = this.handler.bind(this)
       }
+
   
-      handler(filesArr) {
-        this.setState({
-          files: [...this.state.files, ...filesArr]
-        })
+      handler(myFile) {
+        this.setState({ file: myFile[0], fileName: myFile[0].name, fileType: myFile[0].type});
       }
 
-      uploadToServer = () => {
-            console.log("adminInput: ", this.state.files)
+      uploadToServer = async (e) => {
+        console.log(this.state.file[0]);
+        const formData = new FormData();
+        formData.append("designId", this.state.designId);
+        formData.append("title", this.state.header);
+        formData.append("body", this.state.body);
+        formData.append("video", this.state.video);
+        formData.append("formFile", this.state.file);
+        formData.append("type", this.state.fileType);
+        formData.append("fileName", this.state.fileName);
+        try {
+          const res = await axios.post("http://localhost:5000/api/file", formData);
+          console.log(res);
+        } catch (ex) {
+          console.log(ex);
+        }
+      }
+
+      /*uploadToServer = () => {
           const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video, Files: this.state.files}
           console.log('[DEVELOPER MODE] UPLOAD TO SERVER FUNCTION CALLED!')
-          fetch('api/fileupload', {
+          fetch('api/file/uploadfile', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -49,7 +73,8 @@ export class AdminInput extends React.Component {
           }).then(response => {
               console.log('SERVER RESPONSE: ', response)
           });
-      }
+      }*/
+
 
       render() {
     return (
@@ -126,4 +151,5 @@ export class AdminInput extends React.Component {
     );
 }
 }
+
 

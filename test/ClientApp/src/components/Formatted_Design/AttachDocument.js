@@ -27,7 +27,7 @@ export class AttachDocument extends React.Component {
     var filesArr = Array.prototype.slice.call(files);
     console.log(filesArr);
     this.setState({ files: [...this.state.files, ...filesArr] });
-    this.props.handler(filesArr)
+    this.props.handler(files)
   }
   
   removeFile(f) {

@@ -9,7 +9,10 @@ namespace test.Models
 
         public string Video { get; set; }
 
-        public byte[] Image { get; set; } // TODO: rename
+        public string FileType { get; set; } 
+
+        public byte[] File { get; set; }
+        
 
     }
 }

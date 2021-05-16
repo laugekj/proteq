@@ -10,7 +10,7 @@ using test.Models;
 namespace test.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210512115120_Steps")]
+    [Migration("20210514093735_Steps")]
     partial class Steps
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,8 +52,11 @@ namespace test.Migrations
                     b.Property<int>("DesignId")
                         .HasColumnType("integer");
 
-                    b.Property<byte[]>("Image")
+                    b.Property<byte[]>("File")
                         .HasColumnType("bytea");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");

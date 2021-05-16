@@ -50,8 +50,11 @@ namespace test.Migrations
                     b.Property<int>("DesignId")
                         .HasColumnType("integer");
 
-                    b.Property<byte[]>("Image")
+                    b.Property<byte[]>("File")
                         .HasColumnType("bytea");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
