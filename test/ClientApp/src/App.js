@@ -9,7 +9,7 @@ import { FetchUsers } from './components/FetchUsers';
 import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import { Success }  from './components/Stripe/Success';
-import  { Dashboard } from './components/Dashboard/Dashboard';
+import   Dashboard  from './components/Dashboard/Dashboard';
 import CheckoutRedirect from './components/Stripe/CheckoutRedirect';
 import RequestResetPassword from './components/RequestResetPassword';
 import ResetPassword from './components/ResetPassword';
@@ -17,7 +17,7 @@ import {Logout} from './components/Logout/Logout';
 import Design1 from './components/Formatted_Design/Design1';
 import {AdminInput} from './components/Formatted_Design/AdminInput';
 import Design2 from './components/Formatted_Design/Design2';
-import StepStep from './components/StepStep';
+import StepStep from './components/Steps/StepStep';
 import { UploadForm } from './components/Formatted_Design/UploadForm';
 export default function App(){
 
