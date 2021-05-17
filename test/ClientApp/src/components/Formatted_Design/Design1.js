@@ -6,7 +6,7 @@ export default function Design1() {
 
 
     const [title, setTitle] = useState("Hvad er persondata egentlig?") 
-    const [body, setBody] = useState("Inden du g�r i gang, s� snup en kop kaffe og et stykke chokolade til l�sningen... hvis du ikke allerede har gjort det. Der er to typer af persondata. Almindelig persondata og f�lsom persondata. Og s� er der CPR-nr. og strafbare forhold - de er i hver deres s�rlige kategori. Det vender vi tilbage til i step 3.")
+    const [body, setBody] = useState("Inden du går i gang, så snup en kop kaffe og et stykke chokolade til løsningen... hvis du ikke allerede har gjort det. Der er to typer af persondata. Almindelig persondata og følsom persondata. Og så er der CPR-nr. og strafbare forhold - de er i hver deres særlige kategori. Det vender vi tilbage til i step 3.")
     const [bulletList, setBulletList] = useState(["bulletpoint 1","bulletpoint 2"])
 
     return (

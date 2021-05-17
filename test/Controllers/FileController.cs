@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using test.Models;
+using System.Collections.Generic;
+using System.Linq;
+
 using System.IO;
 
 namespace test.Controllers
@@ -18,6 +21,14 @@ namespace test.Controllers
     {
         _context = context;    
     }
+
+    ///api/file
+    [HttpGet] 
+    public ActionResult<List<Step>> GetAll() 
+    {     
+       return _context.Steps.ToList(); 
+    } 
+
 
     // /api/file/id
     [HttpGet("{id}", Name = "GetStep")] 

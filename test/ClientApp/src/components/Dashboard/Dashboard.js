@@ -42,7 +42,7 @@ export default function Dashboard() {
 
     useEffect(()=>{
         // Get list of steps
-        fetch('api/fileupload')
+        fetch('api/file')
             .then(response => response.json())
             .then(data => setSteps(data))
 
