@@ -25,7 +25,9 @@ namespace test.Models
             modelBuilder.Entity<UserRegistration>()
             .HasKey(u => u.RegrId);
 
-
+            modelBuilder.Entity<Step>()
+                .HasMany<FileModel>(f => f.Files)
+                .WithOne(s => s.step);
         }
 
         public DbSet<User> Users { get; set; }
@@ -35,6 +37,10 @@ namespace test.Models
         public DbSet<ResetPassword> ResetPasswords { get; set; }
 
         public DbSet<Step> Steps { get; set; }
+
+        public DbSet<FileModel> Files { get; set; }
+
+        public DbSet<UserStep> UserSteps { get; set; }
 
     }
     

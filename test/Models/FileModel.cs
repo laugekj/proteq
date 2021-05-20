@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Http;
-
 namespace test.Models
 {
     public class FileModel
     {
-        public string FileName { get; set; }
-        public string type { get; set; }
+        public string Id { get; set; }
 
-        public IFormFile FormFile { get; set; }
+        public Step step { get; set; }
+        public string FileType { get; set; } 
+
+        public byte[] FileData { get; set; }
 
     }
 }

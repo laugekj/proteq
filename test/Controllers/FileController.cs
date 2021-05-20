@@ -2,9 +2,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using test.Models;
-using System.Collections.Generic;
-using System.Linq;
-
 using System.IO;
 
 namespace test.Controllers
@@ -22,31 +19,23 @@ namespace test.Controllers
         _context = context;    
     }
 
-    ///api/file
-    [HttpGet] 
-    public ActionResult<List<Step>> GetAll() 
-    {     
-       return _context.Steps.ToList(); 
-    } 
-
-
-    // /api/file/id
-    [HttpGet("{id}", Name = "GetStep")] 
-    public IActionResult GetById(int id) 
-    {    
-        // returns file
-        var step = _context.Steps.Find(id);     
-        if (step == null)    
-        {         
-            return NotFound();     
-        }
+    // // /api/file/id
+    // [HttpGet("{id}", Name = "GetStep")] 
+    // public IActionResult GetById(int id) 
+    // {    
+    //     // returns file
+    //     var step = _context.Steps.Find(id);     
+    //     if (step == null)    
+    //     {         
+    //         return NotFound();     
+    //     }
 
         
-        // save locally (not relevant)
-        //System.IO.File.WriteAllBytes(step.FilePath, step.File);
+    //     // save locally (not relevant)
+    //     //System.IO.File.WriteAllBytes(step.FilePath, step.File);
 
-        return File(step.File, step.FileType);  
-    }
+    //     return File(step.File, step.FileType);  
+    // }
 
 
 
@@ -75,8 +64,8 @@ namespace test.Controllers
 
                 Step step = new Step();
                 byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
-                step.File = fileToBytes;
-                step.FileType = data.type;
+               // step.File = fileToBytes;
+                // step.FileType = data.type;
 
                 step.DesignId = data.DesignId;
                 step.Title = data.Title;
@@ -103,7 +92,6 @@ namespace test.Controllers
         Console.WriteLine("[# Body] " + data.Body);
         Console.WriteLine("[# Video] " + data.Video);
         //Console.WriteLine("[# File] " + data.file);
-
         _context.Steps.Add(new Step() {
             DesignId = data.DesignId,
             Title = data.Title,
@@ -111,9 +99,7 @@ namespace test.Controllers
             Video = data.Video
             
         });
-
         _context.SaveChanges();
-
         return Accepted();
     }*/
 

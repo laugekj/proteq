@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using test.Models;
@@ -9,9 +10,10 @@ using test.Models;
 namespace test.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20210520102858_improvedDB")]
+    partial class improvedDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace test.Migrations
                 .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("test.Models.FileModel", b =>
+            modelBuilder.Entity("test.Models.File", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -167,7 +169,7 @@ namespace test.Migrations
                     b.ToTable("UserSteps");
                 });
 
-            modelBuilder.Entity("test.Models.FileModel", b =>
+            modelBuilder.Entity("test.Models.File", b =>
                 {
                     b.HasOne("test.Models.Step", "step")
                         .WithMany("Files")
