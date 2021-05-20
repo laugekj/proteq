@@ -3,6 +3,9 @@ import "./Step.css";
 function Step({ step, onComplete }) {
   function completeMe() {
     onComplete(step);
+    window.location.href = '/design1?' + step.id
+    
+    
   }
 
   function onClickStep() {
