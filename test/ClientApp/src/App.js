@@ -35,14 +35,13 @@ export default function App(){
             <Route path='/requestresetpassword' component={RequestResetPassword} />
             <Route path='/resetpassword' component={ResetPassword} />
             <Route path='/logout' component={Logout} />
-  
             <Route path='/design1' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
             <Route path='/design2' component={Design2} />
             <Route path='/stepper' component={StepStep} />
-
-
             <Route path='/test' component={UploadForm} />
+
+            
       </Layout>
     );
   
