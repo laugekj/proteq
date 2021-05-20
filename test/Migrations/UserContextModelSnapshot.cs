@@ -21,8 +21,10 @@ namespace test.Migrations
 
             modelBuilder.Entity("test.Models.FileModel", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<byte[]>("FileData")
                         .HasColumnType("bytea");
@@ -30,12 +32,12 @@ namespace test.Migrations
                     b.Property<string>("FileType")
                         .HasColumnType("text");
 
-                    b.Property<int?>("stepId")
+                    b.Property<int>("StepId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("stepId");
+                    b.HasIndex("StepId");
 
                     b.ToTable("Files");
                 });
@@ -169,9 +171,11 @@ namespace test.Migrations
 
             modelBuilder.Entity("test.Models.FileModel", b =>
                 {
-                    b.HasOne("test.Models.Step", "step")
+                    b.HasOne("test.Models.Step", "Step")
                         .WithMany("Files")
-                        .HasForeignKey("stepId");
+                        .HasForeignKey("StepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("test.Models.UserRegistration", b =>
