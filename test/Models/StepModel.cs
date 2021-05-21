@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Http;
-
+using System.Collections.Generic;
 
 namespace test.Models
 {
@@ -14,6 +14,6 @@ namespace test.Models
         public string FileName { get; set; }
         public string type { get; set; }
 
-        public IFormFile FormFile { get; set; }
+        public List<IFormFile> FormFiles { get; set; }
     }
 }

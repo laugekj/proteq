@@ -54,15 +54,25 @@ namespace test.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public ActionResult CreateStep([FromForm] StepModel data)
+        public IActionResult CreateStep([FromForm] StepModel data)
         {
             Console.WriteLine("--- Data --- ");
             Console.WriteLine("DesignId: " + data.DesignId);
             Console.WriteLine("Title: " + data.Title);
             Console.WriteLine("Body: " + data.Body);
             Console.WriteLine("Video: " + data.Video);
-            Console.WriteLine("FileName: " + data.FileName);
-            Console.WriteLine("FileType: " + data.type);
+            //Console.WriteLine("FileName: " + data.FileName);
+            //Console.WriteLine("FileType: " + data.type);
+            Console.WriteLine("----------------------");
+                foreach (var formFile in data.FormFiles)
+                {
+                    if (formFile.Length > 0)
+                    {
+                        Console.WriteLine("####");
+                        Console.WriteLine(formFile.FileName + ", " + formFile.ContentType);
+                    }
+                }
+            Console.WriteLine("----------------------");
 
             try
             {
@@ -70,7 +80,7 @@ namespace test.Controllers
 
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
-                    data.FormFile.CopyTo(stream);
+                    data.FormFiles[0].CopyTo(stream);
 
                 }
                 // save online 
