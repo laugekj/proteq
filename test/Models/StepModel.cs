@@ -11,9 +11,6 @@ namespace test.Models
 
         public string Video { get; set; }
 
-        public string FileName { get; set; }
-        public string type { get; set; }
-
         public List<IFormFile> FormFiles { get; set; }
     }
 }

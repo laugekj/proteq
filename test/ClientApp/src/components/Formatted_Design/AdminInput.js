@@ -28,13 +28,6 @@ export class AdminInput extends React.Component {
         this.state = {
             video: "",
         };
-
-        this.state = {
-          fileName: "",
-        };
-        this.state = {
-            fileType: "",
-        };
         this.state = {
             files: [],
         };
@@ -58,8 +51,6 @@ export class AdminInput extends React.Component {
         }
 
         formData.append("formFiles", this.state.files);
-        formData.append("type", this.state.fileType);
-        formData.append("fileName", this.state.fileName);
         try {
           const res = await axios.post("http://localhost:5000/api/file/CreateStep", formData);
           console.log(res);

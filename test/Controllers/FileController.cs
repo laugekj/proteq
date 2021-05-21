@@ -92,6 +92,7 @@ namespace test.Controllers
                         byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
                         file.StepId = step.Id;
                         file.Step = step;
+                        file.FileName = formFile.FileName;
                         file.FileData = fileToBytes;
                         file.FileType = formFile.ContentType;
                         _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
