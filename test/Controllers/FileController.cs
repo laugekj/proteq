@@ -45,7 +45,7 @@ namespace test.Controllers
         // save locally (not relevant)
         //System.IO.File.WriteAllBytes(step.FilePath, step.File);
 
-        return File(step.File, step.FileType);  
+        return Ok(); 
     }
 
 
@@ -60,7 +60,7 @@ namespace test.Controllers
         Console.WriteLine("Video: " + data.Video);
         Console.WriteLine("FileName: " + data.FileName);
         Console.WriteLine("FileType: " + data.type);
-
+        
         try
         {
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", data.FileName);
@@ -74,21 +74,34 @@ namespace test.Controllers
 
 
                 Step step = new Step();
+                Console.WriteLine("1. init file...");
+                FileModel file = new FileModel();
+
                 byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
-                step.File = fileToBytes;
-                step.FileType = data.type;
+                Console.WriteLine("2. input file...");
+                //file.Id = _context.Files.Any() ? _context.Files.Max(p => p.Id) + 1 : 1;
+                file.StepId = step.Id;
+                file.Step = step;
+                file.FileData = fileToBytes;
+                file.FileType = data.type;
 
                 step.DesignId = data.DesignId;
                 step.Title = data.Title;
                 step.Body = data.Body;
                 step.Video = data.Video;
 
+                _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
+                
+                step.Files.Add(file);
+
                 _context.Steps.Add(step);
                 _context.SaveChanges();
+                
             return StatusCode(StatusCodes.Status201Created);
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            Console.WriteLine("File POST execption: " + e.Message);
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }

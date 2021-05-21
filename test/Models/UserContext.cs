@@ -10,6 +10,19 @@ namespace test.Models
 
     public class UserContext : DbContext
     {
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<UserRegistration> UserRegistrations { get; set; }
+
+        public DbSet<ResetPassword> ResetPasswords { get; set; }
+
+        public DbSet<Step> Steps { get; set; }
+
+        public DbSet<FileModel> Files { get; set; }
+
+        public DbSet<UserStep> UserSteps { get; set; }
+
         public UserContext(DbContextOptions<UserContext> options)
             : base(options)
         {
@@ -25,16 +38,18 @@ namespace test.Models
             modelBuilder.Entity<UserRegistration>()
             .HasKey(u => u.RegrId);
 
+            //modelBuilder.Entity<Step>()
+            //    .HasMany<FileModel>(f => f.Files)
+            //   .WithOne(s => s.Step);
+
+            modelBuilder.Entity<FileModel>()
+                .HasOne<Step>(f => f.Step)
+                .WithMany(s => s.Files)
+                .HasForeignKey(f => f.StepId);
 
         }
 
-        public DbSet<User> Users { get; set; }
 
-        public DbSet<UserRegistration> UserRegistrations { get; set; }
-
-        public DbSet<ResetPassword> ResetPasswords { get; set; }
-
-        public DbSet<Step> Steps { get; set; }
 
     }
     

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace test.Models
 {
     public class Step
@@ -9,9 +11,7 @@ namespace test.Models
 
         public string Video { get; set; }
 
-        public string FileType { get; set; } 
-
-        public byte[] File { get; set; }
+        public ICollection<FileModel> Files { get; set; }
         
 
     }

@@ -19,6 +19,29 @@ namespace test.Migrations
                 .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("test.Models.FileModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<byte[]>("FileData")
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StepId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StepId");
+
+                    b.ToTable("Files");
+                });
+
             modelBuilder.Entity("test.Models.ResetPassword", b =>
                 {
                     b.Property<int>("Id")
@@ -49,12 +72,6 @@ namespace test.Migrations
 
                     b.Property<int>("DesignId")
                         .HasColumnType("integer");
-
-                    b.Property<byte[]>("File")
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("FileType")
-                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -130,6 +147,37 @@ namespace test.Migrations
                     b.ToTable("UserRegistrations");
                 });
 
+            modelBuilder.Entity("test.Models.UserStep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("stepId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("userId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("stepId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("UserSteps");
+                });
+
+            modelBuilder.Entity("test.Models.FileModel", b =>
+                {
+                    b.HasOne("test.Models.Step", "Step")
+                        .WithMany("Files")
+                        .HasForeignKey("StepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("test.Models.UserRegistration", b =>
                 {
                     b.HasOne("test.Models.User", "User")
@@ -137,6 +185,17 @@ namespace test.Migrations
                         .HasForeignKey("test.Models.UserRegistration", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("test.Models.UserStep", b =>
+                {
+                    b.HasOne("test.Models.Step", "step")
+                        .WithMany()
+                        .HasForeignKey("stepId");
+
+                    b.HasOne("test.Models.User", "user")
+                        .WithMany()
+                        .HasForeignKey("userId");
                 });
 #pragma warning restore 612, 618
         }
