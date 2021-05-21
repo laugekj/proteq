@@ -35,25 +35,6 @@ namespace test.Controllers
             return _context.Files.Where(x => x.StepId == id).ToList();
         }
 
-
-        // /api/file/id
-        //[HttpGet("{id}", Name = "GetStep")]
-        //public IActionResult GetById(int id)
-        //{
-        //    // returns file
-        //    var step = _context.Steps.Find(id);
-        //    if (step == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-
-        //    // save locally (not relevant)
-        //    //System.IO.File.WriteAllBytes(step.FilePath, step.File);
-
-        //    return Ok();
-        //}
-
         //api/file/getFileDataById/id
         [HttpGet("{id}")]
         //[Route("[action]")]
@@ -72,7 +53,8 @@ namespace test.Controllers
 
 
         [HttpPost]
-        public ActionResult Post([FromForm] StepModel data)
+        [Route("[action]")]
+        public ActionResult CreateStep([FromForm] StepModel data)
         {
             Console.WriteLine("--- Data --- ");
             Console.WriteLine("DesignId: " + data.DesignId);
@@ -105,8 +87,12 @@ namespace test.Controllers
                 file.Step = step;
                 file.FileData = fileToBytes;
                 file.FileType = data.type;
-
-                step.DesignId = data.DesignId;
+                
+                int tmp_DesignId;
+                bool success = Int32.TryParse(data.DesignId.ToString(), out tmp_DesignId);
+                if (success) step.DesignId = tmp_DesignId;
+                if (!success) step.DesignId = 0; // default
+                
                 step.Title = data.Title;
                 step.Body = data.Body;
                 step.Video = data.Video;

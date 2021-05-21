@@ -44,7 +44,7 @@ export class AdminInput extends React.Component {
       }
 
       uploadToServer = async (e) => {
-        console.log(this.state.file[0]);
+        console.log(this.state.file);
         const formData = new FormData();
         formData.append("designId", this.state.designId);
         formData.append("title", this.state.header);
@@ -54,7 +54,7 @@ export class AdminInput extends React.Component {
         formData.append("type", this.state.fileType);
         formData.append("fileName", this.state.fileName);
         try {
-          const res = await axios.post("http://localhost:5000/api/file", formData);
+          const res = await axios.post("http://localhost:5000/api/file/CreateStep", formData);
           console.log(res);
         } catch (ex) {
           console.log(ex);
