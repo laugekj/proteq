@@ -29,11 +29,19 @@ namespace test.Controllers
             return _context.Steps.ToList();
         }
 
-        [HttpGet]
-        public ActionResult<List<FileModel>> GetAllFiles(int id)
+        // /api/file/getstep/id
+        [HttpGet("{id}")]
+       // [Route("[action]")]
+        public ActionResult<Step> GetStep(int id)
         {
-            return _context.Files.Where(x => x.StepId == id).ToList();
+            return _context.Steps.Where(x => x.Id == id).FirstOrDefault<Step>();
         }
+
+        // [HttpGet]
+        // public ActionResult<List<FileModel>> GetAllFiles(int id)
+        // {
+        //     return _context.Files.Where(x => x.StepId == id).ToList();
+        // }
 
 
         // /api/file/id
@@ -54,20 +62,20 @@ namespace test.Controllers
         //    return Ok();
         //}
 
-        //api/file/getFileDataById/id
-        [HttpGet("{id}")]
-        //[Route("[action]")]
-        public IActionResult GetFileDataById(int id)
-        {
-            var file = _context.Files.FirstOrDefault(x => x.StepId == id);
+        // //api/file/getFileDataById/id
+        // [HttpGet("{id}")]
+        // //[Route("[action]")]
+        // public IActionResult GetFileDataById(int id)
+        // {
+        //     var file = _context.Files.FirstOrDefault(x => x.StepId == id);
             
-            if (file == null)
-            {
-                return NotFound();
-            }
-            return File(file.FileData, file.FileType);
-            //return file;
-        }
+        //     if (file == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return File(file.FileData, file.FileType);
+        //     //return file;
+        // }
 
 
 

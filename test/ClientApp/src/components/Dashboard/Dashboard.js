@@ -68,8 +68,8 @@ export default function Dashboard() {
            
            
         <div>
-            <div class="body">
-                <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+            <div className="body">
+                <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
                 <center>
                     <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>

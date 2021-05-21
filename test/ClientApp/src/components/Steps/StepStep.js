@@ -22,7 +22,7 @@ export default function StepStep({serversteps}) {
     return (
         <div className={"stepper"}>
             {steps.map((step) => (
-                <Step step={step} onComplete={onComplete}/>
+                <Step key={step.id} step={step} onComplete={onComplete}/>
             ))}
 
         </div>
