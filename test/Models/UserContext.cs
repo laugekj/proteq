@@ -38,14 +38,21 @@ namespace test.Models
             modelBuilder.Entity<UserRegistration>()
             .HasKey(u => u.RegrId);
 
-            //modelBuilder.Entity<Step>()
-            //    .HasMany<FileModel>(f => f.Files)
-            //   .WithOne(s => s.Step);
 
             modelBuilder.Entity<FileModel>()
                 .HasOne<Step>(f => f.Step)
                 .WithMany(s => s.Files)
                 .HasForeignKey(f => f.StepId);
+
+            modelBuilder.Entity<UserStep>()
+                .HasOne(us => us.Step)
+                .WithMany(u => u.UserSteps)
+                .HasForeignKey(us => us.StepId);
+
+            modelBuilder.Entity<UserStep>()
+                .HasOne(us => us.User)
+                .WithMany(s => s.UserSteps)
+                .HasForeignKey(us => us.UserId);
 
         }
 

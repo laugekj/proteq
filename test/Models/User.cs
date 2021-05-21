@@ -22,5 +22,7 @@ namespace test.Models
         public string PaymentToken { get; set; }
 
         public UserRegistration UserReg { get; set; }
+
+        public List<UserStep> UserSteps { get; set; }
     }
 }
