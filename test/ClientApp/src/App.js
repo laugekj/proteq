@@ -19,7 +19,7 @@ import {AdminInput} from './components/Formatted_Design/AdminInput';
 import Design2 from './components/Formatted_Design/Design2';
 import StepStep from './components/Steps/StepStep';
 import { UploadForm } from './components/Formatted_Design/UploadForm';
-import { DownloadFile } from './components/DownloadFile';
+import DownloadFile from './components/DownloadFile';
 export default function App(){
 
     return (

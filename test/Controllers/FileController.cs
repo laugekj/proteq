@@ -41,7 +41,7 @@ namespace test.Controllers
         public IActionResult GetFileDataById(int id)
         {
             var file = _context.Files.FirstOrDefault(x => x.StepId == id);
-            
+            var v =  _context.Steps.ToList();
             if (file == null)
             {
                 return NotFound();

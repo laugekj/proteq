@@ -1,62 +1,37 @@
-import { Container } from "@material-ui/core";
+import React, { useState, useEffect, Component } from 'react';
+import Container from "@material-ui/core/Container";
 import DownloadLink from "react-download-link";
+import Button from "@material-ui/core/Button";
 
-//function DownloadFile() {
-//    const data = { FileType = FileType, FileData = FileData };
+function DownloadFile() {
+    //const data = { FileType : FileType, FileData : FileData };
+    const [file, setFile] = useState();
 
-//    fetch('api/fileModel', {
-//        method: 'GET', // or 'PUT'
-//        headers: {
-//            'Content-Type': 'application/json',
-//        },
-//        body: JSON.stringify(data),
-//    }).then(response => {
-//        console.log(response);
-//        // 201 is "Created" (success)
-//        if (response.status === 201) {
-//            handleClose();
-//            console.log("File returned", data)
-//        } else {
-//            // waah, error handler
-//        }
-//    });
-//}
-
-export class FetchFiles extends Component {
-    static displayName = FetchFiles.name;
-
-    constructor(props) {
-        super(props);
-        this.state = { users: [], loading: true };
-
-        this.populateUserData = this.populateUserData.bind(this);
-        this.forceRefetch = this.forceRefetch.bind(this);
-
+    useEffect(() => {
+        const getFile = localStorage.getItem("file");
+        if (getFile != null) {
+            const foundFile = JSON.parse(getFile);
+            setFile(foundFile);
+        }
+    }, []);
+    function getFiles(id) {
+    fetch('api/file/' + 45, { method: 'GET' }).then(response => {
+        return response.json();
+        })
+        .then((responseJson) {
+            setFile(responseJson);
+            localStorage.setItem('file', JSON.stringify(responseJson))
+        });
     }
 
-    componentDidMount() {
-        this.populateUserData(false);
-    }
-
-
-    forceRefetch() {
-        console.log("refetch pls");
-        this.populateUserData(false);
-    }
-
-    async populateUserData(bool) {
-        const response = await fetch('api/user');
-        const data = await response.json();
-        this.setState({ users: data, loading: bool });
-    }
-
+    
 return ( 
     <Container component="main" maxWidth="xs">
         <h1>Download filer</h1>
          <DownloadLink
-        label="Save"
-        filename="myfile.txt"
-        exportFile={() => "My cached data"}
+        label="Download fil"
+            filename="myfile.txt"
+            exportFile={() => getFiles()}
         />
 
         <Button
@@ -65,7 +40,10 @@ return (
             variant="contained"
             color="primary"
             // className={classes.submit}
-            onClick={() => DownloadFile()}
-        > </Button>
+            onClick={getFiles}> Hent filer
+        </Button>
     </Container>
-)
+    )
+}
+
+export default DownloadFile;
