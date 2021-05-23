@@ -1,12 +1,16 @@
 import { Typography, Container, Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import React, { useState } from 'react';
-import parse from "html-react-parser";
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
-import HtmlRender from './Htmlrender';
-import AttachDocument from './AttachDocument';
 import axios from "axios";
 
 import './AdminInput.css';
+require('./AttachDocumentStyle.css');
+
+const AttachDocumentStyle = {
+    fontFamily: 'sans-serif',
+    textAlign: 'center',
+    display: 'flex',
+  };
 
 export class AdminInput extends React.Component {
     constructor() {
@@ -25,36 +29,30 @@ export class AdminInput extends React.Component {
             video: "",
         };
         this.state = {
-          file: [],
-        };
-        this.state = {
-          fileName: "",
-        };
-        this.state = {
-            fileType: "",
+            files: [],
         };
 
         this.uploadToServer = this.uploadToServer.bind(this);
-        this.handler = this.handler.bind(this)
+        this.onChange = this.onChange.bind(this);
+
       }
 
-  
-      handler(myFile) {
-        this.setState({ file: myFile[0], fileName: myFile[0].name, fileType: myFile[0].type});
-      }
 
       uploadToServer = async (e) => {
-        console.log(this.state.file[0]);
+        console.log("uploadToServer: ", this.state.files);
         const formData = new FormData();
         formData.append("designId", this.state.designId);
         formData.append("title", this.state.header);
         formData.append("body", this.state.body);
         formData.append("video", this.state.video);
-        formData.append("formFile", this.state.file);
-        formData.append("type", this.state.fileType);
-        formData.append("fileName", this.state.fileName);
+
+        for (let i = 0; i < this.state.files.length; i++) {
+            formData.append("formFiles", this.state.files[i]);
+        }
+
+        formData.append("formFiles", this.state.files);
         try {
-          const res = await axios.post("http://localhost:5000/api/file", formData);
+          const res = await axios.post("http://localhost:5000/api/file/CreateStep", formData);
           console.log(res);
         } catch (ex) {
           console.log(ex);
@@ -74,7 +72,16 @@ export class AdminInput extends React.Component {
               console.log('SERVER RESPONSE: ', response)
           });
       }*/
-
+      onChange(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+        this.setState({ files: [...this.state.files, ...filesArr] });
+    
+      }
+      
+      removeFile(f) {
+           this.setState({ files: this.state.files.filter(x => x !== f) }); 
+      }
 
       render() {
     return (
@@ -138,7 +145,15 @@ export class AdminInput extends React.Component {
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
-                        <AttachDocument handler = {this.handler}></AttachDocument>
+                            <div style={AttachDocumentStyle}>
+                            <label className="custom-file-upload">
+                            <input type="file" multiple onChange={this.onChange} />
+                            <i className="fa fa-cloud-upload" /> Tilføj dokument
+                            </label>
+                            {this.state.files.map(x => 
+                            <div className="file-preview" onClick={this.removeFile.bind(this, x)}>{x.name}</div>
+                            )}
+                        </div>                        
                         </FormText>
                     </FormGroup>
                     <Button onClick={this.uploadToServer}>Submit</Button>

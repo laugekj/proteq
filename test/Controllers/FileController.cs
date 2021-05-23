@@ -35,25 +35,6 @@ namespace test.Controllers
             return _context.Files.Where(x => x.StepId == id).ToList();
         }
 
-
-        // /api/file/id
-        //[HttpGet("{id}", Name = "GetStep")]
-        //public IActionResult GetById(int id)
-        //{
-        //    // returns file
-        //    var step = _context.Steps.Find(id);
-        //    if (step == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-
-        //    // save locally (not relevant)
-        //    //System.IO.File.WriteAllBytes(step.FilePath, step.File);
-
-        //    return Ok();
-        //}
-
         //api/file/getFileDataById/id
         [HttpGet("{id}")]
         //[Route("[action]")]
@@ -72,52 +53,65 @@ namespace test.Controllers
 
 
         [HttpPost]
-        public ActionResult Post([FromForm] StepModel data)
+        [Route("[action]")]
+        public IActionResult CreateStep([FromForm] StepModel data)
         {
+            ///////////////////////////////////////////////////////////
             Console.WriteLine("--- Data --- ");
             Console.WriteLine("DesignId: " + data.DesignId);
             Console.WriteLine("Title: " + data.Title);
             Console.WriteLine("Body: " + data.Body);
             Console.WriteLine("Video: " + data.Video);
-            Console.WriteLine("FileName: " + data.FileName);
-            Console.WriteLine("FileType: " + data.type);
+            foreach (var formFile in data.FormFiles)
+            {
+                if (formFile.Length > 0)
+                {
+                    Console.WriteLine(formFile.FileName + ", " + formFile.ContentType);
+                }
+            }
+            Console.WriteLine("----------------------");
+            ///////////////////////////////////////////////////////////
 
             try
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", data.FileName);
-
-                using (Stream stream = new FileStream(path, FileMode.Create))
-                {
-                    data.FormFile.CopyTo(stream);
-
-                }
-                // save online 
-
-
                 Step step = new Step();
-                Console.WriteLine("1. init file...");
-                FileModel file = new FileModel();
+                
 
-                byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
-                Console.WriteLine("2. input file...");
-                //file.Id = _context.Files.Any() ? _context.Files.Max(p => p.Id) + 1 : 1;
-                file.StepId = step.Id;
-                file.Step = step;
-                file.FileData = fileToBytes;
-                file.FileType = data.type;
+                string path;
+                foreach (var formFile in data.FormFiles)
+                {
+                    if (formFile.Length > 0)
+                    {
+                        path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", formFile.FileName);
 
-                step.DesignId = data.DesignId;
+                        using (Stream stream = new FileStream(path, FileMode.Create))
+                        {
+                            formFile.CopyTo(stream);
+                        }
+                        FileModel file = new FileModel();
+                        byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
+                        file.StepId = step.Id;
+                        file.Step = step;
+                        file.FileName = formFile.FileName;
+                        file.FileData = fileToBytes;
+                        file.FileType = formFile.ContentType;
+                        _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
+                        step.Files.Add(file);
+                    }
+                }
+                
+                int tmp_DesignId;
+                bool success = Int32.TryParse(data.DesignId.ToString(), out tmp_DesignId);
+                if (success) step.DesignId = tmp_DesignId;
+                if (!success) step.DesignId = 0; // default
+                
                 step.Title = data.Title;
                 step.Body = data.Body;
                 step.Video = data.Video;
 
-                _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
-
-                step.Files.Add(file);
-
                 _context.Steps.Add(step);
                 _context.SaveChanges();
-
+                Console.WriteLine("Step has been successfully created!");
                 return StatusCode(StatusCodes.Status201Created);
             }
             catch (Exception e)
