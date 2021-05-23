@@ -19,6 +19,7 @@ import {AdminInput} from './components/Formatted_Design/AdminInput';
 import Design2 from './components/Formatted_Design/Design2';
 import StepStep from './components/Steps/StepStep';
 import { UploadForm } from './components/Formatted_Design/UploadForm';
+import { DownloadFile } from './components/DownloadFile';
 export default function App(){
 
     return (
@@ -35,6 +36,7 @@ export default function App(){
             <Route path='/requestresetpassword' component={RequestResetPassword} />
             <Route path='/resetpassword' component={ResetPassword} />
             <Route path='/logout' component={Logout} />
+            <Route path='/downloadFile' component={DownloadFile} />
             <Route path='/design1' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
             <Route path='/design2' component={Design2} />
