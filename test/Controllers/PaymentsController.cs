@@ -147,7 +147,6 @@ namespace test.Controllers
       }
     }
 
-
     private string retrievePaymentTokenFromURL(string URL) 
     {
       // http://your-website.com/success?XXXXX-paymentToken-XXXXX

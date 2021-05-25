@@ -2,6 +2,7 @@ import { Typography, Container, Grid, List, ListItem, ListItemText } from '@mate
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import axios from "axios";
+import Dropdown from 'react-bootstrap/Dropdown'
 
 import './AdminInput.css';
 require('./AttachDocumentStyle.css');
@@ -13,29 +14,56 @@ const AttachDocumentStyle = {
   };
 
 export class AdminInput extends React.Component {
-    constructor() {
-        super();
+    constructor(probs) {
+        super(probs);
         
         this.state = {
+            id: -1,
             designId: 0,
-          };
-        this.state = {
             header: "",
-        };
-        this.state = {
             body: "",
-        };
-        this.state = {
             video: "",
-        };
-        this.state = {
             files: [],
-        };
+          };
 
         this.uploadToServer = this.uploadToServer.bind(this);
         this.onChange = this.onChange.bind(this);
-
+        this.getStep = this.getStep.bind(this);
       }
+      
+      componentDidMount() {
+          this.getStep();
+          
+      }
+
+        getStep() {
+            const urlstring = window.location.href;
+            this.setState({id: urlstring.split('?')[1]})
+
+            fetch('api/file/' + this.state.id, { method: 'GET' }).then(response => {
+            return response.json();
+        })
+        .then((responseJson) => {
+            console.log(responseJson.body)
+            this.setState({header: responseJson.title, body: responseJson.body});
+            console.log(this.state.header)
+            console.log(urlstring);
+            console.log(this.state.id);
+        });
+
+     }
+
+     
+     submit(){
+        
+         if(this.state.id > -1) {
+             console.log("Editing step")
+         }
+         else{
+             console.log("Creating step")
+         }
+         
+     }
 
 
       uploadToServer = async (e) => {
@@ -72,6 +100,7 @@ export class AdminInput extends React.Component {
               console.log('SERVER RESPONSE: ', response)
           });
       }*/
+
       onChange(e) {
         var files = e.target.files;
         var filesArr = Array.prototype.slice.call(files);
@@ -82,10 +111,12 @@ export class AdminInput extends React.Component {
       removeFile(f) {
            this.setState({ files: this.state.files.filter(x => x !== f) }); 
       }
-
+      
       render() {
     return (
         <Container>
+            <Button onClick={e => this.getStep()}>test</Button>
+            <h1>{this.props.title}</h1>
         <Grid
             direction="column"
             justify="flex-start"
@@ -111,14 +142,7 @@ export class AdminInput extends React.Component {
                     </FormGroup>
                     <Row form>
                         <Col md={6}>
-                            <FormGroup>
-                                <Label for="bulletPoint">Bulletpoint</Label>
-                                <Input 
-                                id="bulletPoint" 
-                                placeholder="Input one bulletpoint at a time"
-                                value={this.state.point}
-                                />
-                            </FormGroup>
+                            
                             <FormGroup>
                                 <Label for="videoLink">Videolink</Label>
                                 <Input 
@@ -130,7 +154,7 @@ export class AdminInput extends React.Component {
                         </Col>
                         <Col md={1}>
                             <Label id= "invisLabel" for="positionOfButton">Knap</Label>
-                            <Button id="addBulletPoint">Add</Button>
+                         
                         </Col>
                     </Row>
                     <FormGroup>
@@ -156,7 +180,7 @@ export class AdminInput extends React.Component {
                         </div>                        
                         </FormText>
                     </FormGroup>
-                    <Button onClick={this.uploadToServer}>Submit</Button>
+                    <Button onClick={e => this.submit()}>Submit</Button>
                     </Form>
             
 
