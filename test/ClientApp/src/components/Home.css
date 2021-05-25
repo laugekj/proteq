@@ -1,6 +1,7 @@
 .body{
     margin: 0;
-   
+    overflow: scroll !important;
+    font-family: 'Lato', sans-serif;
     
 }
 
@@ -38,10 +39,21 @@
     margin-left: 15px;
     padding-top: 15px;
     padding-bottom: 15px;
+    font-family: 'Lato', sans-serif !important;
 }
 
+.tomBox{
+    height: 150px;
+}
+
+#guideKnap{
+    margin-right: 50%;
+}
 .main-text{
-    margin: 15px;
-    margin-bottom: 150px !important;
- 
+    margin-left: 55%;
+    width: 40%;
+    display: flex;
+    justify-content: right;
+    line-height: 20px;
+    
 }
