@@ -12,6 +12,7 @@ export function DownloadFile() {
         if (getFile != null) {
             const foundFile = JSON.parse(getFile);
             setFile(foundFile);
+            
         }
     }, []);
     function getFiles(id) {
@@ -19,7 +20,7 @@ export function DownloadFile() {
         fetch('api/file/' + 45, { method: 'GET' }).then(response => {
             return response.blob();
             })
-                .then((responseJson) => {
+            .then((responseJson) => {
                     setFile(responseJson);
                     localStorage.setItem('file', JSON.stringify(responseJson))
                 });
@@ -32,30 +33,44 @@ export function DownloadFile() {
                     let url = window.URL.createObjectURL(blob);
                     let a = document.createElement('a');
                     a.href = url;
-                    a.download = 'employees.json';
-                    a.click();
+                    a.download = url;
+                    a.click();                 
                 });
-                window.location.href = response.url;
+                
             });
     }
-    
 
+    //function getAllFiles({ serverfiles }) {
+
+    //    const [files, setFiles] = useState(serverfiles);
+
+    //    const onComplete = (inputFile) => {
+    //        const newFiles = [];
+    //        files.forEach((file) => {
+    //            if (file.id === inputFile.id) {
+    //                file.completed = !file.completed;
+    //                // Do some database stuff
+    //            }
+    //            newFiles.push(file);
+    //        });
+    //        setFiles(newFiles);
+    //    };
+    //}
     
 return ( 
     <Container component="main" maxWidth="xs">
         <h1>Download filer</h1>
-         <DownloadLink
+   
+            <DownloadLink
             label="Download fil"
-            filename="file.txt"
             exportFile={() => Promise.resolve(displayFiles())}
         />
+         
         
         <Button
-            //  type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            // className={classes.submit}
             onClick={getFiles}> Hent filer
         </Button>
     </Container>

@@ -29,12 +29,12 @@ namespace test.Controllers
             return _context.Steps.ToList();
         }
 
-        
-        // [HttpGet]
-        // public ActionResult<List<FileModel>> GetAllFiles(int id)
-        // {
-        //     return _context.Files.Where(x => x.StepId == id).ToList();
-        // }
+
+        //[HttpGet]
+        //public ActionResult<List<FileModel>> GetAllFiles(int id)
+        //{
+        //    return _context.Files.Where(x => x.StepId == id).ToList();
+        //}
 
         //api/file/getFileDataById/id
         [HttpGet("{id}")]
@@ -48,7 +48,6 @@ namespace test.Controllers
                 return NotFound();
             }
             return File(file.FileData, file.FileType);
-            //return file;
         }
 
 
