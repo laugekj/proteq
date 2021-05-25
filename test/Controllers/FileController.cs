@@ -30,25 +30,52 @@ namespace test.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult<List<FileModel>> GetAllFiles(int id)
+        [HttpGet("{id}")]
+        public IEnumerable<ActionResult> GetAllFiles(int id)
+        {
+            var files = _context.Files.Where(x => x.StepId == id).ToList();
+           
+            foreach (FileModel file in files)
+            {
+                yield return File(file.FileData, file.FileType);
+            }
+            yield break;
+        }
+
+        ////api/file/getFileDataById/id
+        //[HttpGet("{id}")]
+        ////[Route("[action]")]
+        //public IActionResult GetFileDataById(int id, List<int> prevIds = null)
         //{
-        //    return _context.Files.Where(x => x.StepId == id).ToList();
+        //    FileModel file = new FileModel();
+        //    if (prevIds != null)
+        //    {
+        //        file = _context.Files.FirstOrDefault(x => x.StepId == id && prevIds.FirstOrDefault(y => y == x.Id) == default);
+        //    }
+        //    else
+        //    {
+        //        file = _context.Files.FirstOrDefault(x => x.StepId == id);
+        //    }
+
+        //    if (file == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return File(file.FileData, file.FileType);
         //}
 
-        //api/file/getFileDataById/id
-        [HttpGet("{id}")]
-        //[Route("[action]")]
-        public IActionResult GetFileDataById(int id)
-        {
-            var file = _context.Files.FirstOrDefault(x => x.StepId == id);
-            var v =  _context.Steps.ToList();
-            if (file == null)
-            {
-                return NotFound();
-            }
-            return File(file.FileData, file.FileType);
-        }
+        //[HttpGet("{id}")]
+        ////[Route("[action]")]
+        //public IActionResult GetFileDataById(int id)
+        //{
+        //    var file = _context.Files.FirstOrDefault(x => x.StepId == id);
+        //    var v = _context.Steps.ToList();
+        //    if (file == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return File(file.FileData, file.FileType);
+        //}
 
 
 
