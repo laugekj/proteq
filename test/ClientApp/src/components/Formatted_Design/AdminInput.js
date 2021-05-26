@@ -21,6 +21,7 @@ export function AdminInput() {
     const [ video, setVideo] = useState("")
     const [ files, setFiles] = useState([])
 
+
     useEffect(()=>{
         getStep();
     }, [id]);
@@ -52,7 +53,7 @@ export function AdminInput() {
     }
 
 
-    function uploadToServer (){
+      function uploadToServer (){
         console.log("uploadToServer: ", files);
         const formData = new FormData();
         formData.append("designId", designId);
