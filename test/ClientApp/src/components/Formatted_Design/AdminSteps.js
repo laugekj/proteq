@@ -9,7 +9,12 @@ export class AdminSteps extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { steps: [], loading: true };
+        this.state = { 
+            steps: [],
+             loading: true,
+             isLoggedIn: false,
+             isAdmin: false
+             };
 
         this.populateStepsData = this.populateStepsData.bind(this);
         this.forceRefetch = this.forceRefetch.bind(this);
@@ -19,17 +24,15 @@ export class AdminSteps extends Component {
 
     componentDidMount() {
         this.populateStepsData(false);
+
         var loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
+            this.setState({isLoggedIn: true});
             var foundUser = JSON.parse(loggedInUser);
-            var isAdmin = JSON.parse(foundUser.isAdmin)
-            if (!isAdmin) {
-              window.location.href = '/dashboard'
-            }
-        } else {
-            window.location.href = "/sign-in";
-        }
+            var foundUserIsAdmin = JSON.parse(foundUser.isAdmin);
+            this.setState({isAdmin: foundUserIsAdmin});
     }
+}
 
 
     forceRefetch() {
@@ -75,6 +78,9 @@ export class AdminSteps extends Component {
     }
 
     renderStepsTable(steps) {
+        if (this.state.isLoggedIn) {
+            if (this.state.isAdmin) {  
+                console.log("Du er admin og har adgang til siden")
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -119,12 +125,27 @@ export class AdminSteps extends Component {
                 </tbody>
             </table>
         );
+                    } else {
+                        console.log("Du har ikke adgang til siden")
+                        return (
+                            <div>Du har ikke adgang til siden.</div>
+                        );
+                    }
+                } else {
+                    console.log("1. du er ikke logget ind")
+                    return (
+                        
+                        <div>Du er ikke logget ind</div>
+                    );
+                }
         
     }
 
     
  
     render() {
+        if (this.state.isLoggedIn) {
+            if (this.state.isAdmin){ 
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : this.renderStepsTable(this.state.steps);
@@ -136,7 +157,17 @@ export class AdminSteps extends Component {
             </div>
             
         );
+    } else {
+        return (
+            <div>Du har ikke adgang til siden.</div>
+        );
+    } 
+} else {
+    return (
+        <div>Du er ikke logget ind</div>
+    );
     }
+}
 
 
 }
