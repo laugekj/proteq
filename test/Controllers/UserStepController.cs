@@ -80,11 +80,11 @@ namespace test.Controllers
             steps.ForEach(s => {
                 if (completedSteps.Any(c => c.StepId == s.Id))
                 {
-                    Console.WriteLine("Set til true");
                     s.Completed = true;
                 }
             });
-            return steps;
+            
+            return steps.OrderBy(x => x.StepNumber).ToList();
         }
     }
 }

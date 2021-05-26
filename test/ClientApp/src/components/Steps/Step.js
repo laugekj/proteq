@@ -20,7 +20,7 @@ function Step({ step, onComplete }) {
       onClick={completeMe}
       className={"step" + (step.completed ? " completed" : "")}
     >
-      {step.id}
+      {step.stepNumber}
     </div>
   );
 }
