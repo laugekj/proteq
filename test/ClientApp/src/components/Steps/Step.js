@@ -9,6 +9,8 @@ function Step({ step, onComplete }) {
     
   }
 
+
+
   function onClickStep() {
       //TODO: fetch step from server and redirect
 

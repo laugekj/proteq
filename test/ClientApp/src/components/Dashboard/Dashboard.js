@@ -69,12 +69,10 @@ export default function Dashboard() {
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
                 </center>
             
-                <h2 className="stepsInfo">Du er nået x langt med dine steps</h2>
+                <h2 className="stepsInfo">Se dine fremskridt her:</h2>
                 {console.log(steps)}
             
-                <div className="stepsContainer"> 
-                   <StepStep serversteps={steps} /> 
-                </div>
+                
                 <Container maxWidth="sm">
                     <Box display="flex" alignItems="center">
                         <Box width="100%" mr={1}>
@@ -88,7 +86,9 @@ export default function Dashboard() {
                     </Box>
                 </Container>
                 
-
+                <div className="stepsContainer"> 
+                   <StepStep serversteps={steps} /> 
+                </div>
                         
                 
                         

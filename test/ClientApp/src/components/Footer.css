@@ -54,11 +54,14 @@ ul {
 .pt-4 {
     margin: 0px !important;
     padding: 0px !important;
-    position: fixed;
+    position: absolute;
     padding-top: 2px;
     overflow: auto;
     left:0;
     bottom:0;
     right:0;
+
+    height: 100px;
+    
     
 }

@@ -16,7 +16,8 @@ body {
 .stepsContainer {
     padding: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .stepsInfo {
@@ -24,5 +25,9 @@ body {
     display: flex;
     justify-content: center;
     font-family: 'Playfair Display', serif;
+}
+
+.stepper {
+    padding-right: 10px;
 }
 

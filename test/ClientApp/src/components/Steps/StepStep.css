@@ -1,6 +1,10 @@
 .stepper {
-    display: flex;
-    flex-direction: row;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-bottom: 20px !important;
+
   }
   
   .stepper > .step {
