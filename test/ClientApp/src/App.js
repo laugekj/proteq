@@ -21,6 +21,7 @@ import StepStep from './components/Steps/StepStep';
 import { UploadForm } from './components/Formatted_Design/UploadForm';
 import { AdminSteps } from './components/Formatted_Design/AdminSteps';
 import { FilesToDownload } from './components/Steps/FilesToDownload';
+import   DashboardAdmin  from './components/AdminDashboard/DashboardAdmin';
 
 export default function App(){
 
@@ -45,6 +46,8 @@ export default function App(){
             <Route path='/test' component={UploadForm} />
             <Route path='/adminsteps' component={AdminSteps} />
             <Route path='/download' component={FilesToDownload} />
+            <Route path='/dashboardAdmin' component={DashboardAdmin} />
+
 
 
             

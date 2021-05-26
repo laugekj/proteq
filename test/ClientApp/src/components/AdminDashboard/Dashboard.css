@@ -1,0 +1,28 @@
+
+
+.overskrift {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: xx-large;
+    padding: 20px;
+   
+}
+
+body {
+    background-color: #CBBFBB !important;
+    margin-bottom: 50px;
+}
+
+.stepsContainer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.stepsInfo {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+}
+

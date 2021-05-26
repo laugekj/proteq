@@ -80,24 +80,20 @@ export default function SignIn() {
     }
   }, []);
   
-  // logout the user
-  const handleLogout = () => {
-    setUser({});
-    setEmail("");
-    setPassword("");
-    localStorage.clear();
-    window.location.reload();
-  };
-
 
   // if there's a user show the message below
   if (user) {
+    var isAdmin = JSON.parse(user.isAdmin)
+  if (isAdmin) {
+   
+    window.location.href = '/dashboardAdmin'
+  }
     var hasPaid = JSON.parse(user.hasPaid)
-  if (hasPaid) {
+  if (hasPaid && !isAdmin) {
     // redirect user to dashboard
     window.location.href = '/dashboard'
     }
-    else {
+    else if (!hasPaid && !isAdmin) {
     // redirect user to checkoutRedirect
     window.location.href = '/CheckoutRedirect'
     }
@@ -200,7 +196,6 @@ export default function SignIn() {
         } else {
             // set the state of the user
             setUser(responseJson)
-            console.log(responseJson)
             // store the user in localStorage
             localStorage.setItem('user', JSON.stringify(responseJson))
           }
