@@ -44,19 +44,16 @@ export class AdminInput extends React.Component {
     }
     }
 
-      getStep() {
+      getStep = async () => {
+          console.log("YO JEG BLIR KALDT");
           const urlstring = window.location.href;
-          this.setState({id: urlstring.split('?')[1]})
+          await this.setState({id: urlstring.split('?')[1]})
 
           fetch('api/file/' + this.state.id, { method: 'GET' }).then(response => {
           return response.json();
       })
       .then((responseJson) => {
-          console.log(responseJson.body)
           this.setState({header: responseJson.title, body: responseJson.body});
-          console.log(this.state.header)
-          console.log(urlstring);
-          console.log(this.state.id);
       });
 
    }
@@ -94,19 +91,6 @@ export class AdminInput extends React.Component {
         }
       }
 
-      /*uploadToServer = () => {
-          const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video, Files: this.state.files}
-          console.log('[DEVELOPER MODE] UPLOAD TO SERVER FUNCTION CALLED!')
-          fetch('api/file/uploadfile', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data)
-          }).then(response => {
-              console.log('SERVER RESPONSE: ', response)
-          });
-      }*/
       onChange(e) {
         var files = e.target.files;
         var filesArr = Array.prototype.slice.call(files);
@@ -123,8 +107,6 @@ export class AdminInput extends React.Component {
             if (this.state.isAdmin){   
     return (
         <Container>
-            <Button onClick={e => this.getStep()}>test</Button> 
-            <h1>{this.props.title}</h1>
         <Grid
             direction="column"
             justify="flex-start"
