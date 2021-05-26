@@ -13,7 +13,7 @@ export function FilesToDownload() {
     
 
     function getAllFilesAssociatedToStepId(stepId) {
-        fetch('api/download/' + stepId, {
+        fetch('api/download/GetAllFilesFromStepId/' + stepId, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export function FilesToDownload() {
                 json.forEach(obj => {
                     console.log(obj);
                     setMyFileNames( arr => [...arr, `${obj.fileName}`]);
-                    setMyFilesId(arr => [...arr, `${obj.myFilesId}`]);
+                    setMyFilesId(arr => [...arr, `${obj.id}`]);
                 }));
 
                 
@@ -57,15 +57,10 @@ export function FilesToDownload() {
 return ( 
     <Container component="main" maxWidth="xs">
         <div>{myFileNames.map((fileName, index) =>
-        <p onClick={e => requestFileDownload(fileName, index)}>{ fileName }</p>
+        <Button onClick={e => requestFileDownload(fileName, index)}>Hent { fileName }</Button>
         )}
         </div>
-
-            <DownloadLink
-            label="Download fil"
-            exportFile={() => Promise.resolve(e => downloadFile(45))}
-        />
-         
+        
     </Container>
     )
 }

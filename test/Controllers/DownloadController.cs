@@ -23,9 +23,9 @@ namespace test.Controllers
         }
 
 
-
-        /*[HttpGet("{fileId}")]
-        [Route("[action]")]
+        //api/download/GetFileById/ + fileId
+        [HttpGet]
+        [Route("[action]/{fileId}")]
         public IActionResult GetFileById(int fileId)
         {
             var file = _context.Files.FirstOrDefault(x => x.Id == fileId);
@@ -35,14 +35,15 @@ namespace test.Controllers
                 return NotFound();
             }
             return File(file.FileData, file.FileType);
-        }*/
+        }
         
-        ///api/download
-        [HttpGet("{stepId}")] 
-        //[Route("[action]")]
+        //api/download/GetAllFilesFromStepId/ + stepId
+        [HttpGet] 
+        [Route("[action]/{stepId}")]
         public List<FileModel> GetAllFilesFromStepId(int stepId)
         {
-            Console.WriteLine("[DEVELOPER MODE] StepId: " + stepId);
+        
+        Console.WriteLine("[DEVELOPER MODE] StepId: " + stepId);
             
         // 1. Find files associated with stepId:
         var files = _context.Files.Where(file => file.StepId == stepId).ToList();
