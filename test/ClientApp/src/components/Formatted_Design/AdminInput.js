@@ -53,7 +53,13 @@ export class AdminInput extends React.Component {
           return response.json();
       })
       .then((responseJson) => {
-          this.setState({header: responseJson.title, body: responseJson.body});
+          this.setState({
+            header: responseJson.title,
+            body: responseJson.body,
+            designId: responseJson.designId,   
+            video: responseJson.video
+            
+            });
       });
 
    }
