@@ -35,9 +35,9 @@ export class FetchUsers extends Component {
         if (loggedInUser) {
             this.setState({isLoggedIn: true});
             var foundUser = JSON.parse(loggedInUser);
-            var foundUserIsAdmin = JSON.parse(foundUser.isAdmin)
+            var foundUserIsAdmin = JSON.parse(foundUser.isAdmin);
             this.setState({isAdmin: foundUserIsAdmin});
-        }
+    }
 
     }
 
@@ -137,13 +137,11 @@ export class FetchUsers extends Component {
             </table>
         );
     }   else {
-    window.location.href = '/dashboard'
     return (
         <div>Du har ikke adgang til siden.</div>
     );
 }  
 } else {
-    window.location.href = "/sign-in";
     return (
         <div>Du er ikke logget ind</div>
     );
@@ -167,13 +165,11 @@ export class FetchUsers extends Component {
         );
             }
             else {
-                window.location.href = '/dashboard'
                 return (
                     <div>Du har ikke adgang til siden.</div>
                 );
             }
         } else {
-            window.location.href = "/sign-in";
             return (
                 <div>Du er ikke logget ind</div>
             );
