@@ -20,6 +20,8 @@ import Design2 from './components/Formatted_Design/Design2';
 import StepStep from './components/Steps/StepStep';
 import { UploadForm } from './components/Formatted_Design/UploadForm';
 import { AdminSteps } from './components/Formatted_Design/AdminSteps';
+import { FilesToDownload } from './components/Steps/FilesToDownload';
+
 export default function App(){
 
     return (
@@ -42,6 +44,8 @@ export default function App(){
             <Route path='/stepper' component={StepStep} />
             <Route path='/test' component={UploadForm} />
             <Route path='/adminsteps' component={AdminSteps} />
+            <Route path='/download' component={FilesToDownload} />
+
 
             
       </Layout>
