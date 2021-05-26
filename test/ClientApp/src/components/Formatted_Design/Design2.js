@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Design2.css';
+import { FilesToDownload } from '../Steps/FilesToDownload';
 
 export default function Design2() {
     const [title, setTitle] = useState("Få styr på din GDPR - helt enkelt")

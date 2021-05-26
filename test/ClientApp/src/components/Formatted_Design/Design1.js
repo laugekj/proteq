@@ -1,6 +1,7 @@
 import { Typography, Container, Grid, List, ListItem, ListItemText, Button } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import HtmlRender from './Htmlrender';
+import { FilesToDownload } from '../Steps/FilesToDownload';
 
 export default function Design1() {
     //TODO: get title, body, list from server FETCH :D :D :D
@@ -89,6 +90,7 @@ export default function Design1() {
                         <HtmlRender htmlString={body} />
                     </Grid>
                 </Grid>
+                <FilesToDownload />
                 <Button onClick={CompleteStep}>Complete Step</Button>
             </Container>            
         );
@@ -99,8 +101,9 @@ export default function Design1() {
              <h2 class="design2underoverskrift">{subTitle}</h2>
              <h3 class="design2text">{body}</h3>
              <iframe class="video" width="600" height="350" src={video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-     
+             <FilesToDownload />
             </div>
+             
                  
                 
                         
