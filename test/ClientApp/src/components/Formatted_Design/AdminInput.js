@@ -37,14 +37,11 @@ export class AdminInput extends React.Component {
         
         var loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
+            this.setState({isLoggedIn: true});
             var foundUser = JSON.parse(loggedInUser);
-            var isAdmin = JSON.parse(foundUser.isAdmin)
-            if (!isAdmin) {
-              window.location.href = '/dashboard'
-            }
-        } else {
-            window.location.href = "/sign-in";
-        }
+            var foundUserIsAdmin = JSON.parse(foundUser.isAdmin);
+            this.setState({isAdmin: foundUserIsAdmin});
+    }
     }
 
       getStep() {
@@ -195,13 +192,11 @@ export class AdminInput extends React.Component {
         </Container>          
     );
 } else {
-    window.location.href = '/dashboard'
     return (
         <div>Du har ikke adgang til siden.</div>
     );
 } 
 } else {
-    window.location.href = "/sign-in";
     return (
         <div>Du er ikke logget ind</div>
     );
