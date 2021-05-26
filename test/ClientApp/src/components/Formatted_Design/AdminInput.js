@@ -1,5 +1,5 @@
 import { Typography, Container, Grid, List, ListItem, ListItemText } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const AttachDocumentStyle = {
     display: 'flex',
   };
 
-export default function AdminInput() {
+export function AdminInput() {
 
     const [ id, setId] = useState(-1)
     const [ designId, setDesignid] = useState(0)
@@ -21,19 +21,23 @@ export default function AdminInput() {
     const [ video, setVideo] = useState("")
     const [ files, setFiles] = useState([])
 
+    useEffect(()=>{
+        getStep();
+    }, [id]);
+    
     function getStep() {
         const urlstring = window.location.href;
-        this.setState({id: urlstring.split('?')[1]})
+        setId(urlstring.split('?')[1]);
 
-        fetch('api/file/' + this.state.id, { method: 'GET' }).then(response => {
+        fetch('api/file/' + id, { method: 'GET' }).then(response => {
         return response.json();
     })
     .then((responseJson) => {
-        console.log(responseJson.body)
-        this.setState({header: responseJson.title, body: responseJson.body});
-        console.log(this.state.header)
-        console.log(urlstring);
-        console.log(this.state.id);
+        setHeader(responseJson.title)
+        setBody(responseJson.body)
+        setDesignid(responseJson.designId)
+        setVideo(responseJson.video)
+        
     });
     }
 
@@ -46,19 +50,21 @@ export default function AdminInput() {
             console.log("Creating step")
         }
     }
-    function uploadToServer (){
-        console.log("uploadToServer: ", this.state.files);
-        const formData = new FormData();
-        formData.append("designId", this.state.designId);
-        formData.append("title", this.state.header);
-        formData.append("body", this.state.body);
-        formData.append("video", this.state.video);
 
-        for (let i = 0; i < this.state.files.length; i++) {
-            formData.append("formFiles", this.state.files[i]);
+
+    function uploadToServer (){
+        console.log("uploadToServer: ", files);
+        const formData = new FormData();
+        formData.append("designId", designId);
+        formData.append("title", header);
+        formData.append("body", body);
+        formData.append("video", video);
+
+        for (let i = 0; i < files.length; i++) {
+            formData.append("formFiles", files[i]);
         }
 
-        formData.append("formFiles", this.state.files);
+        formData.append("formFiles", files);
         try {
           const res =  axios.post("http://localhost:5000/api/file/CreateStep", formData);
           console.log(res);
@@ -69,16 +75,18 @@ export default function AdminInput() {
       function onChange(e) {
         setFiles(e.target.files); 
         var filesArr = Array.prototype.slice.call(files);
-        this.setState({ files: [...this.state.files, ...filesArr] });
+        setFiles([...files, ...filesArr])
+        //this.setState({ files: [...this.state.files, ...filesArr] });
     
       }
       
       function removeFile(f) {
-           this.setState({ files: this.state.files.filter(x => x !== f) }); 
+          setFiles(files.filter(x => x !== f))
+           //this.setState({ files: this.state.files.filter(x => x !== f) }); 
       }
       return (
         <Container>
-            <Button onClick={e => this.getStep()}>test</Button> 
+           
           
         <Grid
             direction="column"
@@ -89,7 +97,7 @@ export default function AdminInput() {
                         <Label for="exampleHeader">Header</Label>
                         <Input 
                         value={header} 
-                        onChange={e =>  this.setState({ header: e.target.value})} 
+                        onChange={(e) =>  setHeader(e.target.value)}
                         name="header" 
                         id="exampleHeader" 
                         placeholder="Sæt din header" />
@@ -101,7 +109,7 @@ export default function AdminInput() {
                         name="text" 
                         id="bodyText"
                         value={body} 
-                        onChange={e => this.setState({ body: e.target.value})}  />
+                        onChange={(e) => setBody(e.target.value)}  />
                     </FormGroup>
                     <Row form>
                         <Col md={6}>
@@ -112,7 +120,7 @@ export default function AdminInput() {
                                 id="videoLink" 
                                 placeholder="Indsæt videolink"
                                 value={video}
-                                onChange={e => this.setState({ video: e.target.value})} />
+                                onChange={e => setVideo(e.target.value)} />
                             </FormGroup>
                         </Col>
                         <Col md={1}>
@@ -138,7 +146,7 @@ export default function AdminInput() {
                             <i className="fa fa-cloud-upload" /> Tilføj dokument
                             </label>
                             {files.map(x => 
-                            <div className="file-preview" onClick={this.removeFile.bind(this, x)}>{x.name}</div>
+                            <div className="file-preview" onClick={removeFile.bind(this, x)}>{x.name}</div>
                             )}
                         </div>                        
                         </FormText>
