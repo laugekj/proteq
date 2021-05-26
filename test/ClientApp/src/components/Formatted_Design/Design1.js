@@ -5,12 +5,13 @@ import { FilesToDownload } from '../Steps/FilesToDownload';
 
 export default function Design1() {
     //TODO: get title, body, list from server FETCH :D :D :D
+    const [step, setStep] = useState([])
     const [title, setTitle] = useState("Title") 
     const [body, setBody] = useState("Body")
     const [subTitle, setSubTitle] = useState("Fakta")
     const [video, setVideo] = useState("https://www.youtube.com/embed/u2lsSaDrjfA")
     const [user, setUser] = useState()
-    const designId = 1;
+   
 
 
     const urlstring = window.location.href;
@@ -21,8 +22,9 @@ export default function Design1() {
             return response.json();
         })
         .then((responseJson) => {
-           setTitle(responseJson.title);
-           setBody(responseJson.body)
+           setStep(responseJson);
+         
+           
            
         });
      }
@@ -66,10 +68,15 @@ export default function Design1() {
           
     }
 
+
 // if user is not logged in
 if (user) {
 
     if (designId == 1) {
+
+   
+    if (step.designId == 1) {
+
         return (
             <Container>
                 <Grid 
@@ -102,7 +109,9 @@ if (user) {
              <h2 class="design2underoverskrift">{subTitle}</h2>
              <h3 class="design2text">{body}</h3>
              <iframe class="video" width="600" height="350" src={video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             <Button onClick={CompleteStep}>Complete Step</Button>
              <FilesToDownload />
+
             </div>
              
                  

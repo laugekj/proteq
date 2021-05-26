@@ -50,30 +50,30 @@ export function Profile() {
             <div>
                 {
                     <React.Fragment>
-                        <div class="body">
-                        <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
-                        <h2 class="underoverskrift">Her kan du administrere dine oplysninger og din konto </h2>
+                        <div className="body">
+                        <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+                        <h2 className="underoverskrift">Her kan du administrere dine oplysninger og din konto </h2>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)" }}>
-                        <div class="dineoplysninger"> 
-                        <h3 class="oplysninger"> Dine oplysninger</h3>
-                        <h4 class="rubrik"> Navn</h4>
+                        <div className="dineoplysninger"> 
+                        <h3 className="oplysninger"> Dine oplysninger</h3>
+                        <h4 className="rubrik"> Navn</h4>
             
-            <div class="profilredigering">
+            <div className="profilredigering">
                 <Textfield value={user.firstname + " " + user.lastname} />
                 </div>
              
-            <h4 class="rubrik"> Virksomhed</h4>
-            <div class="profilredigering">
+            <h4 className="rubrik"> Virksomhed</h4>
+            <div className="profilredigering">
                   <Textfield value={user.company}/>
                 </div>
                 
-            <h4 class="rubrik"> E-mail</h4>
-            <div class="profilredigering">
+            <h4 className="rubrik"> E-mail</h4>
+            <div className="profilredigering">
             <Textfield  value={user.email}/>
              </div>
 
-             <h4 class="rubrik"> Mobil nr.</h4>
-             <div class="profilredigering">
+             <h4 className="rubrik"> Mobil nr.</h4>
+             <div className="profilredigering">
                 <Textfield value={user.phone}/>
                 </div>
              
@@ -81,7 +81,7 @@ export function Profile() {
              <Button variant="primary" classname="knap" onClick={deleteUser}>Slet min konto</Button>{' '}
              <Button variant="primary" classname="knap" onClick={handleLogout}>Log Ud</Button>{' '}
              <EditPopover 
-                        class="edituser" onCloseFunc={getUser} user={user}>
+                        className="edituser" onCloseFunc={getUser} user={user}>
              </EditPopover>
              </div>
              </div>

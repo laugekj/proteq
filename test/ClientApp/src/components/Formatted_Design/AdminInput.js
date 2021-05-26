@@ -187,7 +187,7 @@ export class AdminInput extends React.Component {
             
 
             </Grid>
-            <iframe class="video" width="600" height="350" src={this.state.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
         </Container>          
     );
 }

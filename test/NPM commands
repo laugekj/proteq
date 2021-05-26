@@ -13,6 +13,7 @@ NPM hører til Frontend, så der må kun installeres inde i frontend './ClientAp
 8. npm install @stripe/stripe-js
 9. npm install axios
 10. npm install react-countdown --save
+11. npm install react-download-link
 
 
 
