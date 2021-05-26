@@ -58,10 +58,10 @@ ul {
     padding-top: 2px;
     overflow: auto;
     left:0;
-    bottom:0;
+    bottom:0 !important;
     right:0;
 
-    height: 100px;
+    
     
     
 }

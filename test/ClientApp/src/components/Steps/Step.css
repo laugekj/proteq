@@ -1,9 +1,3 @@
-.body{
-  padding-bottom: 100px;
-  overflow: scroll !important;
-  position: relative;
-  font-family: 'Lato', sans-serif;
-}
 
 .flip-card {
   background-color: transparent;
