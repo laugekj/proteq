@@ -22,7 +22,7 @@ import { UploadForm } from './components/Formatted_Design/UploadForm';
 import { AdminSteps } from './components/Formatted_Design/AdminSteps';
 import { FilesToDownload } from './components/Steps/FilesToDownload';
 import   DashboardAdmin  from './components/AdminDashboard/DashboardAdmin';
-import CheckLogin from './components/LoginSession/CheckLogin';
+
 export default function App(){
 
     return (
@@ -47,7 +47,6 @@ export default function App(){
             <Route path='/adminsteps' component={AdminSteps} />
             <Route path='/download' component={FilesToDownload} />
             <Route path='/dashboardAdmin' component={DashboardAdmin} />
-            <Route path='/checkLogin' component={CheckLogin} />
 
 
 

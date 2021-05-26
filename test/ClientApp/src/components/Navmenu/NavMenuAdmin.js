@@ -2,12 +2,12 @@ import React, { Component, useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-import './Reset.css';
-import Logo from "./images/logo-enkel-gdpr.png"
+import './../Reset.css';
+import Logo from "./../images/logo-enkel-gdpr.png"
 
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+export class NavMenuAdmin extends Component {
+  static displayName = NavMenuAdmin.name;
 
   constructor (props) {
     super(props);
@@ -41,19 +41,16 @@ export class NavMenu extends Component {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/">Home</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/dashboardAdmin">Startside</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/fetch-users">AdminCrud</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/admininput">Opret et trin</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/adminsteps">AdminSteps</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/adminsteps">Se trins</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/sign-in">Sign In</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/sign-up">Sign Up</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/fetch-users">Se brugere</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="nav-text" to="/Profile">Profil</NavLink>

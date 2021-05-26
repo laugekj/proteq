@@ -12,7 +12,10 @@ export class FetchUsers extends Component {
         super(props);
         this.state = { 
             users: [], 
-            loading: true
+            loading: true,
+            isLoggedIn: false,
+            isAdmin: false
+
                 };
 
         this.populateUserData = this.populateUserData.bind(this);
@@ -27,16 +30,14 @@ export class FetchUsers extends Component {
     componentDidMount() {
         this.populateUserData(false);
         
+
         var loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
+            this.setState({isLoggedIn: true});
             var foundUser = JSON.parse(loggedInUser);
-            var isAdmin = JSON.parse(foundUser.isAdmin)
-            if (!isAdmin) {
-              window.location.href = '/dashboard'
-            }
-        } else {
-            window.location.href = "/sign-in";
-        }
+            var foundUserIsAdmin = JSON.parse(foundUser.isAdmin);
+            this.setState({isAdmin: foundUserIsAdmin});
+    }
 
     }
 
@@ -75,6 +76,8 @@ export class FetchUsers extends Component {
 
     
     renderUsersTable(users) {
+        if (this.state.isLoggedIn) {
+            if (this.state.isAdmin){     
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -133,12 +136,23 @@ export class FetchUsers extends Component {
                 </tbody>
             </table>
         );
-        
+    }   else {
+    return (
+        <div>Du har ikke adgang til siden.</div>
+    );
+}  
+} else {
+    return (
+        <div>Du er ikke logget ind</div>
+    );
     }
+}
 
     
     render() {
-        let contents = this.state.loading
+        if (this.state.isLoggedIn) {
+            if (this.state.isAdmin) {
+            let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : this.renderUsersTable(this.state.users);
 
@@ -149,6 +163,18 @@ export class FetchUsers extends Component {
                 {contents}
             </div>
         );
+            }
+            else {
+                return (
+                    <div>Du har ikke adgang til siden.</div>
+                );
+            }
+        } else {
+            return (
+                <div>Du er ikke logget ind</div>
+            );
+            }
+
     }
 
 }
