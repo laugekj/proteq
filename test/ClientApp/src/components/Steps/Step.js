@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Step.css";
 function Step({ step, onComplete }) {
+
+
+
+ 
+
   function completeMe() {
     onComplete(step);
     window.location.href = '/step?' + step.id
@@ -14,6 +19,8 @@ function Step({ step, onComplete }) {
       window.location.href = '/step' + step.id
   }
 
+
+
   return (
     <div
       onClick={completeMe}
@@ -23,4 +30,5 @@ function Step({ step, onComplete }) {
     </div>
   );
 }
+
 export default Step;

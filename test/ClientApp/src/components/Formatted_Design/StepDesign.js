@@ -8,6 +8,7 @@ export default function StepDesign() {
     const [body, setBody] = useState("Body")
     const [subTitle, setSubTitle] = useState("Fakta")
     const [video, setVideo] = useState("https://www.youtube.com/embed/u2lsSaDrjfA")
+    const [user, setUser] = useState()
     const designId = 1;
 
 
@@ -26,13 +27,44 @@ export default function StepDesign() {
      }
 
      useEffect(()=> {
+        // get STEP
         getStep()
 
-     });
+        // get USER
+        const loggedInUser = localStorage.getItem("user");
+        console.log("const loggedInUser:")
+        if (loggedInUser) {
+          const foundUser = JSON.parse(loggedInUser);
+          setUser(foundUser);
+        }
+
+     }, []);
    
      function nextStep() {
-        window.location.href = '/step?' + (parseInt(id) + 1)
+        
         // TODO: put step in UserStep table as completed
+  
+            const userStep = { UserId: user.id, StepId: id };
+            fetch('api/userstep', {
+              method: 'POST', // or 'PUT'
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(userStep),
+            }).then(response => {
+                console.log(response);
+                // 200 is "ok" (success)
+                if(response.status === 200) {
+                    console.log("Created userStep", userStep);
+                } else {
+                   // Error handling and
+                   // Delete the User from Users Table if the email already existed
+                
+                }
+        });
+
+       // window.location.href = '/dashboard'
+          
     }
    
     if (designId == 1) {

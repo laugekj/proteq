@@ -31,7 +31,7 @@ namespace test.Controllers
 
         // /api/file/getstep/id
         [HttpGet("{id}")]
-       // [Route("[action]")]
+       // [Route("[action]/{id}")]
         public ActionResult<Step> GetStep(int id)
         {
             return _context.Steps.Where(x => x.Id == id).FirstOrDefault<Step>();

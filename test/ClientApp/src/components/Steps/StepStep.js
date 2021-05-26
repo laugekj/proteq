@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Step from './Step';
 import './StepStep.css'
 
 export default function StepStep({serversteps}) {
 
     const [steps, setSteps] = useState(serversteps);
+   
+  
 
     const onComplete = (inputStep) => {
         const newSteps = [];
@@ -17,9 +19,16 @@ export default function StepStep({serversteps}) {
         });
         setSteps(newSteps);
       };
-    
+   
+    if (!steps) {
+      return (
+        <div>loading...</div>
+      )
+    } else {
 
+      
     return (
+     
         <div className={"stepper"}>
             {steps.map((step) => (
                 <Step key={step.id} step={step} onComplete={onComplete}/>
@@ -27,5 +36,5 @@ export default function StepStep({serversteps}) {
 
         </div>
     )
-
+  } 
 }
