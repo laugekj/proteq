@@ -87,12 +87,12 @@ export default function Design1() {
                                 display="block"
                                 className="overskrift"
                             >
-                                {title}
+                                {step.title}
                         </Typography>
                     </Grid>
                  
                     <Grid item xs={12}>
-                        <HtmlRender htmlString={body} />
+                        <HtmlRender htmlString={step.body} />
                     </Grid>
                 </Grid>
                 <FilesToDownload />
@@ -102,10 +102,10 @@ export default function Design1() {
     } else {
         return (
             <div>
-             <h1 class="overskrift">{title}</h1>
-             <h2 class="design2underoverskrift">{subTitle}</h2>
-             <h3 class="design2text">{body}</h3>
-             <iframe class="video" width="600" height="350" src={video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             <h1 class="overskrift">{step.title}</h1>
+             <h2 class="design2underoverskrift">{step.subTitle}</h2>
+             <h3 class="design2text">{step.body}</h3>
+             <iframe class="video" width="600" height="350" src={step.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
              <Button onClick={CompleteStep}>Complete Step</Button>
              <FilesToDownload />
 
