@@ -13,8 +13,6 @@ namespace test.Controllers
     [ApiController]
     public class FileController : ControllerBase
     {
-
-
         private readonly UserContext _context;
 
         public FileController(UserContext context)
@@ -29,28 +27,13 @@ namespace test.Controllers
             return _context.Steps.ToList();
         }
 
-        
-        // [HttpGet]
-        // public ActionResult<List<FileModel>> GetAllFiles(int id)
-        // {
-        //     return _context.Files.Where(x => x.StepId == id).ToList();
-        // }
-
-        //api/file/getFileDataById/id
+        // /api/file/getstep/id
         [HttpGet("{id}")]
-        //[Route("[action]")]
-        public IActionResult GetFileDataById(int id)
+        // [Route("[action]/{id}")]
+        public ActionResult<Step> GetStep(int id)
         {
-            var file = _context.Files.FirstOrDefault(x => x.StepId == id);
-            
-            if (file == null)
-            {
-                return NotFound();
-            }
-            return File(file.FileData, file.FileType);
-            //return file;
+            return _context.Steps.Where(x => x.Id == id).FirstOrDefault<Step>();
         }
-
 
 
         [HttpPost]
@@ -93,7 +76,6 @@ namespace test.Controllers
                         byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
                         file.StepId = step.Id;
                         file.Step = step;
-                        file.FileName = formFile.FileName;
                         file.FileData = fileToBytes;
                         file.FileType = formFile.ContentType;
                         _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
@@ -121,31 +103,6 @@ namespace test.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-
-        /*[HttpPost]
-        [Route("[action]")]
-        public ActionResult uploadFile(StepModel data) 
-        { 
-            Console.WriteLine("[DEVELOPER MODE] Backend uploadFile() called");
-            Console.WriteLine("[# DesignId] " + data.DesignId);
-            Console.WriteLine("[# Title] " + data.Title);
-            Console.WriteLine("[# Body] " + data.Body);
-            Console.WriteLine("[# Video] " + data.Video);
-            //Console.WriteLine("[# File] " + data.file);
-
-            _context.Steps.Add(new Step() {
-                DesignId = data.DesignId,
-                Title = data.Title,
-                Body = data.Body,
-                Video = data.Video
-
-            });
-
-            _context.SaveChanges();
-
-            return Accepted();
-        }*/
-
 
 
 

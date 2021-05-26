@@ -13,29 +13,55 @@ const AttachDocumentStyle = {
   };
 
 export class AdminInput extends React.Component {
-    constructor() {
-        super();
+    constructor(probs) {
+        super(probs);
         
         this.state = {
+            id: -1,
             designId: 0,
-          };
-        this.state = {
             header: "",
-        };
-        this.state = {
             body: "",
-        };
-        this.state = {
             video: "",
-        };
-        this.state = {
             files: [],
-        };
+          };
 
         this.uploadToServer = this.uploadToServer.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.getStep = this.getStep.bind(this);
 
       }
+      componentDidMount() {
+        this.getStep();
+        
+    }
+
+      getStep() {
+          const urlstring = window.location.href;
+          this.setState({id: urlstring.split('?')[1]})
+
+          fetch('api/file/' + this.state.id, { method: 'GET' }).then(response => {
+          return response.json();
+      })
+      .then((responseJson) => {
+          console.log(responseJson.body)
+          this.setState({header: responseJson.title, body: responseJson.body});
+          console.log(this.state.header)
+          console.log(urlstring);
+          console.log(this.state.id);
+      });
+
+   }
+
+ submit(){
+        
+    if(this.state.id > -1) {
+        console.log("Editing step")
+    }
+    else{
+        console.log("Creating step")
+    }
+    
+}
 
 
       uploadToServer = async (e) => {
@@ -86,6 +112,8 @@ export class AdminInput extends React.Component {
       render() {
     return (
         <Container>
+            <Button onClick={e => this.getStep()}>test</Button> 
+            <h1>{this.props.title}</h1>
         <Grid
             direction="column"
             justify="flex-start"
