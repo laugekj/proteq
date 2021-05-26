@@ -115,5 +115,22 @@ namespace test.Controllers
             return fileType;
         }
 
+        [HttpPut("{id}")]
+        public ActionResult<Step> Put(int id, Step step) 
+        {
+           var entity = _context.Steps.FirstOrDefault(e => e.Id == id);
+           if (entity == null) {
+               return BadRequest("id must match id");
+           } else {
+                entity.Title = step.Title;
+                entity.DesignId = step.DesignId;
+                entity.Body = step.Body;
+                entity.Files = step.Files;
+                entity.Video = step.Video;
+               _context.SaveChanges();
+               return Ok();
+           }
+
+        }
     }
 }
