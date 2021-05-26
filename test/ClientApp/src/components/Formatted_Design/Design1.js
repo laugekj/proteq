@@ -40,7 +40,7 @@ export default function Design1() {
 
      }, []);
    
-     function nextStep() {
+     function CompleteStep() {
         
         // TODO: put step in UserStep table as completed
   
@@ -89,7 +89,7 @@ export default function Design1() {
                         <HtmlRender htmlString={body} />
                     </Grid>
                 </Grid>
-                <Button onClick={nextStep}>Next Step</Button>
+                <Button onClick={CompleteStep}>Complete Step</Button>
             </Container>            
         );
     } else {
