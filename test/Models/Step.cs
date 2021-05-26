@@ -12,6 +12,8 @@ namespace test.Models
 
         public string Video { get; set; }
 
+        public bool Completed { get; set; }
+
         public ICollection<FileModel> Files { get; set; }
         
         public List<UserStep> UserSteps { get; set; }

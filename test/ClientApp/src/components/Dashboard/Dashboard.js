@@ -18,41 +18,22 @@ export default function Dashboard() {
     const [ user, setUser] = useState()
     const [steps, setSteps] = useState(null)
 
-
-
-  
-    //TODO: GET STEPS FROM SERVER
-    function getSteps() {
-        fetch('api/fileupload')
-            .then(response => console.log("response" + response.json()))
-            .then(data => setSteps(data))
-            .then(data => console.log("data: " + data));
-            console.log("tried to fetch");
-        }
-
-
-   function getUser() {
-        fetch('api/steps/').then(response => {
-            return response.json();
-        })
-        .then((responseJson) => {
-             setSteps(responseJson);
-        });
-    }
-
     useEffect(()=>{
-        // Get list of steps
-        fetch('api/file')
-            .then(response => response.json())
-            .then(data => setSteps(data))
+  
 
         const loggedInUser = localStorage.getItem("user");
         console.log("const loggedInUser:")
         if (loggedInUser) {
           const foundUser = JSON.parse(loggedInUser);
           setUser(foundUser);
-
+        
+        // Get list of steps
+            fetch('api/userstep/getsteps/' + foundUser.id)
+              .then(response => response.json())
+              .then(data => setSteps(data))
         }
+
+
     }, []);
      
     if (user) {
@@ -68,8 +49,8 @@ export default function Dashboard() {
            
            
         <div>
-            <div class="body">
-                <h1 class="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+            <div className="body">
+                <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
                 <center>
                     <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>

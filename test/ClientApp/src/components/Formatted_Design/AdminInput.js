@@ -140,14 +140,6 @@ export class AdminInput extends React.Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="bulletPoint">Bulletpoint</Label>
-                                <Input 
-                                id="bulletPoint" 
-                                placeholder="Input one bulletpoint at a time"
-                                value={this.state.point}
-                                />
-                            </FormGroup>
-                            <FormGroup>
                                 <Label for="videoLink">Videolink</Label>
                                 <Input 
                                 id="videoLink" 
@@ -155,10 +147,6 @@ export class AdminInput extends React.Component {
                                 value={this.state.video}
                                 onChange={e => this.setState({ video: e.target.value})} />
                             </FormGroup>
-                        </Col>
-                        <Col md={1}>
-                            <Label id= "invisLabel" for="positionOfButton">Knap</Label>
-                            <Button id="addBulletPoint">Add</Button>
                         </Col>
                     </Row>
                     <FormGroup>

@@ -10,7 +10,7 @@ export default function StepStep({serversteps}) {
         const newSteps = [];
         steps.forEach((step) => {
           if (step.id === inputStep.id) {
-            step.completed = !step.completed;
+            // step.completed = !step.completed;
             // Do some database stuff
           }
           newSteps.push(step);
@@ -22,7 +22,7 @@ export default function StepStep({serversteps}) {
     return (
         <div className={"stepper"}>
             {steps.map((step) => (
-                <Step step={step} onComplete={onComplete}/>
+                <Step key={step.id} step={step} onComplete={onComplete}/>
             ))}
 
         </div>
