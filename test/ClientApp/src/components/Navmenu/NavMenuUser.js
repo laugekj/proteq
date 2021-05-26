@@ -7,7 +7,7 @@ import Logo from "./../images/logo-enkel-gdpr.png"
 
 
 export class NavMenuUser extends Component {
-  static displayName = NavMenu.name;
+  static displayName = NavMenuUser.name;
 
   constructor (props) {
     super(props);
