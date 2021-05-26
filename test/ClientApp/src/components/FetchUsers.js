@@ -10,18 +10,35 @@ export class FetchUsers extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { users: [], loading: true };
+        this.state = { 
+            users: [], 
+            loading: true
+                };
 
         this.populateUserData = this.populateUserData.bind(this);
         this.forceRefetch = this.forceRefetch.bind(this);
+        
       
     }
 
 
+
+
     componentDidMount() {
         this.populateUserData(false);
-    }
+        
+        var loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            var foundUser = JSON.parse(loggedInUser);
+            var isAdmin = JSON.parse(foundUser.isAdmin)
+            if (!isAdmin) {
+              window.location.href = '/dashboard'
+            }
+        } else {
+            window.location.href = "/sign-in";
+        }
 
+    }
 
     forceRefetch() {
         console.log("refetch pls");
@@ -57,7 +74,6 @@ export class FetchUsers extends Component {
     }
 
     
-
     renderUsersTable(users) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -121,7 +137,6 @@ export class FetchUsers extends Component {
     }
 
     
- 
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
@@ -135,6 +150,5 @@ export class FetchUsers extends Component {
             </div>
         );
     }
-
 
 }

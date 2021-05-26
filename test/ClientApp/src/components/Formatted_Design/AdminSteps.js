@@ -19,6 +19,16 @@ export class AdminSteps extends Component {
 
     componentDidMount() {
         this.populateStepsData(false);
+        var loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            var foundUser = JSON.parse(loggedInUser);
+            var isAdmin = JSON.parse(foundUser.isAdmin)
+            if (!isAdmin) {
+              window.location.href = '/dashboard'
+            }
+        } else {
+            window.location.href = "/sign-in";
+        }
     }
 
 

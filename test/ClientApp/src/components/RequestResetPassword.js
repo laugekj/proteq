@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Container, Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +8,34 @@ import './Reset.css';
 export default function RequestResetPassword() {
     const [mail, setMail] = useState("")
     const [sentMail, setSentMail] = useState(false);
+    const [user, setUser] = useState()
 
+    useEffect(() => {
+      const loggedInUser = localStorage.getItem("user");
+      if (loggedInUser) {
+        const foundUser = JSON.parse(loggedInUser);
+        setUser(foundUser);
+      }
+    }, []);
+    
+  
+    // if there's a user show the message below
+    if (user) {
+      var isAdmin = JSON.parse(user.isAdmin)
+    if (isAdmin) {
+     
+      window.location.href = '/dashboardAdmin'
+    }
+      var hasPaid = JSON.parse(user.hasPaid)
+    if (hasPaid && !isAdmin) {
+      // redirect user to dashboard
+      window.location.href = '/dashboard'
+      }
+      else if (!hasPaid && !isAdmin) {
+      // redirect user to checkoutRedirect
+      window.location.href = '/CheckoutRedirect'
+      }
+    }
     if (!sentMail) {
       return (
         
