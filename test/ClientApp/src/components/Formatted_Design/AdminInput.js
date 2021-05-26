@@ -22,7 +22,9 @@ export class AdminInput extends React.Component {
             header: "",
             body: "",
             video: "",
-            files: []
+            files: [],
+            isLoggedIn: false,
+            isAdmin: false
           };
 
         this.uploadToServer = this.uploadToServer.bind(this);
@@ -120,6 +122,8 @@ export class AdminInput extends React.Component {
       }
 
       render() {
+        if (this.state.isLoggedIn) {
+            if (this.state.isAdmin){   
     return (
         <Container>
             <Button onClick={e => this.getStep()}>test</Button> 
@@ -190,6 +194,18 @@ export class AdminInput extends React.Component {
             
         </Container>          
     );
+} else {
+    window.location.href = '/dashboard'
+    return (
+        <div>Du har ikke adgang til siden.</div>
+    );
+} 
+} else {
+    window.location.href = "/sign-in";
+    return (
+        <div>Du er ikke logget ind</div>
+    );
 }
+    }
 }
 
