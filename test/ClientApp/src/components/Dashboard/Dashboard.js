@@ -1,22 +1,25 @@
 
 import React, { useState, useEffect} from 'react';
 import './Dashboard.css';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import StepStep from '../Steps/StepStep';
+import { Container } from '@material-ui/core';
 
 
 
 export default function Dashboard() {
-   // HARDCODED SERVERSTEPS
-   const initialSteps = [
-    { id: 1, designId: 1, completed: false },
-    { id: 2, designId: 2, completed: false },
-    { id: 3, designId: 1, completed: false },
-  ];
   
  
     const [ user, setUser] = useState()
     const [steps, setSteps] = useState(null)
+    const [progress, setProgress] = useState(0);
+    
+
+
+    
 
     useEffect(()=>{
   
@@ -30,9 +33,19 @@ export default function Dashboard() {
         // Get list of steps
             fetch('api/userstep/getsteps/' + foundUser.id)
               .then(response => response.json())
-              .then(data => setSteps(data))
+              .then(data => {
+                setSteps(data)
+                let cmpSteps = data.filter(x => x.completed === true);
+                console.log("lengths=" + data.length + " " + cmpSteps.length)
+                setProgress(cmpSteps.length/data.length * 100);
+                console.log(progress);
+              })
+
+              
+              
         }
 
+ 
 
     }, []);
      
@@ -61,7 +74,24 @@ export default function Dashboard() {
             
                 <div className="stepsContainer"> 
                    <StepStep serversteps={steps} /> 
-                </div>            
+                </div>
+                <Container maxWidth="sm">
+                    <Box display="flex" alignItems="center">
+                        <Box width="100%" mr={1}>
+                            <LinearProgress variant="determinate" value={progress} />
+                        </Box>
+                    <Box minWidth={35}>
+                    <Typography variant="body2" color="textSecondary">{`${Math.round(
+                    progress
+                    )}%`}</Typography>
+                        </Box>
+                    </Box>
+                </Container>
+                
+
+                        
+                
+                        
             </div>
         </div>
            
