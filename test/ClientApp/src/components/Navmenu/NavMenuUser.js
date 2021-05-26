@@ -2,11 +2,11 @@ import React, { Component, useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-import './Reset.css';
-import Logo from "./images/logo-enkel-gdpr.png"
+import './../Reset.css';
+import Logo from "./../images/logo-enkel-gdpr.png"
 
 
-export class NavMenu extends Component {
+export class NavMenuUser extends Component {
   static displayName = NavMenu.name;
 
   constructor (props) {
@@ -27,7 +27,6 @@ export class NavMenu extends Component {
   }
 
     handleLogout () {
-    this.setState({});
     localStorage.clear();
   }
 
@@ -41,22 +40,10 @@ export class NavMenu extends Component {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/">Home</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/dashboard">Startside</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/fetch-users">AdminCrud</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/adminsteps">AdminSteps</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/sign-in">Sign In</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/sign-up">Sign Up</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/Profile">Profil</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/Profile">Min Profil</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="nav-text" to="/logout">Log ud</NavLink>

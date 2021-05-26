@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import DownloadLink from "react-download-link";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 export function FilesToDownload() {
