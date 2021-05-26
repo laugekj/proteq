@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Step.css";
 function Step({ step, onComplete }) {
+
   function completeMe() {
     onComplete(step);
     window.location.href = '/design1?' + step.id

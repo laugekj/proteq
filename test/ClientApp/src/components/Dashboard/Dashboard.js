@@ -41,18 +41,21 @@ export default function Dashboard() {
     }
 
     useEffect(()=>{
-        // Get list of steps
-        fetch('api/file')
-            .then(response => response.json())
-            .then(data => setSteps(data))
+  
 
         const loggedInUser = localStorage.getItem("user");
         console.log("const loggedInUser:")
         if (loggedInUser) {
           const foundUser = JSON.parse(loggedInUser);
           setUser(foundUser);
-
+        
+        // Get list of steps
+            fetch('api/userstep/getsteps/' + foundUser.id)
+              .then(response => response.json())
+              .then(data => setSteps(data))
         }
+
+
     }, []);
      
     if (user) {
