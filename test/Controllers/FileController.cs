@@ -59,7 +59,6 @@ namespace test.Controllers
             try
             {
                 Step step = new Step();
-                
 
                 string path;
                 foreach (var formFile in data.FormFiles)
@@ -95,6 +94,7 @@ namespace test.Controllers
 
                 _context.Steps.Add(step);
                 _context.SaveChanges();
+                
                 Console.WriteLine("Step has been successfully created!");
                 return StatusCode(StatusCodes.Status201Created);
             }
