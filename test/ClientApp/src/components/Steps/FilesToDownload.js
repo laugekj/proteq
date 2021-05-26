@@ -8,7 +8,9 @@ export function FilesToDownload() {
     const [myFileNames, setMyFileNames] = useState([]);
 
     useEffect(()=>{
-        getAllFilesAssociatedToStepId(45)
+        const urlstring = window.location.href;
+        const id = urlstring.split('?')[1];
+        getAllFilesAssociatedToStepId(id)
       }, []);
     
 
