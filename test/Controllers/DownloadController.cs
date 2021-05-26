@@ -22,21 +22,35 @@ namespace test.Controllers
             _context = context;
         }
 
+
+
+        /*[HttpGet("{fileId}")]
+        [Route("[action]")]
+        public IActionResult GetFileById(int fileId)
+        {
+            var file = _context.Files.FirstOrDefault(x => x.Id == fileId);
+            
+            if (file == null)
+            {
+                return NotFound();
+            }
+            return File(file.FileData, file.FileType);
+        }*/
+        
         ///api/download
-        [HttpGet("{stepId}", Name = "GetFiles")] 
-        public IEnumerable<IActionResult> GetAllFilesFromStepId(int stepId)
+        [HttpGet("{stepId}")] 
+        //[Route("[action]")]
+        public List<FileModel> GetAllFilesFromStepId(int stepId)
         {
             Console.WriteLine("[DEVELOPER MODE] StepId: " + stepId);
             
         // 1. Find files associated with stepId:
-        var files = _context.Files.Where(file => file.StepId == stepId);
+        var files = _context.Files.Where(file => file.StepId == stepId).ToList();
         
-        foreach (var file in files) {
-            yield return File(file.FileData, file.FileType); 
-        }
+        return files;
 
-        yield break;
         }
+        
 
 
     }
