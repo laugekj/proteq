@@ -35,14 +35,12 @@ export default function Design1() {
 
         // get USER
         const loggedInUser = localStorage.getItem("user");
-        console.log("const loggedInUser:")
         if (loggedInUser) {
           const foundUser = JSON.parse(loggedInUser);
           setUser(foundUser);
         }
-
      }, []);
-   
+
      function CompleteStep() {
         
         // TODO: put step in UserStep table as completed
@@ -69,8 +67,16 @@ export default function Design1() {
        window.location.href = '/dashboard'
           
     }
+
+
+// if user is not logged in
+if (user) {
+
+    if (designId == 1) {
+
    
     if (step.designId == 1) {
+
         return (
             <Container>
                 <Grid 
@@ -113,5 +119,9 @@ export default function Design1() {
                         
          );
     }
-    
+}
+
+return (
+    <div>Du er ikke logget ind.</div>
+);
 }

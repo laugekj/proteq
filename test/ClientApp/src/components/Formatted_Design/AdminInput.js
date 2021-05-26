@@ -22,7 +22,7 @@ export class AdminInput extends React.Component {
             header: "",
             body: "",
             video: "",
-            files: [],
+            files: []
           };
 
         this.uploadToServer = this.uploadToServer.bind(this);
@@ -33,6 +33,16 @@ export class AdminInput extends React.Component {
       componentDidMount() {
         this.getStep();
         
+        var loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            var foundUser = JSON.parse(loggedInUser);
+            var isAdmin = JSON.parse(foundUser.isAdmin)
+            if (!isAdmin) {
+              window.location.href = '/dashboard'
+            }
+        } else {
+            window.location.href = "/sign-in";
+        }
     }
 
       getStep() {
