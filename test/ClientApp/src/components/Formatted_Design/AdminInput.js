@@ -23,6 +23,8 @@ export class AdminInput extends React.Component {
             body: "",
             video: "",
             files: [],
+            myFileNames: [],
+            myFilesId: [],
             isLoggedIn: false,
             isAdmin: false
           };
@@ -30,11 +32,19 @@ export class AdminInput extends React.Component {
         this.uploadToServer = this.uploadToServer.bind(this);
         this.onChange = this.onChange.bind(this);
         this.getStep = this.getStep.bind(this);
+        this.getAllFilesAssociatedToStepId = this.getAllFilesAssociatedToStepId.bind(this);
 
       }
       componentDidMount() {
-        this.getStep();
-        
+        const urlstring = window.location.href;
+        var stepId = -1
+        stepId = urlstring.split('?')[1]
+
+        if (stepId >= 0) {
+        this.getStep(stepId);
+        this.getAllFilesAssociatedToStepId(stepId);
+        }
+
         var loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             this.setState({isLoggedIn: true});
@@ -44,36 +54,48 @@ export class AdminInput extends React.Component {
     }
     }
 
-      getStep = async () => {
-          console.log("YO JEG BLIR KALDT");
-          const urlstring = window.location.href;
-          await this.setState({id: urlstring.split('?')[1]})
+    getAllFilesAssociatedToStepId = async (stepId) => {
+        const response = await fetch('api/download/GetAllFilesFromStepId/' + stepId, {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json',
+            }
+        });
 
-          fetch('api/file/' + this.state.id, { method: 'GET' }).then(response => {
-          return response.json();
-      })
-      .then((responseJson) => {
-          this.setState({
-            header: responseJson.title,
-            body: responseJson.body,
-            designId: responseJson.designId,   
-            video: responseJson.video
-            
-            });
-      });
-
-   }
-
- submit(){
+        const json = await response.json();
+        json.forEach(obj => {
+            this.state.myFileNames.push(obj.fileName);
+            this.state.myFilesId.push(obj.id)
+        }) 
+    }
         
-    if(this.state.id > -1) {
-        console.log("Editing step")
-    }
-    else{
-        console.log("Creating step")
-    }
-    
-}
+        /*.then(response => {
+            console.log(response);
+
+            response.json().then(json => 
+                 json.forEach(obj => {
+                    console.log(obj);
+                    setMyFileNames( arr => [...arr, `${obj.fileName}`]);
+                    setMyFilesId(arr => [...arr, `${obj.id}`]);
+                }));
+            });*/
+
+      getStep = async (stepId) => {
+            
+        const response = await fetch('api/file/' + stepId, { 
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            }});
+        const json = await response.json();
+         this.setState({
+            header: json.title,
+            body: json.body,
+            designId: json.designId,   
+            video: json.video
+        });
+       }
+
 
 
       uploadToServer = async (e) => {
@@ -113,6 +135,9 @@ export class AdminInput extends React.Component {
             if (this.state.isAdmin){   
     return (
         <Container>
+        {this.state.myFileNames.map(fileName => 
+        <p>{fileName}</p>
+        )}
         <Grid
             direction="column"
             justify="flex-start"
@@ -173,8 +198,6 @@ export class AdminInput extends React.Component {
                     </FormGroup>
                     <Button onClick={this.uploadToServer}>Submit</Button>
                     </Form>
-            
-
             </Grid>
             
         </Container>          
