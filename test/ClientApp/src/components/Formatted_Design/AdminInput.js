@@ -85,6 +85,7 @@ export class AdminInput extends React.Component {
         } catch (ex) {
           console.log(ex);
         }
+        window.location.href = '/adminsteps'
       }
 
       /*uploadToServer = () => {
@@ -180,7 +181,7 @@ export class AdminInput extends React.Component {
                         </div>                        
                         </FormText>
                     </FormGroup>
-                    <Button onClick={e => this.submit()}>Submit</Button>
+                    <Button onClick={this.uploadToServer}>Submit</Button>
                     </Form>
             
 
