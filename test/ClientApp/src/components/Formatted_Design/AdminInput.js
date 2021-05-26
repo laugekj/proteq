@@ -54,6 +54,11 @@ export class AdminInput extends React.Component {
     }
     }
 
+
+    removeSelectedFile(arrayIndex) {
+        var selectedFileId = this.state.myFilesId[arrayIndex];
+    }
+
     getAllFilesAssociatedToStepId = async (stepId) => {
         const response = await fetch('api/download/GetAllFilesFromStepId/' + stepId, {
             method: 'GET',
@@ -133,11 +138,10 @@ export class AdminInput extends React.Component {
       render() {
         if (this.state.isLoggedIn) {
             if (this.state.isAdmin){   
+                console.log("HALLO", this.state.myFileNames);
+
     return (
         <Container>
-        {this.state.myFileNames.map(fileName => 
-        <p>{fileName}</p>
-        )}
         <Grid
             direction="column"
             justify="flex-start"
@@ -195,6 +199,13 @@ export class AdminInput extends React.Component {
                             )}
                         </div>                        
                         </FormText>
+                    </FormGroup>
+                    <FormGroup>
+                        <div>
+                            {this.state.files.map(x => 
+                            <div className="file-preview" onClick={e => this.removeSelectedFile(this)}>{x.name}</div>
+                            )}
+                        </div>                        
                     </FormGroup>
                     <Button onClick={this.uploadToServer}>Submit</Button>
                     </Form>
