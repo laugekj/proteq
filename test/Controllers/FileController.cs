@@ -78,6 +78,7 @@ namespace test.Controllers
                         file.Step = step;
                         file.FileData = fileToBytes;
                         file.FileType = formFile.ContentType;
+                        file.FileName = formFile.FileName;
                         _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
                         step.Files.Add(file);
                     }
