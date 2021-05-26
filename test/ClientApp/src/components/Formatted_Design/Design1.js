@@ -70,9 +70,6 @@ export default function Design1() {
 
 
 // if user is not logged in
-if (user) {
-
-    if (designId == 1) {
 
    
     if (step.designId == 1) {
@@ -121,7 +118,3 @@ if (user) {
     }
 }
 
-return (
-    <div>Du er ikke logget ind.</div>
-);
-}
