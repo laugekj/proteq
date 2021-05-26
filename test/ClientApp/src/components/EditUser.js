@@ -153,7 +153,7 @@ export default function EditUser({user, onSaveClick}) {
              onClick={() =>EditUserAndDB(user.id)}
           >
             Gem ændringer
-          </Button>
+          </Button> 
         </form>
       </div>
       <Box mt={5}>

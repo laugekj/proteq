@@ -35,6 +35,26 @@ export class AdminInput extends React.Component {
         
     }
 
+     EditStepAndDB() {
+        const data = this.state.header ;
+        fetch('api/file/' + this.state.id, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+          
+        }).then(response => {
+          console.log(response);
+          console.log(data);
+          // 200 is "OK" (success)
+          if(response.status === 200) {
+            
+            console.log('Updated succesfully', data);
+          } else {
+            // waaah, error handler
+          }
+        });
+      }
+
       getStep() {
           const urlstring = window.location.href;
           this.setState({id: urlstring.split('?')[1]})
@@ -62,6 +82,8 @@ export class AdminInput extends React.Component {
     }
     
 }
+
+ 
 
 
       uploadToServer = async (e) => {
@@ -172,7 +194,7 @@ export class AdminInput extends React.Component {
                         </div>                        
                         </FormText>
                     </FormGroup>
-                    <Button onClick={this.uploadToServer}>Submit</Button>
+                    <Button onClick={e => this.EditStepAndDB()}>Submit</Button>
                     </Form>
             
 
