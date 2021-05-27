@@ -102,10 +102,8 @@ namespace test.Controllers
             var tmp = _context.Users.Where(u => u.Email == mail).SingleOrDefault<User>();
             if (tmp != null)
             {
-                Console.WriteLine("TRUE");
                 return true;
             }
-            Console.WriteLine("FALSE");
             return false;
         }
    

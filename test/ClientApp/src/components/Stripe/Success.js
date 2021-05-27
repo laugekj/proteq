@@ -6,12 +6,28 @@ import './checkout.css';
 export function Success() {
     const [ user, setUser] = useState()
     useEffect(()=>{
+        getUser();
+      }, []);
+
+      
+
+      function getUser() {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
-          const foundUser = JSON.parse(loggedInUser);
-          setUser(foundUser);
-        }
-      }, []);
+        const foundUser = JSON.parse(loggedInUser);
+        fetch('api/user/' + foundUser.id, { method: 'GET' }).then(response => {
+          if (response.status == 404) {
+            return {}
+          }
+          return response.json();
+        })
+        .then((responseJson) => {
+            // opdater hasPaid i localstorage
+           setUser(responseJson);
+           localStorage.setItem('user', JSON.stringify(responseJson));
+        });
+      }
+     }
 
       if (user) {
         var hasPaid = JSON.parse(user.hasPaid)
@@ -20,36 +36,13 @@ export function Success() {
         window.location.href = '/dashboard'
         }
         else {
-        
-        
-    checkPaymentToken() 
-
-     function checkPaymentToken() 
-     {
-      const URLtoString = window.location.href 
-      const data = {url: URLtoString}
-        fetch('api/payments/VerifyPaymentToken', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        }).then(response => {
-          if (response.status == 200) {
-            // set the state of the user
-            return response.json();
-          } 
-      }).then(responseJson => {
-            setUser(responseJson)
-            // overwrite the new user information (hasPaid) in localStorage
-            localStorage.setItem('user', JSON.stringify(responseJson))
-      });
-     }
+          window.location.href = '/home'
     }
 }
     return (
             <div className="content">
-                <h1 id="text">Din betaling er gået igennem!</h1>
+                <h1>Din betaling er gået igennem...</h1>
+                <h1>Vent venligst...</h1>
             </div>
         );
   
