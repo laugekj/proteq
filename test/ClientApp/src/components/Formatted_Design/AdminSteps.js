@@ -42,7 +42,7 @@ export class AdminSteps extends Component {
 
 
     deleteStep(id) {
-        fetch('api/file/' + id, { method: 'DELETE' }).then(response => {
+        fetch('api/file/DeleteStep/' + id, { method: 'DELETE' }).then(response => {
             console.log(response);
             // 200 is "OK" (success)
             if(response.status === 200) {
