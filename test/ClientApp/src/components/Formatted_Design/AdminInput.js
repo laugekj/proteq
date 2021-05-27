@@ -150,11 +150,12 @@ export class AdminInput extends React.Component {
         <Grid
             direction="column"
             justify="flex-start"
-            alignItems="flex-start">
+                alignItems="flex-start">
+                <h1 class = "adminTitle" >Indsæt et step</h1>
                  <Form>
                  <FormGroup>
                         <Label for="exampleHeader">Step nr.</Label>
-                        <Input 
+                        <Input class="adminInput"
                         value={this.state.stepNumber} 
                         onChange={e =>  this.setState({ stepNumber: e.target.value})} 
                         name="stepnr" 
