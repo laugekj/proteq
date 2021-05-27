@@ -1,9 +1,15 @@
 .content {
     margin-bottom: 150px !important;
-    overflow: scroll !important;
     font-family: 'Lato', sans-serif;
     position: relative !important;
     display: inline-block;
     height: 700px !important;
     width: 100% !important;
+}
+
+#text{
+    text-align: center !important ;
+    margin: 25% !important;
+    background-color:  #073B4C !important;
+
 }
