@@ -105,7 +105,7 @@ export default function Design1() {
             <Container>
              <h1 class="overskrift">{step.title}</h1>
              <h2 class="design2underoverskrift">{step.subTitle}</h2>
-             <HtmlRender htmlString={body} />
+             <HtmlRender htmlString={body ? body : "empty"} />
              <iframe class="video" width="600" height="350" src={step.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
              <Button onClick={CompleteStep}>Complete Step</Button>
              <FilesToDownload />

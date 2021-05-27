@@ -74,6 +74,24 @@ export class FetchUsers extends Component {
         this.setState({ users: data, loading: bool });
     }
 
+    hasPaidOrNot(user) {
+        var hasPaid = JSON.parse(user.hasPaid)
+        if (hasPaid) {
+            return "Betalt"
+        } else {
+            return "Ikke betalt"
+        }
+    }
+
+    isAdminOrNot(user) {
+        var isAdmin = JSON.parse(user.isAdmin)
+        if (isAdmin) {
+            return "Administrator"
+        } else {
+            return "Almindelig bruger"
+        }
+    }
+
     
     renderUsersTable(users) {
         if (this.state.isLoggedIn) {
@@ -87,6 +105,8 @@ export class FetchUsers extends Component {
                         <th>Name</th>
                         <th>Company</th>
                         <th>E-Mail</th>
+                        <th>Betalt</th>
+                        <th>Bruger Status</th>
                         <th>
                             <AddPopover refetch={this.forceRefetch}>
 
@@ -102,6 +122,8 @@ export class FetchUsers extends Component {
                             <td>{user.firstname + " " + user.lastname}</td>
                             <td>{user.company}</td>
                             <td>{user.email}</td>
+                            <td>{this.hasPaidOrNot(user)}</td>
+                            <td>{this.isAdminOrNot(user)}</td>
                             <td>
                                 <Grid 
                                 container
@@ -158,8 +180,6 @@ export class FetchUsers extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >User Database</h1>
-                <p>Temporary database of users  .</p>
                 {contents}
             </div>
         );
