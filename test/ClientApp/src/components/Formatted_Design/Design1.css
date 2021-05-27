@@ -73,4 +73,6 @@
  .video {
      left: 0px !important;
      margin-bottom: 40px !important;
+     width: 100% !important;
+     height: 400px !important;
  }

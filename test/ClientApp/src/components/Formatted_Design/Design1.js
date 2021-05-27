@@ -74,7 +74,7 @@ export default function Design1() {
 // if user is not logged in
 
    
-    if (step.designId == 1) {
+    if (step.designId === 0) {
 
         return (
             <Container>
@@ -106,11 +106,11 @@ export default function Design1() {
             <Container>
                 <div className="outerdiv">
              <h1 class="overskrift">{step.title}</h1>
-             <div className="bodydiv">
-             <HtmlRender class="bodytext" htmlString={body ? body : "empty"} />
-             </div>
              <div className="videodiv">
              <iframe class="video" width="600" height="350" src={step.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             </div>
+             <div className="bodydiv">
+             <HtmlRender class="bodytext" htmlString={body ? body : "empty"} />
              </div>
              <div className="buttondiv">
              <Button onClick={CompleteStep}>Complete Step</Button>
