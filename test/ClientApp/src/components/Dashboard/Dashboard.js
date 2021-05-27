@@ -63,7 +63,7 @@ export default function Dashboard() {
            
         <div>
             <div className="body">
-                <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname} til SimpleGDPR!</h1>
+                <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname} til Enkel-GDPR!</h1>
                 <p className="welcome">
                     Du er nu allerede tættere på målet om at få styr på GDPR. 
                     Det er et vigtigt skridt både for dine kunder, men også for din virksomhed. 
