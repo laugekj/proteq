@@ -17,7 +17,7 @@ export class AdminInput extends React.Component {
         super(probs);
         
         this.state = {
-            id: -1,
+            URLstepId: -1,
             designId: 0,
             stepNumber: 0,
             header: "",
@@ -27,23 +27,36 @@ export class AdminInput extends React.Component {
             myFileNames: [],
             myFilesId: [],
             isLoggedIn: false,
-            isAdmin: false
+            isAdmin: false,
+            items: [{text: "" }]
           };
 
         this.uploadToServer = this.uploadToServer.bind(this);
         this.onChange = this.onChange.bind(this);
         this.getStep = this.getStep.bind(this);
-        this.getAllFilesAssociatedToStepId = this.getAllFilesAssociatedToStepId.bind(this);
-
       }
+
+      addListItem = async (e) => {
+        e.preventDefault();
+        
+        await this.getAllFilesAssociatedToStepId(this.state.URLstepId);
+        const newItem = {text: "" };
+        this.setState({
+          items: [...this.state.items, newItem]
+        });
+      };
+
+  
+
+      
       componentDidMount() {
         const urlstring = window.location.href;
         var stepId = -1
         stepId = urlstring.split('?')[1]
 
         if (stepId >= 0) {
+        this.state.URLstepId = stepId;
         this.getStep(stepId);
-        this.getAllFilesAssociatedToStepId(stepId);
         }
 
         var loggedInUser = localStorage.getItem("user");
@@ -58,9 +71,19 @@ export class AdminInput extends React.Component {
 
     removeSelectedFile(arrayIndex) {
         var selectedFileId = this.state.myFilesId[arrayIndex];
+
+        fetch('api/file/' + selectedFileId, { method: 'DELETE' })
+        .then(response => {
+            if (response.status === 200) {
+                this.state.myFileNames.splice(arrayIndex, 1);
+                this.state.myFilesId.splice(arrayIndex, 1);
+            }
+            
+        });
     }
 
     getAllFilesAssociatedToStepId = async (stepId) => {
+        console.log("function getAllFilesAssociatedToStepId(" + stepId + ")");
         const response = await fetch('api/download/GetAllFilesFromStepId/' + stepId, {
             method: 'GET',
             headers: {
@@ -73,18 +96,11 @@ export class AdminInput extends React.Component {
             this.state.myFileNames.push(obj.fileName);
             this.state.myFilesId.push(obj.id)
         }) 
-    }
-        
-        /*.then(response => {
-            console.log(response);
 
-            response.json().then(json => 
-                 json.forEach(obj => {
-                    console.log(obj);
-                    setMyFileNames( arr => [...arr, `${obj.fileName}`]);
-                    setMyFilesId(arr => [...arr, `${obj.id}`]);
-                }));
-            });*/
+        console.log("myFileNames array: " + this.state.myFileNames);
+        console.log("myFilesId array: " + this.state.myFilesId);
+        React.createElement(<p>WALLAH BILLAHHHH</p>);
+    }
 
       getStep = async (stepId) => {
             
@@ -98,7 +114,8 @@ export class AdminInput extends React.Component {
             header: json.title,
             body: json.body,
             designId: json.designId,   
-            video: json.video
+            video: json.video,
+            stepNumber: json.stepNumber
         });
        }
 
@@ -137,11 +154,18 @@ export class AdminInput extends React.Component {
            this.setState({ files: this.state.files.filter(x => x !== f) }); 
       }
 
+    createList = () => {
+        return this.state.myFileNames.map((fileName, index) => {
+            return (
+            <div>
+                <Button onClick={e => this.removeSelectedFile(index)}>Klik for at fjerne {fileName}</Button>
+            </div>
+            )});
+    }
+
       render() {
         if (this.state.isLoggedIn) {
             if (this.state.isAdmin){   
-                console.log("HALLO", this.state.myFileNames);
-
     return (
         <Container>
         <Grid
@@ -195,7 +219,13 @@ export class AdminInput extends React.Component {
                         <option>Design 2</option>
                         <option>Design 3</option>
                         </Input>
-                    </FormGroup>                        
+                    </FormGroup>
+                    
+                    <div>
+                    {this.createList()}
+                    {this.state.URLstepId >= 0 ? <Button onClick={this.addListItem}>Indlæs filer tilknyttet til trinnet</Button> : ''}
+                    </div>   
+                   
                     <FormGroup>
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
@@ -214,7 +244,7 @@ export class AdminInput extends React.Component {
                     <FormGroup>
                         <div>
                             {this.state.files.map(x => 
-                            <div className="file-preview" onClick={e => this.removeSelectedFile(this)}>{x.name}</div>
+                            <div className="file-preview" onClick={e => this.removeFile(this)}>{x.name}</div>
                             )}
                         </div>                        
                     </FormGroup>

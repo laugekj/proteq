@@ -20,6 +20,19 @@ namespace test.Controllers
             _context = context;
         }
 
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var file = _context.Files.Where(x => x.Id == id).Single<FileModel>();
+            if (file == null)
+            {
+                return NotFound("File don't exist.");
+            }
+            _context.Files.Remove(file);
+            _context.SaveChanges();
+            return Ok("File deleted.");
+        }
+
         ///api/file
         [HttpGet]
         public ActionResult<List<Step>> GetAll()
