@@ -1,9 +1,11 @@
 
 .flip-card {
   background-color: transparent;
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 200px;
   perspective: 1000px;
+  padding-bottom: 20px;
+  padding-right: 10px !important;
 }
 
 .flip-card-inner {
@@ -37,16 +39,35 @@
   color: black;
 }
 
-.completed {
-  background-color: #90CBA3;
+.steptitel{
+  padding-top: 20px;
+  padding-bottom: 15px;
+  color: #073B4C;
 }
 
-.flip-card-back {
+.step {
+  text-align: center;
+  color: #3d6f8c;
+  font-size: larger;
+  line-height: 40px;
+  font-weight: 1000;
+}
+
+.completed{
+  background-color: #8CBFA7;
   
+}
+.flip-card-back {
   background-color: #3d6f8c;
   color: #FEFBEB;
   transform: rotateY(180deg);
 }
+
+.titel{
+  padding-top: 20px;
+}
+
+
 
 /*
 .step {

@@ -22,12 +22,15 @@ function Step({ step, onComplete }) {
   return (
     <div class="flip-card">
       <div class="flip-card-inner">
-        <div class="flip-card-front" onClick={completeMe}
+        <div class="flip-card-front" >
+          <h1 class="steptitel">Step nr: </h1>
+          <p onClick={completeMe}
         className={"step" + (step.completed ? " completed" : "")}>
           {step.stepNumber}
+          </p>
         </div> 
         <div class="flip-card-back" onClick={onClickStep}>
-          <h1>Jeg er en step titel</h1>
+          <h1 class="titel">Jeg er en step titel</h1>
         </div>  
     </div>
   </div>
