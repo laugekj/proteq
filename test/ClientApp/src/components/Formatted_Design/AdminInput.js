@@ -2,6 +2,8 @@ import { Typography, Container, Grid, List, ListItem, ListItemText } from '@mate
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import axios from "axios";
+import StepFilesButton from './StepFilesButton';
+
 
 import './AdminInput.css';
 require('./AttachDocumentStyle.css');
@@ -24,30 +26,14 @@ export class AdminInput extends React.Component {
             body: "",
             video: "",
             files: [],
-            myFileNames: [],
-            myFilesId: [],
             isLoggedIn: false,
             isAdmin: false,
-            items: [{text: "" }]
           };
 
         this.uploadToServer = this.uploadToServer.bind(this);
         this.onChange = this.onChange.bind(this);
         this.getStep = this.getStep.bind(this);
       }
-
-      addListItem = async (e) => {
-        e.preventDefault();
-        
-        await this.getAllFilesAssociatedToStepId(this.state.URLstepId);
-        const newItem = {text: "" };
-        this.setState({
-          items: [...this.state.items, newItem]
-        });
-      };
-
-  
-
       
       componentDidMount() {
         const urlstring = window.location.href;
@@ -66,40 +52,6 @@ export class AdminInput extends React.Component {
             var foundUserIsAdmin = JSON.parse(foundUser.isAdmin);
             this.setState({isAdmin: foundUserIsAdmin});
     }
-    }
-
-
-    removeSelectedFile(arrayIndex) {
-        var selectedFileId = this.state.myFilesId[arrayIndex];
-
-        fetch('api/file/' + selectedFileId, { method: 'DELETE' })
-        .then(response => {
-            if (response.status === 200) {
-                this.state.myFileNames.splice(arrayIndex, 1);
-                this.state.myFilesId.splice(arrayIndex, 1);
-            }
-            
-        });
-    }
-
-    getAllFilesAssociatedToStepId = async (stepId) => {
-        console.log("function getAllFilesAssociatedToStepId(" + stepId + ")");
-        const response = await fetch('api/download/GetAllFilesFromStepId/' + stepId, {
-            method: 'GET',
-            headers: {
-            'Content-Type': 'application/json',
-            }
-        });
-
-        const json = await response.json();
-        json.forEach(obj => {
-            this.state.myFileNames.push(obj.fileName);
-            this.state.myFilesId.push(obj.id)
-        }) 
-
-        console.log("myFileNames array: " + this.state.myFileNames);
-        console.log("myFilesId array: " + this.state.myFilesId);
-        React.createElement(<p>WALLAH BILLAHHHH</p>);
     }
 
       getStep = async (stepId) => {
@@ -153,15 +105,6 @@ export class AdminInput extends React.Component {
       removeFile(f) {
            this.setState({ files: this.state.files.filter(x => x !== f) }); 
       }
-
-    createList = () => {
-        return this.state.myFileNames.map((fileName, index) => {
-            return (
-            <div>
-                <Button onClick={e => this.removeSelectedFile(index)}>Klik for at fjerne {fileName}</Button>
-            </div>
-            )});
-    }
 
       render() {
         if (this.state.isLoggedIn) {
@@ -220,11 +163,9 @@ export class AdminInput extends React.Component {
                         <option>Design 3</option>
                         </Input>
                     </FormGroup>
-                    
                     <div>
-                    {this.createList()}
-                    {this.state.URLstepId >= 0 ? <Button onClick={this.addListItem}>Indlæs filer tilknyttet til trinnet</Button> : ''}
-                    </div>   
+                    <StepFilesButton stepId={this.state.URLstepId}/>
+                    </div>
                    
                     <FormGroup>
                         <Label for="exampleFile">File</Label>
