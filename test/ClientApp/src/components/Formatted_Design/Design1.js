@@ -23,6 +23,7 @@ export default function Design1() {
         })
         .then((responseJson) => {
            setStep(responseJson);
+           setBody(responseJson.body);
          
            
            
@@ -101,15 +102,15 @@ export default function Design1() {
         );
     } else {
         return (
-            <div>
+            <Container>
              <h1 class="overskrift">{step.title}</h1>
              <h2 class="design2underoverskrift">{step.subTitle}</h2>
-             <h3 class="design2text">{step.body}</h3>
+             <HtmlRender htmlString={body} />
              <iframe class="video" width="600" height="350" src={step.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
              <Button onClick={CompleteStep}>Complete Step</Button>
              <FilesToDownload />
 
-            </div>
+             </Container>
              
                  
                 
