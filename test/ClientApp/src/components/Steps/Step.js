@@ -30,7 +30,7 @@ function Step({ step, onComplete }) {
           </p>
         </div> 
         <div class="flip-card-back" onClick={onClickStep}>
-          <h1 class="titel">Jeg er en step titel</h1>
+          <h1 class="titel">{step.title}</h1>
         </div>  
     </div>
   </div>
