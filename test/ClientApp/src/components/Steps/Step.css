@@ -1,8 +1,8 @@
 
 .flip-card {
   background-color: transparent;
-  width: 170px;
-  height: 200px;
+  width: 200px;
+  height: 220px;
   perspective: 1000px;
   padding-bottom: 20px;
   padding-right: 10px !important;
@@ -42,6 +42,8 @@
 .steptitel{
   padding-top: 20px;
   padding-bottom: 15px;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: bolder !important;
   color: #073B4C;
 }
 
@@ -49,6 +51,7 @@
   text-align: center;
   color: #3d6f8c;
   font-size: xx-large;
+  font-family: 'Lato', sans-serif !important;
   line-height: 40px;
   font-weight: bolder;
 }
@@ -60,10 +63,19 @@
 }
 .flip-card-back {
   background-color: #3d6f8c;
-  color: #FEFBEB;
   transform: rotateY(180deg);
 }
 
 .titel{
   padding-top: 20px;
+  hyphens: auto;
+  font-family: 'Lato', sans-serif !important;
+  font-size: large;
+  font-weight: bolder;
+  color: #FEFBEB;
+}
+
+.logo{
+  height: 50px;
+  width: 70px;
 }
