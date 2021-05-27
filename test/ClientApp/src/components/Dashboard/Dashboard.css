@@ -25,10 +25,28 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    font-family: 'Playfair Display', serif;
+    font-size: large;
+    color: #073B4C;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bold;
 }
 
 .stepper {
     padding-right: 10px;
 }
 
+.MuiLinearProgress-barColorPrimary{
+    background-color: #88B2AB !important;
+}
+
+.MuiLinearProgress-colorPrimary{
+    background-color: #B0BFB5 !important;
+    height: 8px !important;
+}
+
+.MuiTypography-colorTextSecondary{
+    color: #073B4C !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bolder !important;
+    font-size: medium !important;
+}

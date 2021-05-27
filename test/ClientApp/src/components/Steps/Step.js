@@ -23,9 +23,10 @@ function Step({ step, onComplete }) {
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front" >
-          <h1 class="steptitel">Step nr: </h1>
+          
           <p onClick={completeMe}
         className={"step" + (step.completed ? " completed" : "")}>
+          <h1 class="steptitel">Step nr: </h1>
           {step.stepNumber}
           </p>
         </div> 

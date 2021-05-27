@@ -35,7 +35,7 @@
 }
 
 .flip-card-front {
-  background-color: #bbb;
+  background-color: #B8A8A3;
   color: black;
 }
 
@@ -48,13 +48,14 @@
 .step {
   text-align: center;
   color: #3d6f8c;
-  font-size: x-large;
+  font-size: xx-large;
   line-height: 40px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .completed{
-  background-color: #8CBFA7;
+  background-color: #88B2AB;
+  height: 100%;
   
 }
 .flip-card-back {
