@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 export function FilesToDownload() {
     
@@ -54,7 +54,7 @@ export function FilesToDownload() {
 return ( 
     <Container component="main" maxWidth="xs">
         <div>{myFileNames.map((fileName, index) =>
-        <Button onClick={e => requestFileDownload(fileName, index)}>Hent { fileName }</Button>
+        <Link onClick={e => requestFileDownload(fileName, index)}>Hent { fileName }</Link>
         )}
         </div>
         
