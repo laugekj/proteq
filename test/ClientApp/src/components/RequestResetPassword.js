@@ -41,8 +41,8 @@ export default function RequestResetPassword() {
         
         <Container>
         <Grid container direction="column" justify="center" alignItems="center">
-        <div class="resetpass"> 
-            <h1 id='overskrift'>Nulstilling af kodeord</h1>
+        <div className="resetpass"> 
+            <h1 id='overskrift' className='overskrift'>Nulstilling af kodeord</h1>
             <TextField
             margin="normal"
             id="mail"
@@ -53,7 +53,7 @@ export default function RequestResetPassword() {
             autoComplete="email"
             ></TextField>
             </div>
-          <div class="resetpass"> 
+          <div className="resetpass"> 
           <Button
           id="NulstilKode"
           onClick={() => requestResetPassword()}
@@ -70,7 +70,7 @@ export default function RequestResetPassword() {
       return (
         <Container>
           <Typography>
-            Mail med vejledning til at ændre sit kodeord sendy til: {mail}.
+            Vejledning til nustillelse af kodeord sendt til: {mail}.
           </Typography>
         </Container>
       );
