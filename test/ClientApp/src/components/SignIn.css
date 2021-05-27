@@ -9,7 +9,8 @@
     font-family: 'Lato', sans-serif;
     position: relative !important;
     display: inline-block;
-    height: 700px !important;
+    height: auto !important;
+    padding-bottom: 150px;
     width: 100% !important;
 }
 

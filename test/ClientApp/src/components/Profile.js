@@ -47,7 +47,7 @@ export function Profile() {
     } else {
   
         return (
-            <div className="content">
+            <div className="contentProfile">
                 {
                     <React.Fragment>
                         <div className="body">
