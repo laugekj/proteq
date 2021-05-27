@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
+import { Button } from 'reactstrap';
+
 export function FilesToDownload() {
     
     const [myFilesId, setMyFilesId] = useState([]);
@@ -54,7 +55,7 @@ export function FilesToDownload() {
 return ( 
     <Container component="main" maxWidth="xs">
         <div>{myFileNames.map((fileName, index) =>
-        <Link onClick={e => requestFileDownload(fileName, index)}>Hent { fileName }</Link>
+        <Button onClick={e => requestFileDownload(fileName, index)}>Hent { fileName }</Button>
         )}
         </div>
         
