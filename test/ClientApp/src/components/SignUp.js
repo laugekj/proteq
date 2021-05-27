@@ -61,7 +61,6 @@ export default function SignUp() {
   
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    console.log("const loggedInUser:")
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
@@ -214,7 +213,6 @@ export default function SignUp() {
   }
 
   function CreateUser(userFromDB) {
-
     // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
     //CreateUserInUserTable();
 
@@ -227,10 +225,8 @@ export default function SignUp() {
       },
       body: JSON.stringify(registrationData),
     }).then(response => {
-        console.log(response);
         // 200 is "ok" (success)
         if(response.status === 200) {
-            console.log("Created UserRegistration", registrationData);
             autoLogin(userFromDB);
         } else {
            // Error handling and
@@ -240,8 +236,23 @@ export default function SignUp() {
     });
   }
 
+  function validateEmail(vEmail) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(vEmail).toLowerCase());
+}
 
   function CreateUserInUserTable() {
+
+    if (!firstname || !lastname || !phone || !company || !email || !password) {
+      alert('Du skal udfylde alle felter for at kunne oprette en bruger.');
+      return
+    }
+
+    if (validateEmail(email) === false) {
+      alert('Du skal skrive en korrekt email.');
+      return
+    }
+
     const userData = { Phone: phone, firstname: firstname, Lastname: lastname, Company: company, Email: email };
     fetch('api/user', {
       method: 'POST',
@@ -252,11 +263,9 @@ export default function SignUp() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
       CreateUser(data);
     })
     .catch((error) => {
-      console.error('Error:', error);
     });
   
   }

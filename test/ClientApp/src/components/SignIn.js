@@ -173,9 +173,7 @@ export default function SignIn() {
 
   
   function login() {
-    // [DEVELOPER MODE]: Check if user setting are stored.
-    console.log("[DEVELOPER MODE] : Typed email: " + email);
-    console.log("[DEVELOPER MODE] : Typed password: " + password);
+
     const loginData = { Mail: email, Password: password };
 
     fetch('api/userlogin', {
