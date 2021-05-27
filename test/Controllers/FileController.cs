@@ -120,7 +120,8 @@ namespace test.Controllers
                 step.Title = data.Title;
                 step.Body = data.Body;
                 step.Video = data.Video;
-
+                step.StepNumber = data.StepNumber;
+                
                 string path;
                 if (data.FormFiles != null) {
                     foreach (var formFile in data.FormFiles)
