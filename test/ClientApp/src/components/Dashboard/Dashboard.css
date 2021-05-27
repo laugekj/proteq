@@ -50,3 +50,13 @@ body {
     font-weight: bolder !important;
     font-size: medium !important;
 }
+
+.welcome{
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bolder !important;
+    font-size: medium !important;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: #073B4C;
+    line-height: 20px;
+}

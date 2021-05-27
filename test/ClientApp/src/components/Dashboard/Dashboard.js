@@ -63,11 +63,20 @@ export default function Dashboard() {
            
         <div>
             <div className="body">
-                <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
+                <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname} til SimpleGDPR!</h1>
+                <p className="welcome">
+                    Du er nu allerede tættere på målet om at få styr på GDPR. 
+                    Det er et vigtigt skridt både for dine kunder, men også for din virksomhed. 
+                    Du vil med tiden blive mødt af forespørgsler om din håndtering af GDPR. 
+                    Det kan komme fra dine kunder, dine samarbejdspartnere eller en helt tredje. 
+                    Og så er det dejligt, at du kan svare. Det kommer nemlig din forretning til gode på den lange bane.
+                    Vi ønsker dig god fornøjelse og god arbejdslyst! Husk kaffe og chokolade på din vej.
+                </p>
                 <center>
                     <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
                 </center>
+                
             
                 <h2 className="stepsInfo">Se dine fremskridt her:</h2>
                 {console.log(steps)}
