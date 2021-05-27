@@ -8,3 +8,21 @@
 #invisLabel {
     visibility: hidden;
 }
+
+.adminTitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+label {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
+}
