@@ -2,6 +2,7 @@ import { Typography, Container, Grid, List, ListItem, ListItemText, Button } fro
 import React, { useEffect, useState } from 'react';
 import HtmlRender from './Htmlrender';
 import { FilesToDownload } from '../Steps/FilesToDownload';
+import './Design1.css';
 
 export default function Design1() {
     //TODO: get title, body, list from server FETCH :D :D :D
@@ -103,13 +104,21 @@ export default function Design1() {
     } else {
         return (
             <Container>
+                <div className="outerdiv">
              <h1 class="overskrift">{step.title}</h1>
-             <h2 class="design2underoverskrift">{step.subTitle}</h2>
-             <HtmlRender htmlString={body ? body : "empty"} />
+             <div className="bodydiv">
+             <HtmlRender class="bodytext" htmlString={body ? body : "empty"} />
+             </div>
+             <div className="videodiv">
              <iframe class="video" width="600" height="350" src={step.video} title="YouTube video player" frameborder="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             </div>
+             <div className="buttondiv">
              <Button onClick={CompleteStep}>Complete Step</Button>
+             </div>
+             <div className="downloaddiv">
              <FilesToDownload />
-
+             </div>
+                </div>
              </Container>
              
                  
