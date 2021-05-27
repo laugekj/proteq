@@ -38,7 +38,7 @@ export class Layout extends Component {
             <Container>
               {this.props.children}
             </Container>
-            <Footer />
+            
           </div>
         );
       } else {
