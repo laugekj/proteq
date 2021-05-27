@@ -11,7 +11,7 @@ export class Footer extends Component {
     render () {
           return (
             <MDBFooter className="font-small pt-4 mt-4">
-              <MDBContainer id = 'footerBar' fluid className="text-md-left">
+              <MDBContainer id = 'footerBar' className="text-md-left">
                 <MDBRow id ='footerRow'>
                     <ul>
                       <li className="list">
@@ -28,13 +28,13 @@ export class Footer extends Component {
                       </li>
                     </ul>
                 </MDBRow>
-                <MDBContainer id = 'footermiddle' fluid className="text-md-left"></MDBContainer>
+                <MDBContainer id = 'footermiddle' className="text-md-left"></MDBContainer>
                 <MDBRow id ='footerRow'>
                 <Grid container spacing={2}>
                         <Grid item xs={1} sm={1} id="tekst0">
                         </Grid>
 
-                        <Grid item xs={2} sm={2} id="tekst1">
+                        <Grid item xs={2} sm={2} id="tekst">
                             <p>Vores viden og erfaring inden <br />
                             for IT og jura bruger vi i arbejdet <br />
                             med GDPR, således at I får de sikreste <br />
@@ -42,15 +42,15 @@ export class Footer extends Component {
                             som muligt.</p>
                         </Grid>
 
-                        <Grid item xs={1} sm={3} id="tekst2">
+                        <Grid item xs={1} sm={3} id="tekst">
                             <p>Du kan altid kontakte os på +45 45 45 45 45</p>
                         </Grid>
 
-                        <Grid item xs={1} sm={2} id="tekst3">
+                        <Grid item xs={1} sm={2} id="tekst">
                         <p>Hvad er proteQ?</p>
                         </Grid>
 
-                        <Grid item xs={1} sm={2} id="tekst3">
+                        <Grid item xs={1} sm={2} id="tekst">
                         <p>kontakt os på mail: info@proteq.com
                         eller på telefon: +45 45 45 45 45</p>
                         </Grid>

@@ -47,12 +47,12 @@ export function Profile() {
     } else {
   
         return (
-            <div>
+            <div className="content">
                 {
                     <React.Fragment>
                         <div className="body">
                         <h1 className="overskrift">Velkommen, {user.firstname + " " + user.lastname}!</h1>
-                        <h2 className="underoverskrift">Her kan du administrere dine oplysninger og din konto </h2>
+                        <h2 className="underoverskrift">Her kan du administrere dine oplysninger </h2>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)" }}>
                         <div className="dineoplysninger"> 
                         <h3 className="oplysninger"> Dine oplysninger</h3>
