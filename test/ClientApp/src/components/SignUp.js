@@ -19,7 +19,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://proteq.nu/">
         ProteQ
       </Link>{' '}
       {new Date().getFullYear()}
@@ -104,7 +104,7 @@ export default function SignUp() {
                 value={firstname}
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label="Fornavn"
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
@@ -116,7 +116,7 @@ export default function SignUp() {
                 fullWidth
                 value={lastname}
                 id="lastName"
-                label="Last Name"
+                label="Efternavn"
                 name="lastName"
                 autoComplete="lname"
                 onChange={(e) => setLastname(e.target.value)}
@@ -128,7 +128,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="company"
-                label="Company"
+                label="Virksomhed"
                 name="company"
                 autoComplete="company"
                 value={company}
@@ -143,7 +143,7 @@ export default function SignUp() {
                 value={phone}
                 onChange= {(e) => setPhone(e.target.value)}
                 id="phone"
-                label="Phone number"
+                label="Telefon Nummer"
                 name="phone"
                 autoComplete="phone"
               />
@@ -156,7 +156,7 @@ export default function SignUp() {
                 value={email}
                 onChange= {(e) => setEmail(e.target.value)}
                 id="email"
-                label="Email Address"
+                label="Email"
                 name="email"
                 autoComplete="email"
               />
@@ -169,31 +169,26 @@ export default function SignUp() {
                 value={password}
                 onChange= {(e) => setPassword(e.target.value)}
                 name="password"
-                label="Password"
+                label="Kodeord"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           
-          <Button
-            id="OpretBruger"
-            fullWidth
-            variant="contained"
-            color="primary"
-            // className={classes.submit}
-            onClick={() => CreateUserInUserTable()}
-            >
-            Opret bruger
-          </Button>
-          
+          <Grid item xs={12}>
+            <Button
+              id="OpretBruger"
+              fullWidth
+              variant="contained"
+              color="primary"
+              // className={classes.submit}
+              onClick={() => CreateUserInUserTable()}
+              >
+              Opret bruger
+            </Button>
+          </Grid>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="sign-in" variant="body2">

@@ -107,7 +107,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Log Ind
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -148,18 +148,18 @@ export default function SignIn() {
             color= "secondary"
             onClick={() => login()}
           >
-            Sign In
+            Log ind
           </Button>
 
           <Grid container>
             <Grid item xs>
               <Link href="/requestresetpassword" variant="body2">
-                Forgot password?
+                Glemt Kodeord?
               </Link>
             </Grid>
             <Grid item>
               <Link href="/sign-up" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"Har du ikke en bruger? Opret Bruger"}
               </Link>
             </Grid>
           </Grid>
