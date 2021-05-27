@@ -11,7 +11,7 @@ export class Home extends Component {
 
   render () {
     return (
-      <div className="content">
+      <div className="contentHome">
         <img src={Banner} alt="" fluid="true" className ='banner' />
         <h1 className="overskrift">SimpleGDPR Guide</h1>
         <div className="førstesection">

@@ -12,11 +12,10 @@
 
 .signUpContent{
     margin-bottom: 150px !important;
-    overflow: scroll !important;
     font-family: 'Lato', sans-serif;
     position: relative !important;
     display: inline-block;
-    height: 700px !important;
+    height: 1000px !important;
     width: 100% !important;
 }
 

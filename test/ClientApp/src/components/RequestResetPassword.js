@@ -71,9 +71,11 @@ export default function RequestResetPassword() {
     } else {
       return (
         <Container>
-          <Typography>
+          <div class="content">
+          <Typography id="text">
             Vejledning til nustillelse af kodeord sendt til: {mail}.
           </Typography>
+          </div>
         </Container>
       );
     }
