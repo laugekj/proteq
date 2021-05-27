@@ -4,6 +4,16 @@
     color:#D3D3D3 !important;
 }
 
+.signInContent{
+    margin-bottom: 150px !important;
+    overflow: scroll !important;
+    font-family: 'Lato', sans-serif;
+    position: relative !important;
+    display: inline-block;
+    height: 700px !important;
+    width: 100% !important;
+}
+
 h1 {
     font-family: 'Playfair Display', serif;
     
@@ -29,4 +39,9 @@ body {
 
 .MuiAvatar-colorDefault {
     background-color: #073b4c !important;
+}
+
+.makeStyles-paper-1 > .MuiButton-root{
+   
+    margin-left: 800px;
 }

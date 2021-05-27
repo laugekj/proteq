@@ -100,8 +100,9 @@ export default function SignIn() {
   
   
   return (
-    <Container component="main" maxWidth="xs">
+    <Container  component="main" maxWidth="xs">
       <CssBaseline />
+      <div class="signInContent">
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -137,12 +138,10 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+         
           <Button 
            //type="submit"
+      
             fullWidth
             variant="contained"
             color= "secondary"
@@ -168,6 +167,7 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      </div>
     </Container>
   );
 

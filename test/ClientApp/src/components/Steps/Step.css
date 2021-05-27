@@ -48,9 +48,9 @@
 .step {
   text-align: center;
   color: #3d6f8c;
-  font-size: larger;
+  font-size: x-large;
   line-height: 40px;
-  font-weight: 1000;
+  font-weight: bold;
 }
 
 .completed{
