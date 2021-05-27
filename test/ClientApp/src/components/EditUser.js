@@ -54,7 +54,15 @@ export default function EditUser({user, onSaveClick}) {
   const [phone, setPhone] = useState(user.phone ?? "");
   const [company, setCompany] = useState(user.company ?? "");
   const [email, setEmail] = useState(user.email ?? "");
+  const [isAdmin, setIsAdmin] = useState(user.isAdmin);
+  const updateAdmin = () => setIsAdmin(!isAdmin);
+  
  
+  //   const changeIsAdmin = (e) => {
+  //     const target = e.target.value;
+  //     const value = target.type === 'checkbox' ? target.checked : target.value;
+  //     setIsAdmin(value)
+  // }
  
 
   return (
@@ -138,9 +146,12 @@ export default function EditUser({user, onSaveClick}) {
               />
             </Grid>
             <Grid item xs={12}>
+    
+            </Grid>
+            <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                control={<Checkbox checked={isAdmin} onChange={updateAdmin} color="primary" />}
+                label="Administrator"
               />
             </Grid>
           </Grid>
@@ -163,7 +174,7 @@ export default function EditUser({user, onSaveClick}) {
   );
 
   function EditUserAndDB(id) {
-    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email, IsAdmin: isAdmin };
     fetch('api/user/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
