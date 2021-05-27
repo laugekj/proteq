@@ -93,10 +93,11 @@ export default function Design1() {
                                 {step.title}
                         </Typography>
                     </Grid>
-                 
+                    <div className="bodydiv">
                     <Grid item xs={12}>
                         <HtmlRender htmlString={step.body ? step.body : "empty"} />
                     </Grid>
+                    </div>
                 </Grid>
                 <FilesToDownload />
                 <Button onClick={CompleteStep}>Complete Step</Button>
