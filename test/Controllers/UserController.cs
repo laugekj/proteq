@@ -48,6 +48,7 @@ namespace test.Controllers
                entity.Phone = user.Phone;
                entity.Email = user.Email;
                entity.Company = user.Company;
+               entity.IsAdmin = user.IsAdmin;
                _context.SaveChanges();
                return Ok();
            }
