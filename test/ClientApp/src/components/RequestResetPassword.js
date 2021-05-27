@@ -40,6 +40,7 @@ export default function RequestResetPassword() {
       return (
         
         <Container>
+          <div class="content">
         <Grid container direction="column" justify="center" alignItems="center">
         <div class="resetpass"> 
             <h1 id='overskrift'>Nulstilling af kodeord</h1>
@@ -62,6 +63,7 @@ export default function RequestResetPassword() {
           >Nulstil kodeord</Button>
           </div>
           </Grid>
+          </div>
         </Container>
       
 

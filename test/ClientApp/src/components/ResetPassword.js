@@ -37,6 +37,7 @@ export default function ResetPassword() {
 
     return (
         <Container>
+          <div class="content">
            <Grid container direction="column" justify="center" alignItems="center">
            <div class="resetpass"> 
             <h1 id='overskrift'>Opret nyt kodeord</h1>
@@ -70,6 +71,7 @@ export default function ResetPassword() {
           >Skift mit kodeord</Button>
           </div>
           </Grid>
+          </div>
         </Container>
 
 
