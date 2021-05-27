@@ -46,7 +46,7 @@ function StepFilesButton({stepId}) {
 
   return (
     <div>{myFileNames.map((fileName, index) =>
-        <Button onClick={e => removeSelectedFile(index)}>Fjern { fileName }</Button>
+        <Button key={index} onClick={e => removeSelectedFile(index)}>Fjern { fileName }</Button>
         )}
         </div>
   );

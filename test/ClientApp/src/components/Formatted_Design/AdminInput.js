@@ -106,9 +106,41 @@ export class AdminInput extends React.Component {
            this.setState({ files: this.state.files.filter(x => x !== f) }); 
       }
 
+      editStepFromServer = async () => {
+
+        const formData = new FormData();
+        formData.append("id", this.state.URLstepId);
+        formData.append("designId", this.state.designId);
+        formData.append("stepNumber", this.state.stepNumber);
+        formData.append("title", this.state.header);
+        formData.append("body", this.state.body);
+        formData.append("video", this.state.video);
+
+        for (let i = 0; i < this.state.files.length; i++) {
+            formData.append("formFiles", this.state.files[i]);
+        }
+
+        formData.append("formFiles", this.state.files);
+        try {
+          const res = await axios.put("http://localhost:5000/api/file/UpdateStep", formData);
+          console.log(res);
+        } catch (ex) {
+          console.log(ex);
+        }
+      }
+
+      submit = (e) => {
+        e.preventDefault();
+        if (this.state.URLstepId >= 0) {
+            this.editStepFromServer();
+            } else {
+            this.uploadToServer();
+        }
+      }
+
       render() {
         if (this.state.isLoggedIn) {
-            if (this.state.isAdmin){   
+            if (this.state.isAdmin) {   
     return (
         <Container>
         <Grid
@@ -189,7 +221,7 @@ export class AdminInput extends React.Component {
                             )}
                         </div>                        
                     </FormGroup>
-                    <Button onClick={this.uploadToServer}>Submit</Button>
+                    <Button onClick={this.submit}>Submit</Button>
                     </Form>
             </Grid>
             

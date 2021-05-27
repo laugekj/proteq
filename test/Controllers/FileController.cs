@@ -20,6 +20,84 @@ namespace test.Controllers
             _context = context;
         }
 
+        [HttpPut]
+        [Route("[action]")]
+        public ActionResult UpdateStep([FromForm] StepUpdateModel data) 
+        {
+            /////////////////////////////////////////////////
+            Console.WriteLine("--- Update Data --- ");
+            Console.WriteLine("Id: " + data.Id);
+            Console.WriteLine("StepNumber: " + data.StepNumber);
+            Console.WriteLine("DesignId: " + data.DesignId);
+            Console.WriteLine("Title: " + data.Title);
+            Console.WriteLine("Body: " + data.Body);
+            Console.WriteLine("Video: " + data.Video);
+            
+            if (data.FormFiles != null) {
+            foreach (var formFile in data.FormFiles)
+            {
+                if (formFile.Length > 0)
+                {
+                    Console.WriteLine(formFile.FileName + ", " + formFile.ContentType);
+                }
+            }
+            Console.WriteLine("----------------------");
+            }
+            
+            
+            var step = _context.Steps.Where(s => s.Id == data.Id).FirstOrDefault();
+            if (step == null) {
+                return NotFound();
+            }
+
+            step.StepNumber = data.StepNumber;
+
+            int tmp_DesignId;
+            bool success = Int32.TryParse(data.DesignId.ToString(), out tmp_DesignId);
+            if (success) step.DesignId = tmp_DesignId;
+            if (!success) step.DesignId = 0; // default
+
+            step.Title = data.Title;
+            step.Body = data.Body;
+            step.Video = data.Video;
+            
+            string path;
+            if (data.FormFiles != null) {
+                foreach (var formFile in data.FormFiles) 
+                {
+                    if (formFile.Length > 0)
+                    {
+                        path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", formFile.FileName);
+
+                        using (Stream stream = new FileStream(path, FileMode.Create))
+                        {
+                            formFile.CopyTo(stream);
+                        }
+                        byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
+                        
+                        PostFilesToDB(step, fileToBytes, formFile.ContentType, formFile.FileName);
+                    }
+                }
+            }
+
+            
+            _context.SaveChanges();
+            return Ok();
+        }
+
+
+        private void PostFilesToDB(Step step, byte[] fileToBytes, string contentType, string fileName) 
+        {
+            FileModel file = new FileModel();
+            file.StepId = step.Id;
+            file.Step = step;
+            file.FileData = fileToBytes;
+            file.FileType = contentType;
+            file.FileName = fileName;
+            _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
+            step.Files.Add(file);
+        }
+
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
