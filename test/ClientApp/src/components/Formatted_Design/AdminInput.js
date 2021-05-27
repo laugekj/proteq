@@ -198,8 +198,7 @@ export class AdminInput extends React.Component {
                     <div>
                     <StepFilesButton stepId={this.state.URLstepId}/>
                     </div>
-                   
-                    <FormGroup>
+                   <FormGroup>
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
@@ -213,13 +212,6 @@ export class AdminInput extends React.Component {
                             )}
                         </div>                        
                         </FormText>
-                    </FormGroup>
-                    <FormGroup>
-                        <div>
-                            {this.state.files.map(x => 
-                            <div className="file-preview" onClick={e => this.removeFile(this)}>{x.name}</div>
-                            )}
-                        </div>                        
                     </FormGroup>
                     <Button onClick={this.submit}>Submit</Button>
                     </Form>
