@@ -6,7 +6,6 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import 'fontsource-roboto';
 import { FetchUsers } from './components/FetchUsers';
-import  googleLogin  from './components/googleLogin';
 import  { Profile } from './components/Profile';
 import { Success }  from './components/Stripe/Success';
 import   Dashboard  from './components/Dashboard/Dashboard';
@@ -16,10 +15,7 @@ import ResetPassword from './components/ResetPassword';
 import {Logout} from './components/Logout/Logout';
 import Design1 from './components/Formatted_Design/Design1';
 import {AdminInput} from './components/Formatted_Design/AdminInput';
-import StepStep from './components/Steps/StepStep';
-import { UploadForm } from './components/Formatted_Design/UploadForm';
 import { AdminSteps } from './components/Formatted_Design/AdminSteps';
-import { FilesToDownload } from './components/Steps/FilesToDownload';
 import   DashboardAdmin  from './components/AdminDashboard/DashboardAdmin';
 
 export default function App(){
@@ -30,7 +26,6 @@ export default function App(){
             <Route path='/fetch-users' component={FetchUsers} />         
             <Route path='/sign-in' component={SignIn} />
             <Route path='/sign-up' component={SignUp} />
-            <Route path='/googleLogin' component={googleLogin} />
             <Route path='/profile' component={Profile} />
             <Route path='/success' component={Success} />
             <Route path='/dashboard' component={Dashboard} />
@@ -40,10 +35,7 @@ export default function App(){
             <Route path='/logout' component={Logout} />
             <Route path='/design1' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
-            <Route path='/stepper' component={StepStep} />
-            <Route path='/test' component={UploadForm} />
             <Route path='/adminsteps' component={AdminSteps} />
-            <Route path='/download' component={FilesToDownload} />
             <Route path='/dashboardAdmin' component={DashboardAdmin} />
 
 
