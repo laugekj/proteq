@@ -19,6 +19,7 @@ export class AdminInput extends React.Component {
         this.state = {
             id: -1,
             designId: 0,
+            stepNumber: 0,
             header: "",
             body: "",
             video: "",
@@ -147,6 +148,15 @@ export class AdminInput extends React.Component {
             justify="flex-start"
             alignItems="flex-start">
                  <Form>
+                 <FormGroup>
+                        <Label for="exampleHeader">Step nr.</Label>
+                        <Input 
+                        value={this.state.stepNumber} 
+                        onChange={e =>  this.setState({ stepNumber: e.target.value})} 
+                        name="stepnr" 
+                        id="examplestepnr" 
+                        placeholder="Vælg step nr." />
+                    </FormGroup>
                     <FormGroup>
                         <Label for="exampleHeader">Header</Label>
                         <Input 
