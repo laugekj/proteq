@@ -133,8 +133,12 @@ export class AdminInput extends React.Component {
         e.preventDefault();
         if (this.state.URLstepId >= 0) {
             this.editStepFromServer();
+            alert('Redigeret trin');
+            window.location.href = '/dashboard'
             } else {
             this.uploadToServer();
+            alert('Oprettet trin');
+            window.location.href = '/dashboard'
         }
       }
 
