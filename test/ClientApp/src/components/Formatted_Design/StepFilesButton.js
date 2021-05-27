@@ -10,6 +10,8 @@ function StepFilesButton({stepId}) {
         getAllFilesAssociatedToStepId(stepId)
       }, []);
 
+
+
     function getAllFilesAssociatedToStepId(stepId) {
         fetch('api/download/GetAllFilesFromStepId/' + stepId, {
             method: 'GET',
@@ -34,8 +36,9 @@ function StepFilesButton({stepId}) {
         fetch('api/file/' + selectedFileId, { method: 'DELETE' })
         .then(response => {
             if (response.status === 200) {
-                myFileNames.splice(arrayIndex, 1);
-                myFilesId.splice(arrayIndex, 1);
+                setMyFileNames(myFileNames.filter(fileName => fileName != myFileNames[arrayIndex]));
+                setMyFilesId(myFilesId.filter(fileId => fileId != myFilesId[arrayIndex]));
+                
             }
             
         });
