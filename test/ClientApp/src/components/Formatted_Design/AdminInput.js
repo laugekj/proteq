@@ -108,6 +108,7 @@ export class AdminInput extends React.Component {
         console.log("uploadToServer: ", this.state.files);
         const formData = new FormData();
         formData.append("designId", this.state.designId);
+        formData.append("stepNumber", this.state.stepNumber);
         formData.append("title", this.state.header);
         formData.append("body", this.state.body);
         formData.append("video", this.state.video);
