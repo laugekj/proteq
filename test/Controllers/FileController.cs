@@ -77,8 +77,9 @@ namespace test.Controllers
             return file;
         }
 
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        public ActionResult DeleteFile(int id)
         {
             var file = _context.Files.Where(x => x.Id == id).Single<FileModel>();
             if (file == null)
@@ -88,6 +89,20 @@ namespace test.Controllers
             _context.Files.Remove(file);
             _context.SaveChanges();
             return Ok("File deleted.");
+        }
+
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        public ActionResult DeleteStep(int id)
+        {
+            var step = _context.Steps.Where(x => x.Id == id).Single<Step>();
+            if (step == null)
+            {
+                return NotFound("Step don't exist.");
+            }
+            _context.Steps.Remove(step);
+            _context.SaveChanges();
+            return Ok("Step deleted.");
         }
 
         ///api/file

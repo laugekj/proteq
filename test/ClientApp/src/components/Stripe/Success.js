@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import  { UserContext } from '.././UserContext';
+import './checkout.css';
 
 export function Success() {
     const [ user, setUser] = useState()
@@ -47,8 +48,8 @@ export function Success() {
     }
 }
     return (
-            <div>
-                <h1>Din betaling er gået igennem!</h1>
+            <div className="content">
+                <h1 id="text">Din betaling er gået igennem!</h1>
             </div>
         );
   

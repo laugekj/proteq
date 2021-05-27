@@ -33,7 +33,7 @@ function StepFilesButton({stepId}) {
     function removeSelectedFile(arrayIndex) {
         var selectedFileId = myFilesId[arrayIndex];
 
-        fetch('api/file/' + selectedFileId, { method: 'DELETE' })
+        fetch('api/file/DeleteFile/' + selectedFileId, { method: 'DELETE' })
         .then(response => {
             if (response.status === 200) {
                 setMyFileNames(myFileNames.filter(fileName => fileName != myFileNames[arrayIndex]));

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import Countdown from 'react-countdown';
+import './checkout.css';
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -86,7 +87,7 @@ function CheckoutRedirect() {
   
   if (user) {
     return (
-        <div>
+        <div class="content">
                 <center>
                     <h1>Vi mangler betaling fra dig</h1>
                     <h1>Du bliver omdirigeret til vores betalingservice om </h1>
