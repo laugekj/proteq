@@ -47,7 +47,7 @@ export class NavMenuAdmin extends Component {
                   <NavLink tag={Link} className="nav-text" to="/admininput">Opret et trin</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="nav-text" to="/adminsteps">Se trins</NavLink>
+                  <NavLink tag={Link} className="nav-text" to="/adminsteps">Se trin</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="nav-text" to="/fetch-users">Se brugere</NavLink>
