@@ -86,16 +86,18 @@ export class AdminSteps extends Component {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Header</th>
-                        <th>Body</th>
-                        <th>VideoLink</th>
+                        <th>Step nummer</th>
+                        <th>Titel</th>
+                        <th>Tekst</th>
+                        <th>Video</th>
                        
                     </tr>
                 </thead>
                 <tbody>
                     {steps.map(step =>
                         <tr key={step.id}>
-                            <td>{step.id}</td> 
+                            <td>{step.id}</td>
+                            <td>{step.stepNumber}</td>
                             <td>{step.title}</td>
                             <td>{step.body}</td>
                             <td>{step.video}</td>
