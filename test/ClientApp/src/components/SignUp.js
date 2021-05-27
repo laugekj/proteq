@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import './SignUp.css';
 
 function Copyright() {
   return (
@@ -86,6 +86,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <div class="signUpContent" >
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -198,10 +199,10 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      
       <Box mt={5}>
         <Copyright />
       </Box>
+      </div>
     </Container>
   );
 

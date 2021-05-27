@@ -25,11 +25,19 @@ body {
     
 }
 
+
+.MuiInputBase-input{
+    color:black  !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight:600 !important;
+}
+
 .MuiOutlinedInput-input:-webkit-autofill {
     width: 390px !important;
     background-color: #CBBFBB !important;
-    color: #CBBFBB  !important;
+    color:black  !important;
     box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+    
 }
 
 .PrivateNotchedOutline-legendNotched-9 {
@@ -45,3 +53,4 @@ body {
    
     margin-left: 800px;
 }
+

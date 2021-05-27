@@ -10,3 +10,20 @@
     border-bottom: 100px;
 }
 
+.signUpContent{
+    margin-bottom: 150px !important;
+    overflow: scroll !important;
+    font-family: 'Lato', sans-serif;
+    position: relative !important;
+    display: inline-block;
+    height: 700px !important;
+    width: 100% !important;
+}
+
+.nav-text .nav-link{
+    color:beige !important;
+    font-weight: bold !important;
+    font-family: 'Lato', sans-serif !important;
+}
+
+
