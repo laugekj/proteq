@@ -16,7 +16,6 @@ import ResetPassword from './components/ResetPassword';
 import {Logout} from './components/Logout/Logout';
 import Design1 from './components/Formatted_Design/Design1';
 import {AdminInput} from './components/Formatted_Design/AdminInput';
-import Design2 from './components/Formatted_Design/Design2';
 import StepStep from './components/Steps/StepStep';
 import { UploadForm } from './components/Formatted_Design/UploadForm';
 import { AdminSteps } from './components/Formatted_Design/AdminSteps';
@@ -41,7 +40,6 @@ export default function App(){
             <Route path='/logout' component={Logout} />
             <Route path='/design1' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
-            <Route path='/design2' component={Design2} />
             <Route path='/stepper' component={StepStep} />
             <Route path='/test' component={UploadForm} />
             <Route path='/adminsteps' component={AdminSteps} />

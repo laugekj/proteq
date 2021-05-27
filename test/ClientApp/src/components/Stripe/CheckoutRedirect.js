@@ -57,18 +57,9 @@ function CheckoutRedirect() {
     }
   };
 
-  const Completionist = () =>  
-  fetch('api/payments/createPaymentToken', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(user)
-}).then(response => {
-  if (response.status == 200) {
+  const Completionist = () => {
     handleClick();
-  }
-});
+}
 
   
   const renderer = ({ seconds, completed }) => {

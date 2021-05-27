@@ -76,7 +76,7 @@ export class AdminInput extends React.Component {
       uploadToServer = async (e) => {
         console.log("uploadToServer: ", this.state.files);
         const formData = new FormData();
-        formData.append("designId", this.state.designId);
+        formData.append("designId", this.state.video ? 1 : this.state.designId);
         formData.append("stepNumber", this.state.stepNumber);
         formData.append("title", this.state.header);
         formData.append("body", this.state.body);
@@ -110,7 +110,7 @@ export class AdminInput extends React.Component {
 
         const formData = new FormData();
         formData.append("id", this.state.URLstepId);
-        formData.append("designId", this.state.designId);
+        formData.append("designId", this.state.video ? 1 : 0);
         formData.append("stepNumber", this.state.stepNumber);
         formData.append("title", this.state.header);
         formData.append("body", this.state.body);
@@ -187,14 +187,6 @@ export class AdminInput extends React.Component {
                             </FormGroup>
                         </Col>
                     </Row>
-                    <FormGroup>
-                        <Label for="designSelect">Select Design</Label>
-                        <Input type="select" name="select" id="designSelect" onChange={e => this.setState({ designId: e.target.selectedIndex})}>
-                        <option>Design 1</option>
-                        <option>Design 2</option>
-                        <option>Design 3</option>
-                        </Input>
-                    </FormGroup>
                     <div>
                     <StepFilesButton stepId={this.state.URLstepId}/>
                     </div>
