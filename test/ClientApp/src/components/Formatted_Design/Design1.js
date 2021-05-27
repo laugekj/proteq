@@ -10,7 +10,7 @@ export default function Design1() {
     const [title, setTitle] = useState("Title") 
     const [body, setBody] = useState("Body")
     const [subTitle, setSubTitle] = useState("Fakta")
-    const [video, setVideo] = useState("https://www.youtube.com/embed/u2lsSaDrjfA")
+    const [video, setVideo] = useState(null)
     const [user, setUser] = useState()
    
 
@@ -25,6 +25,7 @@ export default function Design1() {
         .then((responseJson) => {
            setStep(responseJson);
            setBody(responseJson.body);
+           
          
            
            
@@ -94,7 +95,7 @@ export default function Design1() {
                     </Grid>
                  
                     <Grid item xs={12}>
-                        <HtmlRender htmlString={step.body} />
+                        <HtmlRender htmlString={step.body ? step.body : "empty"} />
                     </Grid>
                 </Grid>
                 <FilesToDownload />
