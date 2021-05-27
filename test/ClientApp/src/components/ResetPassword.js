@@ -39,7 +39,7 @@ export default function ResetPassword() {
         <Container>
            <Grid container direction="column" justify="center" alignItems="center">
            <div class="resetpass"> 
-            <h1 id='overskrift'>Opret nyt kodeord</h1>
+            <h1 id='overskrift' className='overskrift'>Opret nyt kodeord</h1>
             <TextField
             margin="normal"
             id="password"
@@ -48,17 +48,6 @@ export default function ResetPassword() {
             name="password"
             value={password}
             onChange= {(e) => setPassword(e.target.value)}
-            ></TextField>
-            </div>
-            <div class="resetpass"> 
-            <TextField
-            onclick="myFunction()"
-            margin="normal"
-            id="confirm password"
-            label="Bekræft dit nye kodeord"
-            type="password"
-            name="confirm password"
-        
             ></TextField>
             </div>
             <div class="resetpass"> 
