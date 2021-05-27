@@ -28,10 +28,6 @@ export function FilesToDownload() {
                     setMyFileNames( arr => [...arr, `${obj.fileName}`]);
                     setMyFilesId(arr => [...arr, `${obj.id}`]);
                 }));
-
-                
-
-
             });
     }
 

@@ -2,6 +2,8 @@ import { Typography, Container, Grid, List, ListItem, ListItemText } from '@mate
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import axios from "axios";
+import StepFilesButton from './StepFilesButton';
+
 
 import './AdminInput.css';
 require('./AttachDocumentStyle.css');
@@ -17,24 +19,32 @@ export class AdminInput extends React.Component {
         super(probs);
         
         this.state = {
-            id: -1,
+            URLstepId: -1,
             designId: 0,
+            stepNumber: 0,
             header: "",
             body: "",
             video: "",
             files: [],
             isLoggedIn: false,
-            isAdmin: false
+            isAdmin: false,
           };
 
         this.uploadToServer = this.uploadToServer.bind(this);
         this.onChange = this.onChange.bind(this);
         this.getStep = this.getStep.bind(this);
-
       }
+      
       componentDidMount() {
-        this.getStep();
-        
+        const urlstring = window.location.href;
+        var stepId = -1
+        stepId = urlstring.split('?')[1]
+
+        if (stepId >= 0) {
+        this.state.URLstepId = stepId;
+        this.getStep(stepId);
+        }
+
         var loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             this.setState({isLoggedIn: true});
@@ -44,39 +54,30 @@ export class AdminInput extends React.Component {
     }
     }
 
-      getStep() {
-          const urlstring = window.location.href;
-          this.setState({id: urlstring.split('?')[1]})
+      getStep = async (stepId) => {
+            
+        const response = await fetch('api/file/' + stepId, { 
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            }});
+        const json = await response.json();
+         this.setState({
+            header: json.title,
+            body: json.body,
+            designId: json.designId,   
+            video: json.video,
+            stepNumber: json.stepNumber
+        });
+       }
 
-          fetch('api/file/' + this.state.id, { method: 'GET' }).then(response => {
-          return response.json();
-      })
-      .then((responseJson) => {
-          console.log(responseJson.body)
-          this.setState({header: responseJson.title, body: responseJson.body});
-          console.log(this.state.header)
-          console.log(urlstring);
-          console.log(this.state.id);
-      });
-
-   }
-
- submit(){
-        
-    if(this.state.id > -1) {
-        console.log("Editing step")
-    }
-    else{
-        console.log("Creating step")
-    }
-    
-}
 
 
       uploadToServer = async (e) => {
         console.log("uploadToServer: ", this.state.files);
         const formData = new FormData();
         formData.append("designId", this.state.designId);
+        formData.append("stepNumber", this.state.stepNumber);
         formData.append("title", this.state.header);
         formData.append("body", this.state.body);
         formData.append("video", this.state.video);
@@ -94,19 +95,6 @@ export class AdminInput extends React.Component {
         }
       }
 
-      /*uploadToServer = () => {
-          const data = {DesignId: this.state.designId, Title: this.state.header, Body: this.state.body, Video: this.state.video, Files: this.state.files}
-          console.log('[DEVELOPER MODE] UPLOAD TO SERVER FUNCTION CALLED!')
-          fetch('api/file/uploadfile', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data)
-          }).then(response => {
-              console.log('SERVER RESPONSE: ', response)
-          });
-      }*/
       onChange(e) {
         var files = e.target.files;
         var filesArr = Array.prototype.slice.call(files);
@@ -118,18 +106,57 @@ export class AdminInput extends React.Component {
            this.setState({ files: this.state.files.filter(x => x !== f) }); 
       }
 
+      editStepFromServer = async () => {
+
+        const formData = new FormData();
+        formData.append("id", this.state.URLstepId);
+        formData.append("designId", this.state.designId);
+        formData.append("stepNumber", this.state.stepNumber);
+        formData.append("title", this.state.header);
+        formData.append("body", this.state.body);
+        formData.append("video", this.state.video);
+
+        for (let i = 0; i < this.state.files.length; i++) {
+            formData.append("formFiles", this.state.files[i]);
+        }
+
+        formData.append("formFiles", this.state.files);
+        try {
+          const res = await axios.put("http://localhost:5000/api/file/UpdateStep", formData);
+          console.log(res);
+        } catch (ex) {
+          console.log(ex);
+        }
+      }
+
+      submit = (e) => {
+        e.preventDefault();
+        if (this.state.URLstepId >= 0) {
+            this.editStepFromServer();
+            } else {
+            this.uploadToServer();
+        }
+      }
+
       render() {
         if (this.state.isLoggedIn) {
-            if (this.state.isAdmin){   
+            if (this.state.isAdmin) {   
     return (
         <Container>
-            <Button onClick={e => this.getStep()}>test</Button> 
-            <h1>{this.props.title}</h1>
         <Grid
             direction="column"
             justify="flex-start"
             alignItems="flex-start">
                  <Form>
+                 <FormGroup>
+                        <Label for="exampleHeader">Step nr.</Label>
+                        <Input 
+                        value={this.state.stepNumber} 
+                        onChange={e =>  this.setState({ stepNumber: e.target.value})} 
+                        name="stepnr" 
+                        id="examplestepnr" 
+                        placeholder="Vælg step nr." />
+                    </FormGroup>
                     <FormGroup>
                         <Label for="exampleHeader">Header</Label>
                         <Input 
@@ -167,8 +194,11 @@ export class AdminInput extends React.Component {
                         <option>Design 2</option>
                         <option>Design 3</option>
                         </Input>
-                    </FormGroup>                        
-                    <FormGroup>
+                    </FormGroup>
+                    <div>
+                    <StepFilesButton stepId={this.state.URLstepId}/>
+                    </div>
+                   <FormGroup>
                         <Label for="exampleFile">File</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
@@ -183,10 +213,8 @@ export class AdminInput extends React.Component {
                         </div>                        
                         </FormText>
                     </FormGroup>
-                    <Button onClick={this.uploadToServer}>Submit</Button>
+                    <Button onClick={this.submit}>Submit</Button>
                     </Form>
-            
-
             </Grid>
             
         </Container>          
