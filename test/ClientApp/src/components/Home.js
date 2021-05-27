@@ -34,8 +34,9 @@ export class Home extends Component {
           </div>
           
           <Button
-          id='guideKnap'
-          size="small"
+                id='guideKnap'
+                size="small"
+                onClick={() => window.location.href = '/sign-up'}
           >Køb guiden her</Button>
 
           <p className="second-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper feugiat mauris. 
