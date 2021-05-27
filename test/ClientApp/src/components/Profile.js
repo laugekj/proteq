@@ -18,8 +18,8 @@ export function Profile() {
      
     function deleteUser() {
     fetch('api/user/' + user.id, { method: 'DELETE' }).then(response => {
-        console.log(response); 
-        setUser(null);
+        localStorage.clear();
+        window.location.href = '/sign-in'
     });
  }
 
