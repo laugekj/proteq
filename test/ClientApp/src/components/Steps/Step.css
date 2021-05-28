@@ -3,6 +3,7 @@
   background-color: transparent;
   width: 200px;
   height: 220px;
+  justify-content: center;
   perspective: 1000px;
   padding-bottom: 20px;
   padding-right: 10px !important;
