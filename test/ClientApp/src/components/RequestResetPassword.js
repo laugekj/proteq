@@ -95,7 +95,8 @@ export default function RequestResetPassword() {
             setSentMail(true);
           //  console.log('Updated password', data);
           } else {
-                // waaah, error handler
+            // so the user doesn't know if the mail is actually in our DB
+            setSentMail(true);
           }
         });
           

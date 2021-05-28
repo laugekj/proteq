@@ -90,8 +90,11 @@ export class AdminInput extends React.Component {
         try {
           const res = await axios.post("http://localhost:5000/api/file/CreateStep", formData);
           console.log(res);
+          alert('Oprettet trin');
+            window.location.href = '/dashboard'
         } catch (ex) {
           console.log(ex);
+          alert('Noget gik galt. Prøv igen');
         }
       }
 
@@ -124,8 +127,12 @@ export class AdminInput extends React.Component {
         try {
           const res = await axios.put("http://localhost:5000/api/file/UpdateStep", formData);
           console.log(res);
+          alert('Redigeret trin');
+            window.location.href = '/dashboard'
         } catch (ex) {
           console.log(ex);
+          alert('Noget gik galt. Prøv igen');
+          
         }
       }
 
@@ -133,12 +140,10 @@ export class AdminInput extends React.Component {
         e.preventDefault();
         if (this.state.URLstepId >= 0) {
             this.editStepFromServer();
-            alert('Redigeret trin');
-            window.location.href = '/dashboard'
+            
             } else {
             this.uploadToServer();
-            alert('Oprettet trin');
-            window.location.href = '/dashboard'
+            
         }
       }
 
