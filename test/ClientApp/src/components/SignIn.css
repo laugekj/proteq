@@ -12,6 +12,7 @@
     height: auto !important;
     padding-bottom: 150px;
     width: 100% !important;
+    padding-top: 120px;
 }
 
 h1 {
@@ -49,8 +50,7 @@ body {
     background-color: #073b4c !important;
 }
 
-.makeStyles-paper-1 > .MuiButton-root{
-   
-    margin-left: 800px;
+.makeStyle-form-4 .MuiButton-root{
+   position: center;
 }
 

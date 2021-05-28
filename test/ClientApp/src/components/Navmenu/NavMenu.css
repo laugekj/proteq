@@ -48,3 +48,8 @@ img {
  width: 300px;
 }
 
+.nav-text:hover{
+  font-style: italic;
+  
+}
+

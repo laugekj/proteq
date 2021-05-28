@@ -101,7 +101,7 @@ export default function Design1() {
                     </div>
                 </Grid>
                 <FilesToDownload />
-                <Button onClick={CompleteStep}>Complete Step</Button>
+                <Button onClick={CompleteStep}>Afslut Step</Button>
             </div>
             </Container>            
         );
@@ -116,13 +116,14 @@ export default function Design1() {
              <div className="bodydiv">
              <HtmlRender class="bodytext" htmlString={body ? body : "empty"} />
              </div>
+             
              <div className="buttondiv">
-             <Button onClick={CompleteStep}>Complete Step</Button>
+             <Button onClick={CompleteStep}>Afslut Step</Button>
              </div>
              <div className="downloaddiv">
              <FilesToDownload />
              </div>
-                </div>
+             </div>
              </Container>
              
                  

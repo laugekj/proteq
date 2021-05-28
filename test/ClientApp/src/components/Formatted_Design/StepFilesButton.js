@@ -36,8 +36,8 @@ function StepFilesButton({stepId}) {
         fetch('api/file/DeleteFile/' + selectedFileId, { method: 'DELETE' })
         .then(response => {
             if (response.status === 200) {
-                setMyFileNames(myFileNames.filter(fileName => fileName != myFileNames[arrayIndex]));
-                setMyFilesId(myFilesId.filter(fileId => fileId != myFilesId[arrayIndex]));
+                setMyFileNames(myFileNames.filter(fileName => fileName !== myFileNames[arrayIndex]));
+                setMyFilesId(myFilesId.filter(fileId => fileId !== myFilesId[arrayIndex]));
                 
             }
             

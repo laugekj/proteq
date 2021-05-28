@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -53,6 +53,7 @@ export default function SignUp({handleClose}) {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const updateAdmin = () => setIsAdmin(!isAdmin);
   const [hasPaid, setHasPaid] = useState(false);
@@ -143,6 +144,8 @@ export default function SignUp({handleClose}) {
                 variant="outlined"
                 required
                 fullWidth
+                value={password}
+                onChange= {(e) => setPassword(e.target.value)}
                 name="password"
                 label="Password"
                 type="password"
@@ -188,9 +191,42 @@ export default function SignUp({handleClose}) {
     </Container>
   );
 
+  function CreateUserRegistration(userFromDB) {
+    // creates the user in the Users Table. This must be done otherwise the UserRegistration table cant add the entry due to foreign key constraints.
+    //CreateUserInUserTable();
+
+    // creates userRegistration if email doesent exists
+    const registrationData = { Mail: email, Password: password };
+    fetch('api/userregistration', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registrationData),
+    }).then(response => {
+        // 200 is "ok" (success)
+        if(response.status === 200) {
+    
+        } else {
+           // Error handling and
+           // Delete the User from Users Table if the email already existed
+        
+        }
+    });
+  }
+
   function CreateUser() {
-    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email, IsAdmin: isAdmin, HasPaid: hasPaid};
-  
+    if (!firstname || !lastname || !phone || !company || !email || !password) {
+      alert('Du skal udfylde alle felter for at kunne oprette en bruger.');
+      return
+    }
+
+    if (validateEmail(email) === false) {
+      alert('Du skal skrive en korrekt email.');
+      return
+    }
+
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email,Password: password ,IsAdmin: isAdmin, HasPaid: hasPaid};
     fetch('api/user', {
       method: 'POST', // or 'PUT'
       headers: {
@@ -198,6 +234,7 @@ export default function SignUp({handleClose}) {
       },
       body: JSON.stringify(data),
     }).then(response => {
+        response.json();
         console.log(response);
         // 201 is "Created" (success)
         if(response.status === 201) {
@@ -206,7 +243,15 @@ export default function SignUp({handleClose}) {
         } else {
             // waah, error handler
         }
-    }); 
+    }).then(data => {
+      CreateUserRegistration(data);
+    }).catch((error) => {}); 
   }
+
+  function validateEmail(vEmail) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(vEmail).toLowerCase());
+}
+
 
 }
