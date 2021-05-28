@@ -24,11 +24,7 @@ namespace test.Controllers
     public UserLoginController(UserContext context)
     {
         _context = context;
-
-    
     }
-
-
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -40,13 +36,7 @@ namespace test.Controllers
         
             if (Isvalid)    
             {    
-                //User user = new User();
-                // [DEVELOPER MODE]: CATCH THE USER DATA
-
-                // Catch userId from context : 'UserRegistrations'
                 var _userId = _context.UserRegistrations.FirstOrDefault(x => x.Mail == typedUser.Mail && x.Password == _passWord).UserId;
-
-                // Catch all user information from table : 'Users'
                 User _user = _context.Users.FirstOrDefault(x => x.Id == _userId);
                 return _user;
             } 
@@ -77,7 +67,6 @@ namespace test.Controllers
           
             // Send mail to recipient with unique link to the resetpassword route with token
             MailMessenger.SendPasswordResetLink(mailUrlModel.Mail, mailUrlModel.Url, model.Token);
-
 
             return Ok();
         }

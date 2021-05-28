@@ -38,7 +38,7 @@ export default function DashboardAdmin() {
      
     if (user) {
         var hasPaid = JSON.parse(user.hasPaid)
-        if (hasPaid == false) {
+        if (hasPaid === false) {
         // redirect user to checkoutRedirect
         window.location.href = '/CheckoutRedirect'
         }
@@ -55,9 +55,6 @@ export default function DashboardAdmin() {
                     <Button onClick = {() => window.location.href = '/' }>Hjem</Button>
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
                 </center>
-            
-                <h2 className="stepsInfo">Du er nået x langt med dine steps</h2>
-                {console.log(steps)}
             
                 <div className="stepsContainer"> 
                    <StepStep serversteps={steps} /> 

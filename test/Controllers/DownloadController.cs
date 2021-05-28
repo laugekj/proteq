@@ -4,7 +4,6 @@ using System;
 using test.Models;
 using System.Collections.Generic;
 using System.Linq;
-
 using System.IO;
 
 namespace test.Controllers
@@ -13,15 +12,12 @@ namespace test.Controllers
     [ApiController]
     public class DownloadController : ControllerBase
     {
-
-
         private readonly UserContext _context;
 
         public DownloadController(UserContext context)
         {
             _context = context;
         }
-
 
         //api/download/GetFileById/ + fileId
         [HttpGet]
@@ -42,17 +38,10 @@ namespace test.Controllers
         [Route("[action]/{stepId}")]
         public List<FileModel> GetAllFilesFromStepId(int stepId)
         {
+            // 1. Find files associated with stepId:
+            var files = _context.Files.Where(file => file.StepId == stepId).ToList();
         
-        Console.WriteLine("[DEVELOPER MODE] StepId: " + stepId);
-            
-        // 1. Find files associated with stepId:
-        var files = _context.Files.Where(file => file.StepId == stepId).ToList();
-        
-        return files;
-
+            return files;
         }
-        
-
-
     }
 }

@@ -17,11 +17,7 @@ namespace test.Controllers
     public UserController(UserContext context)
     {
         _context = context;
-           
-    
     }
-
-
         [HttpPost]
         public ActionResult<User> Create(User user) 
         { 
@@ -52,7 +48,6 @@ namespace test.Controllers
                _context.SaveChanges();
                return Ok();
            }
-           
         }
 
         [HttpDelete("{id}")]

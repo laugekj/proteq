@@ -20,18 +20,15 @@ namespace test
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllersWithViews();
 
-            // https://www.thecodebuzz.com/jsonexception-possible-object-cycle-detected-object-depth/
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
@@ -48,7 +45,6 @@ namespace test
             options.UseNpgsql(connectionString));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -61,6 +57,7 @@ namespace test
             }
 
             app.UseStaticFiles();
+            
             app.UseSpaStaticFiles();
 
             app.UseRouting();

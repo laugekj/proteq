@@ -4,7 +4,6 @@ using System;
 using test.Models;
 using System.Collections.Generic;
 using System.Linq;
-
 using System.IO;
 
 namespace test.Controllers
@@ -25,23 +24,30 @@ namespace test.Controllers
         public ActionResult UpdateStep([FromForm] StepUpdateModel data) 
         {
             var step = _context.Steps.Where(s => s.Id == data.Id).FirstOrDefault();
-            if (step == null) {
+            if (step == null) 
+            {
                 return NotFound();
             }
+                step.StepNumber = data.StepNumber;
 
-            step.StepNumber = data.StepNumber;
+                int tmp_DesignId;
 
-            int tmp_DesignId;
-            bool success = Int32.TryParse(data.DesignId.ToString(), out tmp_DesignId);
-            if (success) step.DesignId = tmp_DesignId;
-            if (!success) step.DesignId = 0; // default
+                bool success = Int32.TryParse(data.DesignId.ToString(), out tmp_DesignId);
 
-            step.Title = data.Title;
-            step.Body = data.Body;
-            step.Video = data.Video;
+                if (success) step.DesignId = tmp_DesignId;
+
+                if (!success) step.DesignId = 0; // default
+
+                step.Title = data.Title;
+
+                step.Body = data.Body;
+
+                step.Video = data.Video;
             
-            string path;
+                string path;
+
             if (data.FormFiles != null) {
+
                 foreach (var formFile in data.FormFiles) 
                 {
                     if (formFile.Length > 0)
@@ -53,14 +59,15 @@ namespace test.Controllers
                             formFile.CopyTo(stream);
                         }
                         byte[] fileToBytes = System.IO.File.ReadAllBytes(path);
+
                         FileModel file = PostFilesToDB(step, fileToBytes, formFile.ContentType, formFile.FileName);
+
                         _context.Files.Add(file); // IMPORTANT THAT Table gets inserted file row - or else return error: Object reference not set to an instance of an object.
+                        
                         step.Files.Add(file);
                     }
                 }
             }
-
-
             _context.SaveChanges();
             return Ok();
         }
@@ -84,7 +91,7 @@ namespace test.Controllers
             var file = _context.Files.Where(x => x.Id == id).Single<FileModel>();
             if (file == null)
             {
-                return NotFound("File don't exist.");
+                return NotFound("File does not exist.");
             }
             _context.Files.Remove(file);
             _context.SaveChanges();
@@ -98,7 +105,7 @@ namespace test.Controllers
             var step = _context.Steps.Where(x => x.Id == id).Single<Step>();
             if (step == null)
             {
-                return NotFound("Step don't exist.");
+                return NotFound("Step does not exist.");
             }
             _context.Steps.Remove(step);
             _context.SaveChanges();
@@ -131,7 +138,7 @@ namespace test.Controllers
                 bool success = Int32.TryParse(data.DesignId.ToString(), out tmp_DesignId);
                 if (success) step.DesignId = tmp_DesignId;
                 if (!success) step.DesignId = 0; // default
-                
+            
                 step.Title = data.Title;
                 step.Body = data.Body;
                 step.Video = data.Video;
@@ -175,7 +182,8 @@ namespace test.Controllers
 
         private string getFileType(string fileName)
         {
-            string fileType = fileName; // XXXX.jpg
+            string fileType = fileName; 
+            
             fileType = fileType.Substring(fileName.IndexOf('.') + 1); // jpg
 
             return fileType;

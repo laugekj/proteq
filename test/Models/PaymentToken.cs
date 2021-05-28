@@ -8,10 +8,8 @@ namespace test.Models
 {  
     public class PaymentToken  
     {  
-
         public string url { get; set; }  
   
-
         public string paymentToken { get; set; }
     }  
 }  
