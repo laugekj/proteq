@@ -53,6 +53,10 @@ export default function SignUp({handleClose}) {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const updateAdmin = () => setIsAdmin(!isAdmin);
+  const [hasPaid, setHasPaid] = useState(false);
+  const updateHadPaid = () => setHasPaid(!hasPaid);
   
 
   return (
@@ -63,7 +67,7 @@ export default function SignUp({handleClose}) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Create User
+          Opret Bruger
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -76,7 +80,7 @@ export default function SignUp({handleClose}) {
                 value={firstname}
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label="Fornavn"
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
@@ -89,7 +93,7 @@ export default function SignUp({handleClose}) {
                 fullWidth
                 value={lastname}
                 id="lastName"
-                label="Last Name"
+                label="Efternavn"
                 name="lastName"
                 autoComplete="lname"
                 onChange={(e) => setLastname(e.target.value)}
@@ -101,7 +105,7 @@ export default function SignUp({handleClose}) {
                 required
                 fullWidth
                 id="company"
-                label="Company"
+                label="Firma"
                 name="company"
                 autoComplete="company"
                 value={company}
@@ -116,7 +120,7 @@ export default function SignUp({handleClose}) {
                 value={phone}
                 onChange= {(e) => setPhone(e.target.value)}
                 id="phone"
-                label="Phone number"
+                label="Telefonnummer"
                 name="phone"
                 autoComplete="phone"
               />
@@ -129,7 +133,7 @@ export default function SignUp({handleClose}) {
                 value={email}
                 onChange= {(e) => setEmail(e.target.value)}
                 id="email"
-                label="Email Address"
+                label="E-mail Addresse"
                 name="email"
                 autoComplete="email"
               />
@@ -148,8 +152,14 @@ export default function SignUp({handleClose}) {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                control={<Checkbox checked={isAdmin} onChange={updateAdmin} color="primary" />}
+                label="Administrator"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox checked={hasPaid} onChange={updateHadPaid} color="primary" />}
+                label="Betalt"
               />
             </Grid>
           </Grid>
@@ -161,12 +171,12 @@ export default function SignUp({handleClose}) {
            // className={classes.submit}
             onClick={() => CreateUser()}
           >
-            Create User
+            Opret bruger
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="sign-in" variant="body2">
-                Already have an account? Sign in
+            
               </Link>
             </Grid>
           </Grid>
@@ -179,7 +189,7 @@ export default function SignUp({handleClose}) {
   );
 
   function CreateUser() {
-    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email };
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email, IsAdmin: isAdmin, HasPaid: hasPaid};
   
     fetch('api/user', {
       method: 'POST', // or 'PUT'
