@@ -17,7 +17,6 @@ namespace test.Controllers
   public class PaymentsController : Controller
   {
      private readonly UserContext _context;
-     private string paymentToken;
   
     public PaymentsController(UserContext context)
     {
