@@ -92,7 +92,7 @@ export default function EditUser({user, onSaveClick}) {
                 value={firstname}
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label="Fornavn"
                 onChange={(e) => setFirstname(e.target.value)}
                 autoFocus
               />
@@ -106,7 +106,7 @@ export default function EditUser({user, onSaveClick}) {
                 fullWidth
                 value={lastname}
                 id="lastName"
-                label="Last Name"
+                label="Efternavn"
                 name="lastName"
                 autoComplete="lname"
                 onChange={e => setLastname(e.target.value)}
@@ -119,7 +119,7 @@ export default function EditUser({user, onSaveClick}) {
                 fullWidth
                 value={company}
                 id="company"
-                label="Company"
+                label="Virksomhed"
                 name="company"
                 autoComplete="company"
                 onChange= {(e) => setCompany(e.target.value)}
@@ -133,7 +133,7 @@ export default function EditUser({user, onSaveClick}) {
                 value={phone}
                 onChange= {(e) => setPhone(e.target.value)}
                 id="phone"
-                label="Phone number"
+                label="Telefonnummer"
                 name="phone"
                 autoComplete="phone"
               />
@@ -146,7 +146,7 @@ export default function EditUser({user, onSaveClick}) {
                 value={email}
                 onChange= {(e) => setEmail(e.target.value)}
                 id="email"
-                label="Email Address"
+                label="Email"
                 name="email"
                 autoComplete="email"
               />

@@ -1,6 +1,6 @@
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Button } from '@material-ui/core';
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import axios from "axios";
 import StepFilesButton from './StepFilesButton';
 
@@ -168,7 +168,7 @@ export class AdminInput extends React.Component {
                         placeholder="Vælg step nr." />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="exampleHeader">Header</Label>
+                        <Label for="exampleHeader">Titel</Label>
                         <Input 
                         value={this.state.header} 
                         onChange={e =>  this.setState({ header: e.target.value})} 
@@ -177,7 +177,7 @@ export class AdminInput extends React.Component {
                         placeholder="Sæt din header" />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="body">Body</Label>
+                        <Label for="body">Brødtekst</Label>
                         <Input 
                         type="textarea" 
                         name="text" 
@@ -201,7 +201,7 @@ export class AdminInput extends React.Component {
                     <StepFilesButton stepId={this.state.URLstepId}/>
                     </div>
                    <FormGroup>
-                        <Label for="exampleFile">File</Label>
+                        <Label for="exampleFile">Fil(er)</Label>
                         <Input type="file" name="file" id="exampleFile" />
                         <FormText color="muted">
                             <div style={AttachDocumentStyle}>
@@ -215,7 +215,11 @@ export class AdminInput extends React.Component {
                         </div>                        
                         </FormText>
                     </FormGroup>
-                    <Button onClick={this.submit}>Submit</Button>
+                    {this.state.URLstepId >= 0 ? (
+                      <Button onClick={this.submit}>Gem step</Button>
+                    ) : (
+                      <Button onClick={this.submit}>Opret step</Button>
+                    )}
                     </Form>
             </Grid>
             

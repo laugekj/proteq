@@ -119,7 +119,7 @@ export default function SignIn() {
             value={email}
             onChange= {(e) => setEmail(e.target.value)}
             id="email"
-            label="Email Address"
+            label="Din email"
             name="email"
             autoComplete="email"
            
@@ -133,7 +133,7 @@ export default function SignIn() {
             value={password}
             onChange= {(e) => setPassword(e.target.value)}
             name="password"
-            label="Password"
+            label="Dit kodeord"
             type="password"
             id="password"
             autoComplete="current-password"
