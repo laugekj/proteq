@@ -105,9 +105,9 @@ export class FetchUsers extends Component {
                                 <tr>
                                  
                                     <th>ID</th>
-                                    <th>Phone</th>
-                                    <th>Name</th>
-                                    <th>Company</th>
+                                    <th>Tlf.nr.</th>
+                                    <th>Navn</th>
+                                    <th>Virksomhed</th>
                                     <th>E-Mail</th>
                                     <th>Betalt</th>
                                     <th>Bruger Status</th>
