@@ -56,9 +56,6 @@ export default function DashboardAdmin() {
                     <Button onClick = {() => window.location.href = '/Profile' }>Profilside</Button>
                 </center>
             
-                <h2 className="stepsInfo">Du er nået x langt med dine steps</h2>
-                {console.log(steps)}
-            
                 <div className="stepsContainer"> 
                    <StepStep serversteps={steps} /> 
                 </div>            
