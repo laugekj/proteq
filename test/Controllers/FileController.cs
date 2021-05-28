@@ -116,7 +116,7 @@ namespace test.Controllers
         [HttpGet]
         public ActionResult<List<Step>> GetAll()
         {
-            return _context.Steps.ToList();
+            return _context.Steps.OrderBy(x => x.StepNumber).ToList();
         }
 
         // /api/file/getstep/id

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -56,13 +56,19 @@ export default function EditUser({user, onSaveClick}) {
   const [email, setEmail] = useState(user.email ?? "");
   const [isAdmin, setIsAdmin] = useState(user.isAdmin);
   const updateAdmin = () => setIsAdmin(!isAdmin);
+  const [hasPaid, setHasPaid] = useState(user.hasPaid);
+  const updateHasPaid = () => setHasPaid(!hasPaid);
   
- 
-  //   const changeIsAdmin = (e) => {
-  //     const target = e.target.value;
-  //     const value = target.type === 'checkbox' ? target.checked : target.value;
-  //     setIsAdmin(value)
-  // }
+  const [isEditorAdmin, setIsEditorAdmin] = useState()
+
+  useEffect(() => {
+      const loggedInUser = localStorage.getItem("user");
+      if (loggedInUser) {
+          const foundUser = JSON.parse(loggedInUser);
+          var isAdmin = JSON.parse(foundUser.isAdmin);
+          setIsEditorAdmin(isAdmin);
+      }
+  }, []);
  
 
   return (
@@ -148,12 +154,27 @@ export default function EditUser({user, onSaveClick}) {
             <Grid item xs={12}>
     
             </Grid>
-            <Grid item xs={12}>
+            {isEditorAdmin ? (
+              <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox checked={isAdmin} onChange={updateAdmin} color="primary" />}
                 label="Administrator"
               />
             </Grid>
+            ) : (
+              ''
+            )}
+              {isEditorAdmin ? (
+              <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox checked={hasPaid} onChange={updateHasPaid} color="primary" />}
+                label="Betalt"
+              />
+            </Grid>
+            ) : (
+              ''
+            )}
+
           </Grid>
           <Button
             // type="submit"
@@ -174,7 +195,7 @@ export default function EditUser({user, onSaveClick}) {
   );
 
   function EditUserAndDB(id) {
-    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email, IsAdmin: isAdmin };
+    const data = { Phone: phone, Firstname: firstname, Lastname: lastname, Company: company, Email: email, IsAdmin: isAdmin, HasPaid: hasPaid};
     fetch('api/user/' + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

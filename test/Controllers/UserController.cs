@@ -45,6 +45,7 @@ namespace test.Controllers
                entity.Email = user.Email;
                entity.Company = user.Company;
                entity.IsAdmin = user.IsAdmin;
+               entity.HasPaid = user.HasPaid;
                _context.SaveChanges();
                return Ok();
            }
@@ -63,7 +64,8 @@ namespace test.Controllers
         [HttpGet] 
         public ActionResult<List<User>> GetAll() 
         {     
-            return _context.Users.ToList(); 
+            
+            return _context.Users.OrderBy(x => !x.IsAdmin).ToList(); 
         } 
 
         // /user/id

@@ -16,7 +16,6 @@ import {Logout} from './components/Logout/Logout';
 import Design1 from './components/Formatted_Design/Design1';
 import {AdminInput} from './components/Formatted_Design/AdminInput';
 import { AdminSteps } from './components/Formatted_Design/AdminSteps';
-import   DashboardAdmin  from './components/AdminDashboard/DashboardAdmin';
 
 export default function App(){
 
@@ -36,7 +35,6 @@ export default function App(){
             <Route path='/design1' component={Design1} />
             <Route path='/admininput' component={AdminInput} />
             <Route path='/adminsteps' component={AdminSteps} />
-            <Route path='/dashboardAdmin' component={DashboardAdmin} />
 
 
 
