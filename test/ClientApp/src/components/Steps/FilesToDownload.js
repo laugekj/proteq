@@ -56,7 +56,9 @@ export function FilesToDownload() {
 return ( 
     <Container component="main" maxWidth="xs">
         <div className="downloadFile">{myFileNames.map((fileName, index) =>
-        <Button onClick={e => requestFileDownload(fileName, index)}>Hent { fileName }</Button>
+        <p className="downloadFileBTN" 
+        onClick={e => requestFileDownload(fileName, index)}>
+            Hent: { fileName }</p>
         )}
         </div>
         

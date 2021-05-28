@@ -1,3 +1,24 @@
 .downloadFile {
+    padding: 20px;
+    
+    
+}
 
+.downloadFileBTN {
+    margin: 5px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: bolder !important;
+    cursor: pointer;
+    font-size: medium;
+    color: #073B4C;
+    border-color:  #073B4C;
+    text-decoration: underline;
+    line-height: 20px;
+
+}
+
+.downloadFileBTN:hover {
+    color: #3d6f8c;
 }

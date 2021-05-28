@@ -79,6 +79,7 @@ export default function Design1() {
 
         return (
             <Container>
+                <div className="outerdiv">
                 <Grid 
                     container
                     direction="col"
@@ -101,6 +102,7 @@ export default function Design1() {
                 </Grid>
                 <FilesToDownload />
                 <Button onClick={CompleteStep}>Complete Step</Button>
+            </div>
             </Container>            
         );
     } else {

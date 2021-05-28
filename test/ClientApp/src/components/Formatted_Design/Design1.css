@@ -4,7 +4,6 @@
     font-size: xx-large;
     padding: 20px;
     
-    
 }
 
 .outerdiv{
@@ -27,7 +26,6 @@
     display:flex !important;
     flex-wrap: wrap !important;
     padding: 20px !important;
-    
     
 }
 
@@ -52,7 +50,7 @@
     font-weight: bold !important;
     font-family: 'Lato', sans-serif !important;
     font-size: 15px !important; 
-    color: #3d6f8c !important;
+    color:  #073B4C !important;
     line-height: 15px !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -65,8 +63,8 @@
     font-weight: bolder !important;
     font-family: 'Lato', sans-serif !important;
     font-size: 25px !important; 
-    line-height: 15px !important;
-    padding: 10px !important;
+    line-height: 25px !important;
+    padding: 15px !important;
     
  }
  
