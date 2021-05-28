@@ -2,31 +2,25 @@
     text-align: center;
     font-family: 'Playfair Display', serif;
     font-size: xx-large;
-    padding: 20px;
-    
+    padding: 20px;  
 }
 
 .outerdiv{
     height: auto !important;
-    padding-bottom: 600px !important;
-   
+    padding-bottom: 600px !important; 
 }
 
 .bodydiv{
     height: auto !important;
     padding: 20px !important;
     background-color: #073B4C !important;
-    
-    
-
 }
 
 .bodytext {
     height: 500px !important;
     display:flex !important;
     flex-wrap: wrap !important;
-    padding: 20px !important;
-    
+    padding: 20px !important; 
 }
 
  ul {
@@ -38,7 +32,6 @@
     flex-wrap: wrap !important;
     justify-content: space-between;
  }
-
 
  .downloaddiv .MuiContainer-root {
      margin: 0px !important;
@@ -54,8 +47,7 @@
     line-height: 15px !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    line-height: 20px !important;
-    
+    line-height: 20px !important;   
  }
 
  .bodydiv h1 {
@@ -64,8 +56,7 @@
     font-family: 'Lato', sans-serif !important;
     font-size: 25px !important; 
     line-height: 25px !important;
-    padding: 15px !important;
-    
+    padding: 15px !important;  
  }
  
  .video {
@@ -73,4 +64,8 @@
      margin-bottom: 40px !important;
      width: 100% !important;
      height: 400px !important;
+ }
+
+ .outerdiv .MuiButton-root {
+    float: right;
  }

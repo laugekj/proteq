@@ -1,13 +1,13 @@
 .downloadFile {
     padding: 20px;
-    
-    
 }
 
 .downloadFileBTN {
     margin: 5px;
     padding-top: 20px;
     padding-bottom: 10px;
+    padding-left: 10px !important;
+   
     font-family: 'Lato', sans-serif !important;
     font-weight: bolder !important;
     cursor: pointer;
@@ -16,9 +16,14 @@
     border-color:  #073B4C;
     text-decoration: underline;
     line-height: 20px;
-
+    align-self: left;
 }
 
 .downloadFileBTN:hover {
     color: #3d6f8c;
+}
+
+.outerdiv .MuiContainer-root{
+    margin-left: 0;
+    padding-left: 0;
 }
