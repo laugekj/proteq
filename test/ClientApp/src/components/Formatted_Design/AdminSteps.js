@@ -3,22 +3,23 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
+/*import "./AdminSteps.css";*/
 
 export class AdminSteps extends Component {
     static displayName = AdminSteps.name;
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             steps: [],
-             loading: true,
-             isLoggedIn: false,
-             isAdmin: false
-             };
+            loading: true,
+            isLoggedIn: false,
+            isAdmin: false
+        };
 
         this.populateStepsData = this.populateStepsData.bind(this);
         this.forceRefetch = this.forceRefetch.bind(this);
-      
+
     }
 
 
@@ -27,12 +28,12 @@ export class AdminSteps extends Component {
 
         var loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
-            this.setState({isLoggedIn: true});
+            this.setState({ isLoggedIn: true });
             var foundUser = JSON.parse(loggedInUser);
             var foundUserIsAdmin = JSON.parse(foundUser.isAdmin);
-            this.setState({isAdmin: foundUserIsAdmin});
+            this.setState({ isAdmin: foundUserIsAdmin });
+        }
     }
-}
 
 
     forceRefetch() {
@@ -45,23 +46,23 @@ export class AdminSteps extends Component {
         fetch('api/file/DeleteStep/' + id, { method: 'DELETE' }).then(response => {
             console.log(response);
             // 200 is "OK" (success)
-            if(response.status === 200) {
-                this.forceRefetch();      
-                console.log('Deleted succesfully' , 'deleted');
+            if (response.status === 200) {
+                this.forceRefetch();
+                console.log('Deleted succesfully', 'deleted');
             }
             else {
                 // Waaah, error handler
             }
         });
-     }
+    }
 
-     
-     deleteRow(index) {
-         const steps = this.state.steps;
-         steps.splice(index, 1);
-         fetch('api/file/' + index, { method: 'DELETE' });
-         this.setState({steps: steps, loading: true});
-     }
+
+    deleteRow(index) {
+        const steps = this.state.steps;
+        steps.splice(index, 1);
+        fetch('api/file/' + index, { method: 'DELETE' });
+        this.setState({ steps: steps, loading: true });
+    }
 
 
     async populateStepsData(bool) {
@@ -72,104 +73,107 @@ export class AdminSteps extends Component {
 
     editStep(id) {
 
-        window.location.href = '/admininput?'+id
+        window.location.href = '/admininput?' + id
         console.log(id)
         //<AdminInput title="hello test"/>
     }
 
     renderStepsTable(steps) {
         if (this.state.isLoggedIn) {
-            if (this.state.isAdmin) {  
+            if (this.state.isAdmin) {
                 console.log("Du er admin og har adgang til siden")
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Step nummer</th>
-                        <th>Titel</th>
-                        <th>Tekst</th>
-                        <th>Video</th>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-                    {steps.map(step =>
-                        <tr key={step.id}>
-                            <td>{step.id}</td>
-                            <td>{step.stepNumber}</td>
-                            <td>{step.title}</td>
-                            <td>{step.body}</td>
-                            <td>{step.video}</td>
-                          
-                            
-                            <td>
-                                <Grid 
-                                container
-                                direction="row"
-                                justify="center"
-                                alignItems="center">
-                                    <Button onClick = {() => this.editStep(step.id) }>Rediger Step</Button>
+                return (
+                    <div class="body">
+                        <h1 class="overskrift">Steps</h1>
+                        <table className='table table-striped' aria-labelledby="tabelLabel">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Step nummer</th>
+                                    <th>Titel</th>
+                                    <th>Tekst</th>
+                                    <th>Video</th>
 
-                                    <IconButton 
-                                    color="secondary" 
-                                    aria-label="Slet"
-                                    index={step.id}
-                                    onClick={(e) => this.deleteStep(step.id, e)}
-                                    >
-                                        <DeleteIcon />
-                                        
-                                    </IconButton>
-                                </Grid>     
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
-                    } else {
-                        console.log("Du har ikke adgang til siden")
-                        return (
-                            <div>Du har ikke adgang til siden.</div>
-                        );
-                    }
-                } else {
-                    console.log("1. du er ikke logget ind")
-                    return (
-                        
-                        <div>Du er ikke logget ind</div>
-                    );
-                }
-        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {steps.map(step =>
+                                    <tr key={step.id}>
+                                        <td>{step.id}</td>
+                                        <td>{step.stepNumber}</td>
+                                        <td>{step.title}</td>
+                                        <td>{step.body}</td>
+                                        <td>{step.video}</td>
+
+
+                                        <td>
+                                            <Grid
+                                                container
+                                                direction="row"
+                                                justify="center"
+                                                alignItems="center">
+                                                <Button onClick={() => this.editStep(step.id)}>Rediger Step</Button>
+
+                                                <IconButton
+                                                    color="secondary"
+                                                    aria-label="Slet"
+                                                    index={step.id}
+                                                    onClick={(e) => this.deleteStep(step.id, e)}
+                                                >
+                                                    <DeleteIcon />
+
+                                                </IconButton>
+                                            </Grid>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                );
+            } else {
+                console.log("Du har ikke adgang til siden")
+                return (
+                    <div>Du har ikke adgang til siden.</div>
+                );
+            }
+        } else {
+            console.log("1. du er ikke logget ind")
+            return (
+
+                <div>Du er ikke logget ind</div>
+            );
+        }
+
     }
 
-    
- 
+
+
     render() {
         if (this.state.isLoggedIn) {
-            if (this.state.isAdmin){ 
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : this.renderStepsTable(this.state.steps);
+            if (this.state.isAdmin) {
+                let contents = this.state.loading
+                    ? <p><em>Loading...</em></p>
+                    : this.renderStepsTable(this.state.steps);
 
-        return (
-            <div>
-                {contents}
-  
-            </div>
-            
-        );
-    } else {
-        return (
-            <div>Du har ikke adgang til siden.</div>
-        );
-    } 
-} else {
-    return (
-        <div>Du er ikke logget ind</div>
-    );
+                return (
+                    <div>
+                        {contents}
+
+                    </div>
+
+                );
+            } else {
+                return (
+                    <div>Du har ikke adgang til siden.</div>
+                );
+            }
+        } else {
+            return (
+                <div>Du er ikke logget ind</div>
+            );
+        }
     }
-}
 
 
 }
