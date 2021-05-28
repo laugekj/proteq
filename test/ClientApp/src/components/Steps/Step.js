@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Step.css";
 function Step({ step, onComplete }) {
 
@@ -20,18 +20,18 @@ function Step({ step, onComplete }) {
   //TODO: Fetch title from server - insert in flip-card-back
 
   return (
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" >
+    <div className="flip-card">
+      <div className="flip-card-inner">
+        <div className="flip-card-front" >
           
           <p onClick={completeMe}
         className={"step" + (step.completed ? " completed" : "")}>
-          <h1 class="steptitel">Step nr: </h1>
-          {step.stepNumber}
+          <h1 className="steptitel">Step nr: {step.stepNumber}</h1>
+          
           </p>
         </div> 
-        <div class="flip-card-back" onClick={onClickStep}>
-          <h1 class="titel">{step.title}</h1>
+        <div className="flip-card-back" onClick={onClickStep}>
+          <h1 className="titel">{step.title}</h1>
         </div>  
     </div>
   </div>
