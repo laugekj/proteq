@@ -51,7 +51,7 @@ export class Footer extends Component {
                         </Grid>
 
                         <Grid item xs={1} sm={2} id="tekst">
-                        <p>kontakt os på mail: info@proteq.com
+                        <p>kontakt os på mail: <a href="mailto:info@proteq.com">info@proteq.com</a>
                         eller på telefon: <a href="tel:4531535496">+45 31 53 54 96</a></p>
                         </Grid>
                         </Grid>

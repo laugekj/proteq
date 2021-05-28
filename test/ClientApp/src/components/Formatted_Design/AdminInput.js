@@ -90,7 +90,7 @@ export class AdminInput extends React.Component {
         try {
           const res = await axios.post("http://localhost:5000/api/file/CreateStep", formData);
           console.log(res);
-          alert('Oprettet trin');
+          alert('Step oprettet.');
             window.location.href = '/dashboard'
         } catch (ex) {
           console.log(ex);
@@ -127,7 +127,7 @@ export class AdminInput extends React.Component {
         try {
           const res = await axios.put("http://localhost:5000/api/file/UpdateStep", formData);
           console.log(res);
-          alert('Redigeret trin');
+          alert('Step er redigeret.');
             window.location.href = '/dashboard'
         } catch (ex) {
           console.log(ex);
@@ -174,7 +174,7 @@ export class AdminInput extends React.Component {
                         onChange={e =>  this.setState({ header: e.target.value})} 
                         name="header" 
                         id="exampleHeader" 
-                        placeholder="Sæt din header" />
+                        placeholder="Titel" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="body">Brødtekst</Label>
