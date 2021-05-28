@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
 import Banner from "./images/BannerSmall.jpg"
-import FrontPicture from "./images/ForsideBillede.png"
+import FrontPicture from "./images/ForsideBillede.jpg"
 import Button from '@material-ui/core/Button';
 
 
