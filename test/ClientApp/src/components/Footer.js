@@ -43,7 +43,7 @@ export class Footer extends Component {
                         </Grid>
 
                         <Grid item xs={1} sm={3} id="tekst">
-                            <p>Du kan altid kontakte os på +45 45 45 45 45</p>
+                            <p>Du kan altid kontakte os på <a href="tel:4531535496">+45 31 53 54 96</a></p>
                         </Grid>
 
                         <Grid item xs={1} sm={2} id="tekst">
@@ -52,7 +52,7 @@ export class Footer extends Component {
 
                         <Grid item xs={1} sm={2} id="tekst">
                         <p>kontakt os på mail: info@proteq.com
-                        eller på telefon: +45 45 45 45 45</p>
+                        eller på telefon: <a href="tel:4531535496">+45 31 53 54 96</a></p>
                         </Grid>
                         </Grid>
                 </MDBRow>
