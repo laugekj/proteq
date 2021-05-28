@@ -38,7 +38,7 @@ export default function DashboardAdmin() {
      
     if (user) {
         var hasPaid = JSON.parse(user.hasPaid)
-        if (hasPaid == false) {
+        if (hasPaid === false) {
         // redirect user to checkoutRedirect
         window.location.href = '/CheckoutRedirect'
         }
