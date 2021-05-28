@@ -91,7 +91,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Opret en bruger
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
