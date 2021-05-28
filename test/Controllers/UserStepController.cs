@@ -24,8 +24,6 @@ namespace test.Controllers
     public UserStepController(UserContext context)
     {
         _context = context;
-
-    
     }
 
         // /api/userstep

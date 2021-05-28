@@ -22,18 +22,13 @@ namespace test.Controllers
     public UserRegistrationController(UserContext context)
     {
         _context = context;
-
-    
     }
-
 
         [HttpGet] 
         public ActionResult<List<UserRegistration>> GetAll() 
         {     
             return _context.UserRegistrations.ToList(); 
         } 
-
-
 
         [HttpPut]
         public ActionResult ChangePassword(MailUrl model)
@@ -50,13 +45,12 @@ namespace test.Controllers
             // check to see if it is in the other table
             if (userRegEntity == null)
             {
-                Console.WriteLine("entity does not exists in userRegistration table");
+                //Console.WriteLine("entity does not exists in userRegistration table");
                 return BadRequest();
             
             } else {
             // When everything is good -> Update password
                userRegEntity.Password = encryptPassword.textToEncrypt(model.Password);
-               Console.WriteLine("Changes password");
 
             // Remove the token from the ResetPassword Table
                 _context.ResetPasswords.Remove(resetPasswordEntity);
