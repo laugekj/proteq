@@ -9,14 +9,14 @@ namespace test.Services
         public static void SendWelcomeEmailToUser(string mail)
         {
             MailMessage msg = new MailMessage("testmig002@gmail.com", mail);
-            msg.Subject = "Velkommen til SimpleGDPR";
+            msg.Subject = "Velkommen til EnkelGDPR";
             msg.Body = 
-            @"<h1>Velkommen til SimpleGDPR!</h1>
+            @"<h1>Velkommen til EnkelGDPR!</h1>
             <p></p>
-            <p>Det glæder os at ønske dig velkommen til SimpleGDPR familien. Hos SimpleGDPR kan du få nem vejledning til love og retningslinjer omkring GDPR. Så kan du som virksomhed overholde GDPR og derved EU lovene. Gennemfør vores simple trin til trin guide så vil du blive en ny ekspert på GDPR. God fornøjelse med læsningen!</p>
+            <p>Det glæder os at ønske dig velkommen til EnkelGDPR familien. Hos EnkelGDPR kan du få nem vejledning til love og retningslinjer omkring GDPR. Så kan du som virksomhed overholde GDPR og derved EU lovene. Gennemfør vores enkle trin til trin guide så vil du blive en ny ekspert på GDPR. God fornøjelse med læsningen!</p>
             <p></p>
             <p>Venlig Hilsen, </p>
-            <h1>SimpleGDPR</h1>
+            <h1>ProteQ</h1>
             <p></p>
             <p></p>
             ";

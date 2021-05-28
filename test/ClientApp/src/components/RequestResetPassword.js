@@ -24,7 +24,7 @@ export default function RequestResetPassword() {
       var isAdmin = JSON.parse(user.isAdmin)
     if (isAdmin) {
      
-      window.location.href = '/dashboardAdmin'
+      window.location.href = '/dashboard'
     }
       var hasPaid = JSON.parse(user.hasPaid)
     if (hasPaid && !isAdmin) {
