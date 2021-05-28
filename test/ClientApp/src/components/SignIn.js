@@ -138,7 +138,7 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
-         
+         <div class="submitButton">
           <Button 
            //type="submit"
       
@@ -147,8 +147,9 @@ export default function SignIn() {
             color= "secondary"
             onClick={() => login()}
           >
-            Log ind
+                              Log ind
           </Button>
+                          </div>
 
           <Grid container>
             <Grid item xs>

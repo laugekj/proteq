@@ -54,3 +54,6 @@ body {
    position: center;
 }
 
+.submitButton {
+    margin-left: 90px; 
+}
